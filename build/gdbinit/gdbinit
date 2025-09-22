@@ -1,0 +1,2 @@
+source /home/trung/espTPMS/build/gdbinit/symbols
+source /home/trung/espTPMS/build/gdbinit/connect
