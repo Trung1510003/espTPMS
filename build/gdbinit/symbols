@@ -27,4 +27,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file /home/trung/espTPMS/build/ble_adv_scan.elf
+file /home/trung/espTPMS/build/espTPMS.elf

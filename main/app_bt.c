@@ -14,8 +14,9 @@
  #include "esp_log.h"
  #include "esp_timer.h"
  #include "nvs_flash.h"
- #include "freertos/queue.h"
- #include "bt_hci_common.h"
+#include "freertos/queue.h"
+#include "bt_hci_common.h"
+#include "driver/uart.h"
  
  static const char *TAG = "BLE_ADV_SCAN";
  
@@ -50,6 +51,70 @@
      char device_name[16];  // Tên thiết bị (Trái-Sau, Phải-Sau, etc.)
      char address[18];      // Địa chỉ thiết bị
  } sensor_data_t;
+
+// Cấu hình UART cho DFPlayer Mini
+#define TXD_PIN 2   // ESP32-C3 TX → MP3 RX
+#define RXD_PIN 3   // ESP32-C3 RX → MP3 TX
+#define UART_PORT_NUM UART_NUM_1
+#define BUF_SIZE (1024)
+
+// Ngưỡng áp suất để phát âm thanh
+#define PRESSURE_HIGH_THRESHOLD 180
+#define PRESSURE_LOW_THRESHOLD 179
+
+// Hàm gửi lệnh đến DFPlayer Mini
+static void send_command(uint8_t cmd, uint16_t param)
+{
+    uint8_t buf[10];
+    uint16_t checksum = (uint16_t)(0xFFFF - (0xFF + 0x06 + cmd + (param >> 8) + (param & 0xFF)) + 1);
+
+    buf[0] = 0x7E;          // Start byte
+    buf[1] = 0xFF;          // Version
+    buf[2] = 0x06;          // Length
+    buf[3] = cmd;           // Command
+    buf[4] = 0x00;          // No feedback
+    buf[5] = (param >> 8);  // Parameter high
+    buf[6] = (param & 0xFF);// Parameter low
+    buf[7] = (checksum >> 8);
+    buf[8] = (checksum & 0xFF);
+    buf[9] = 0xEF;          // End byte
+
+    uart_write_bytes(UART_PORT_NUM, (const char*)buf, 10);
+}
+
+// Khởi tạo DFPlayer Mini (UART)
+static void init_dfplayer(void)
+{
+    const uart_config_t uart_config = {
+        .baud_rate = 9600,
+        .data_bits = UART_DATA_8_BITS,
+        .parity    = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        .source_clk = UART_SCLK_APB,
+    };
+
+    uart_driver_install(UART_PORT_NUM, BUF_SIZE, 0, 0, NULL, 0);
+    uart_param_config(UART_PORT_NUM, &uart_config);
+    uart_set_pin(UART_PORT_NUM, TXD_PIN, RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+
+    ESP_LOGI(TAG, "Khởi động DFPlayer...");
+    vTaskDelay(pdMS_TO_TICKS(1500));
+    // Set volume (0-30)
+    send_command(0x06, 25);
+}
+
+// Phát âm thanh theo ngưỡng áp suất
+static void play_sound_based_on_pressure(uint64_t pressure)
+{
+    if (pressure > PRESSURE_HIGH_THRESHOLD) {
+        ESP_LOGI(TAG, "Pressure %llu > %d - 14.mp3", pressure, PRESSURE_HIGH_THRESHOLD);
+        send_command(0x03, 1);  // play 01.mp3
+    } else if (pressure < PRESSURE_LOW_THRESHOLD) {
+        ESP_LOGI(TAG, "Pressure %llu < %d - 25.mp3", pressure, PRESSURE_LOW_THRESHOLD);
+        send_command(0x03, 2);  // play 02.mp3
+    }
+}
  
  // Hàng đợi để chuyển tiếp dữ liệu cảm biến
  static QueueHandle_t sensor_data_queue;
@@ -348,8 +413,11 @@
              // Ở đây bạn có thể thực hiện chuyển tiếp dữ liệu qua BLE
              // Ví dụ: đóng gói dữ liệu và gửi qua kênh BLE advertising hoặc GATT
              
-             ESP_LOGI(TAG, "Forwarding data - Device: %s, Temp: %u°C, Pressure: %llu Pa", 
-                      sensor_data.device_name, sensor_data.temperature, sensor_data.pressure);
+            ESP_LOGI(TAG, "Forwarding data - Device: %s, Temp: %u°C, Pressure: %llu Pa", 
+                     sensor_data.device_name, sensor_data.temperature, sensor_data.pressure);
+
+            // Phát âm thanh theo ngưỡng áp suất
+            play_sound_based_on_pressure(sensor_data.pressure);
              
              // Có thể thêm code để gửi dữ liệu qua BLE ở đây
              // Ví dụ: cập nhật advertising data với thông tin mới
@@ -371,11 +439,10 @@
      while (1) {
          if (xQueueReceive(device_queues[device_index], &sensor_data, portMAX_DELAY) == pdTRUE) {
              // Xử lý dữ liệu cho thiết bị cụ thể
-             ESP_LOGI(TAG, "[%s] Processing - Temp: %u°C, Pressure: %llu Pa", 
-                      device_name, sensor_data.temperature, sensor_data.pressure);
+            ESP_LOGI(TAG, "[%s] Processing - Temp: %u°C, Pressure: %llu Pa", 
+                     device_name, sensor_data.temperature, sensor_data.pressure);
              
-             // Ở đây bạn có thể thêm xử lý cụ thể cho từng thiết bị
-             // Ví dụ: áp dụng các bộ lọc khác nhau, ngưỡng cảnh báo khác nhau, etc.
+            // Có thể thêm xử lý cụ thể cho từng thiết bị ở đây
              
              // Cập nhật thời gian cuối cùng
              last_update_time[device_index] = xTaskGetTickCount();
@@ -600,7 +667,7 @@
          ESP_LOGI(TAG, "Created queue for %s (size: %d)", ai_devices[i].name, QUEUE_SIZE_PER_DEVICE);
      }
  
-     /* Initialize NVS — it is used to store PHY calibration data */
+    /* Initialize NVS — it is used to store PHY calibration data */
      esp_err_t ret = nvs_flash_init();
      if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
          ESP_ERROR_CHECK(nvs_flash_erase());
@@ -633,6 +700,9 @@
      }
  
      esp_vhci_host_register_callback(&vhci_host_cb);
+    
+    // Khởi tạo DFPlayer
+    init_dfplayer();
      
      // Tạo task để xử lý chuyển tiếp dữ liệu chính
      xTaskCreatePinnedToCore(&sensor_data_forwarding_task, "sensor_data_forwarding", 2048, NULL, 5, NULL, 0);

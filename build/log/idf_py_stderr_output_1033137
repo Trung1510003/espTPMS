@@ -1,0 +1,134 @@
+Command: /home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python /home/trung/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace /home/trung/espTPMS/build/espTPMS.elf /home/trung/espTPMS/build/bootloader/bootloader.elf -m '/home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python' '/home/trung/esp/esp-idf/tools/idf.py'
+[0;33m--- esp-idf-monitor 1.8.0 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403cbf10: [0;33mesp_bootloader_get_description[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c[0m[0m:[1;31m39[0m
+[0m--- 0x403ce710: [0;33mesp_flash_encryption_enabled[0m[0m at [0;32m/home/trung/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c[0m[0m:[1;31m89[0m
+[0m--- 0x403cbf1a: [0;33mcall_start_cpu0[0m[0m at [0;32m/home/trung/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m25[0m
+[0m--- 0x420002e6: [0;33m__esp_system_init_fn_init_efuse_check[0m[0m at [0;32m/home/trung/esp/esp-idf/components/efuse/src/esp_efuse_startup.c[0m[0m:[1;31m37[0m
+[0m--- 0x42000b2c: [0;33m__esp_system_init_fn_init_show_cpu_freq[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m64[0m
+[0m--- 0x42000190: [0;33m__esp_system_init_fn_init_show_app_info[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_app_format/esp_app_desc.c[0m[0m:[1;31m123[0m
+[0m--- 0x420002f8: [0;33m__esp_system_init_fn_init_efuse_show_app_info[0m[0m at [0;32m/home/trung/esp/esp-idf/components/efuse/src/esp_efuse_startup.c[0m[0m:[1;31m47[0m
+[0m--- 0x42002654: [0;33m__esp_system_init_fn_init_heap[0m[0m at [0;32m/home/trung/esp/esp-idf/components/heap/heap_caps_init.c[0m[0m:[1;31m26[0m
+[0m--- 0x42000032: [0;33m__esp_system_init_fn_esp_timer_init_nonos[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_timer/src/esp_timer_init.c[0m[0m:[1;31m28[0m
+[0m--- 0x42005820: [0;33m__esp_system_init_fn_init_libc[0m[0m at [0;32m/home/trung/esp/esp-idf/components/newlib/src/init.c[0m[0m:[1;31m12[0m
+[0m--- 0x42000ba4: [0;33m__esp_system_init_fn_init_brownout[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m79[0m
+[0m--- 0x42000bc6: [0;33m__esp_system_init_fn_init_newlib_time[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m104[0m
+[0m--- 0x42007478: [0;33m__esp_system_init_fn_init_vfs_uart[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_driver_uart/src/uart_vfs.c[0m[0m:[1;31m1148[0m
+[0m--- 0x4200acd0: [0;33m__esp_system_init_fn_init_vfs_usj_sec[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c[0m[0m:[1;31m657[0m
+[0m--- 0x4200c200: [0;33m__esp_system_init_fn_init_vfs_nullfs[0m[0m at [0;32m/home/trung/esp/esp-idf/components/vfs/nullfs.c[0m[0m:[1;31m322[0m
+[0m--- 0x4200afd6: [0;33m__esp_system_init_fn_init_vfs_console[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_vfs_console/vfs_console.c[0m[0m:[1;31m271[0m
+[0m--- 0x4200582e: [0;33m__esp_system_init_fn_init_libc_stdio[0m[0m at [0;32m/home/trung/esp/esp-idf/components/newlib/src/init.c[0m[0m:[1;31m18[0m
+[0m--- 0x42000bd6: [0;33m__esp_system_init_fn_init_flash[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m111[0m
+[0m--- 0x420003de: [0;33m__esp_system_init_fn_init_efuse[0m[0m at [0;32m/home/trung/esp/esp-idf/components/efuse/src/esp_efuse_startup.c[0m[0m:[1;31m158[0m
+[0m--- 0x4202a99a: [0;33m_GLOBAL__sub_I__ZN10__cxxabiv111__terminateEPFvvE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/riscv32-esp-elf/bits/gthr-default.h[0m[0m:[1;31m746[0m
+[0m--- (inlined by) [0;33m__gnu_cxx::__mutex::__mutex()[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/ext/concurrence.h[0m[0m:[1;31m132[0m
+[0m--- (inlined by) [0;33m__static_initialization_and_destruction_0[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_terminate.cc[0m[0m:[1;31m37[0m
+[0m--- (inlined by) [0;33m_GLOBAL__sub_I__ZN10__cxxabiv111__terminateEPFvvE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_terminate.cc[0m[0m:[1;31m133[0m
+[0m--- 0x4202a91e: [0;33m_GLOBAL__sub_I__ZN17__eh_globals_init7_S_initE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/riscv32-esp-elf/bits/gthr-default.h[0m[0m:[1;31m721[0m
+[0m--- (inlined by) [0;33m__eh_globals_init::__eh_globals_init()[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc[0m[0m:[1;31m105[0m
+[0m--- (inlined by) [0;33m__static_initialization_and_destruction_0[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc[0m[0m:[1;31m126[0m
+[0m--- (inlined by) [0;33m_GLOBAL__sub_I__ZN17__eh_globals_init7_S_initE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc[0m[0m:[1;31m162[0m
+[0m--- 0x4202a45a: [0;33m_GLOBAL__sub_I__ZSt7nothrow[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/riscv32-esp-elf/bits/gthr-default.h[0m[0m:[1;31m746[0m
+[0m--- (inlined by) [0;33m__gnu_cxx::__mutex::__mutex()[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/ext/concurrence.h[0m[0m:[1;31m132[0m
+[0m--- (inlined by) [0;33m__static_initialization_and_destruction_0[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/new_handler.cc[0m[0m:[1;31m33[0m
+[0m--- (inlined by) [0;33m_GLOBAL__sub_I__ZSt7nothrow[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/new_handler.cc[0m[0m:[1;31m71[0m
+[0m--- 0x403898e0: [0;33menable_timer_group0_for_calibration[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_hw_support/port/esp32c3/rtc_time.c[0m[0m:[1;31m202[0m
+[0m--- 0x42020c2e: [0;33m__esp_system_init_fn_esp_timer_init_os[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_timer/src/esp_timer.c[0m[0m:[1;31m566[0m
+[0m--- 0x42001bd4: [0;33m__esp_system_init_fn_esp_hw_stack_guard_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/hw_stack_guard.c[0m[0m:[1;31m15[0m
+[0m--- 0x42002e8e: [0;33m__esp_system_init_fn_esp_security_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_security/src/init.c[0m[0m:[1;31m74[0m
+[0m--- 0x42003cc0: [0;33m__esp_system_init_fn_esp_sleep_startup_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_hw_support/sleep_gpio.c[0m[0m:[1;31m225[0m
+[0m--- 0x42000c28: [0;33m__esp_system_init_fn_init_apb_dma[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m150[0m
+[0m--- 0x42000c38: [0;33m__esp_system_init_fn_init_coexist[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m159[0m
+[0m--- 0x4200a43e: [0;33m__esp_system_init_fn_usb_serial_jtag_conn_status_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c[0m[0m:[1;31m75[0m
+[0m--- 0x42000c50: [0;33m__esp_system_init_fn_init_disable_rtc_wdt[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m179[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m[0m
+[0;33m--- Warning: Failed to decode multiple lines in a row. Try checking the baud rate and XTAL frequency setting in menuconfig[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[1;31m--- Error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m[0m
+[0m--- 0x42005820: [0;33m__esp_system_init_fn_init_libc[0m[0m at [0;32m/home/trung/esp/esp-idf/components/newlib/src/init.c[0m[0m:[1;31m12[0m
+[0m--- 0x42000ba4: [0;33m__esp_system_init_fn_init_brownout[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m79[0m
+[0m--- 0x42000bc6: [0;33m__esp_system_init_fn_init_newlib_time[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m104[0m
+[0m--- 0x42007478: [0;33m__esp_system_init_fn_init_vfs_uart[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_driver_uart/src/uart_vfs.c[0m[0m:[1;31m1148[0m
+[0m--- 0x4200acd0: [0;33m__esp_system_init_fn_init_vfs_usj_sec[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c[0m[0m:[1;31m657[0m
+[0m--- 0x4200c200: [0;33m__esp_system_init_fn_init_vfs_nullfs[0m[0m at [0;32m/home/trung/esp/esp-idf/components/vfs/nullfs.c[0m[0m:[1;31m322[0m
+[0m--- 0x4200afd6: [0;33m__esp_system_init_fn_init_vfs_console[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_vfs_console/vfs_console.c[0m[0m:[1;31m271[0m
+[0m--- 0x4200582e: [0;33m__esp_system_init_fn_init_libc_stdio[0m[0m at [0;32m/home/trung/esp/esp-idf/components/newlib/src/init.c[0m[0m:[1;31m18[0m
+[0m--- 0x42000bd6: [0;33m__esp_system_init_fn_init_flash[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m111[0m
+[0m--- 0x420003de: [0;33m__esp_system_init_fn_init_efuse[0m[0m at [0;32m/home/trung/esp/esp-idf/components/efuse/src/esp_efuse_startup.c[0m[0m:[1;31m158[0m
+[0m--- 0x4202a99a: [0;33m_GLOBAL__sub_I__ZN10__cxxabiv111__terminateEPFvvE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/riscv32-esp-elf/bits/gthr-default.h[0m[0m:[1;31m746[0m
+[0m--- (inlined by) [0;33m__gnu_cxx::__mutex::__mutex()[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/ext/concurrence.h[0m[0m:[1;31m132[0m
+[0m--- (inlined by) [0;33m__static_initialization_and_destruction_0[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_terminate.cc[0m[0m:[1;31m37[0m
+[0m--- (inlined by) [0;33m_GLOBAL__sub_I__ZN10__cxxabiv111__terminateEPFvvE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_terminate.cc[0m[0m:[1;31m133[0m
+[0m--- 0x4202a91e: [0;33m_GLOBAL__sub_I__ZN17__eh_globals_init7_S_initE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/riscv32-esp-elf/bits/gthr-default.h[0m[0m:[1;31m721[0m
+[0m--- (inlined by) [0;33m__eh_globals_init::__eh_globals_init()[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc[0m[0m:[1;31m105[0m
+[0m--- (inlined by) [0;33m__static_initialization_and_destruction_0[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc[0m[0m:[1;31m126[0m
+[0m--- (inlined by) [0;33m_GLOBAL__sub_I__ZN17__eh_globals_init7_S_initE[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc[0m[0m:[1;31m162[0m
+[0m--- 0x4202a45a: [0;33m_GLOBAL__sub_I__ZSt7nothrow[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/riscv32-esp-elf/bits/gthr-default.h[0m[0m:[1;31m746[0m
+[0m--- (inlined by) [0;33m__gnu_cxx::__mutex::__mutex()[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/build/build-cc-gcc-final/riscv32-esp-elf/rv32imc_zicsr_zifencei/ilp32/no-rtti/libstdc++-v3/include/ext/concurrence.h[0m[0m:[1;31m132[0m
+[0m--- (inlined by) [0;33m__static_initialization_and_destruction_0[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/new_handler.cc[0m[0m:[1;31m33[0m
+[0m--- (inlined by) [0;33m_GLOBAL__sub_I__ZSt7nothrow[0m[0m at [0;32m/builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/libstdc++-v3/libsupc++/new_handler.cc[0m[0m:[1;31m71[0m
+[0m--- 0x403898e0: [0;33menable_timer_group0_for_calibration[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_hw_support/port/esp32c3/rtc_time.c[0m[0m:[1;31m202[0m
+[0m--- 0x42020c2e: [0;33m__esp_system_init_fn_esp_timer_init_os[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_timer/src/esp_timer.c[0m[0m:[1;31m566[0m
+[0m--- 0x42001bd4: [0;33m__esp_system_init_fn_esp_hw_stack_guard_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/hw_stack_guard.c[0m[0m:[1;31m15[0m
+[0m--- 0x42002e8e: [0;33m__esp_system_init_fn_esp_security_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_security/src/init.c[0m[0m:[1;31m74[0m
+[0m--- 0x42003cc0: [0;33m__esp_system_init_fn_esp_sleep_startup_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_hw_support/sleep_gpio.c[0m[0m:[1;31m225[0m
+[0m--- 0x42000c28: [0;33m__esp_system_init_fn_init_apb_dma[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m150[0m
+[0m--- 0x42000c38: [0;33m__esp_system_init_fn_init_coexist[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m159[0m
+[0m--- 0x4200a43e: [0;33m__esp_system_init_fn_usb_serial_jtag_conn_status_init[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c[0m[0m:[1;31m75[0m
+[0m--- 0x42000c50: [0;33m__esp_system_init_fn_init_disable_rtc_wdt[0m[0m at [0;32m/home/trung/esp/esp-idf/components/esp_system/startup_funcs.c[0m[0m:[1;31m179[0m
+[0m
