@@ -36,7 +36,7 @@ warning: unknown kconfig symbol 'BTDM_CTRL_MODE_BTDM' assigned to 'n' in /home/t
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
 -- USING O3
--- App "espTPMS" version: 24f8d51-dirty
+-- App "espTPMS" version: 594de19-dirty
 -- Adding linker script /home/trung/espTPMS/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script /home/trung/espTPMS/build/esp-idf/esp_system/ld/sections.ld.in
 -- Adding linker script /home/trung/esp/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ld

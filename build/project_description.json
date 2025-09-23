@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "espTPMS",
-    "project_version":    "24f8d51-dirty",
+    "project_version":    "594de19-dirty",
     "project_path":       "/home/trung/espTPMS",
     "idf_path":           "/home/trung/esp/esp-idf",
     "build_dir":          "/home/trung/espTPMS/build",

@@ -62,6 +62,8 @@
  #define PRESSURE_HIGH_THRESHOLD 180
  #define PRESSURE_LOW_THRESHOLD 179
  #define DEVICE_COOLDOWN_TIME_MS 7000 // Thêm định nghĩa hằng số
+// Thời gian delay cho mỗi vòng xử lý của task wheel (6.5s)
+#define WHEEL_TASK_DELAY_MS 6500
  
  // Hàm gửi lệnh đến DFPlayer Mini
  static void send_command(uint8_t cmd, uint16_t param)
@@ -284,10 +286,12 @@
              ESP_LOGI(TAG, "Device %s is in cooldown, packet rejected", sensor_data->device_name);
              return;
          }
-         
-         if (xQueueSend(device_queues[queue_index], sensor_data, pdMS_TO_TICKS(100)) != pdTRUE) {
-             ESP_LOGW(TAG, "Queue for %s is full, dropping data", sensor_data->device_name);
-         } else {
+        
+       // Ghi đè liên tục: reset queue để đảm bảo luôn nhận phần tử mới nhất
+       xQueueReset(device_queues[queue_index]);
+       if (xQueueSend(device_queues[queue_index], sensor_data, 0) != pdTRUE) {
+            ESP_LOGW(TAG, "Queue for %s is full, dropping data", sensor_data->device_name);
+        } else {
              ESP_LOGI(TAG, "Data sent to %s queue successfully", sensor_data->device_name);
              // Bắt đầu thời gian cooldown sau khi gửi thành công
              start_device_cooldown(queue_index);
@@ -485,6 +489,9 @@ static void sensor_data_forwarding_task(void *pvParameters)
 
             // Phát âm thanh theo ngưỡng áp suất và vị trí lốp
             play_sound_based_on_pressure(&sensor_data);
+
+            // Delay 6.5s để đảm bảo vòng kế tiếp chỉ chạy sau khi âm thanh hoàn tất
+            vTaskDelay(pdMS_TO_TICKS(WHEEL_TASK_DELAY_MS));
         }
     }
 }
@@ -650,8 +657,9 @@ static void sensor_data_forwarding_task(void *pvParameters)
                                 printf("Temperature: %u°C\n", sensor_data.temperature);
                                 printf("Pressure: %llu Pa\n", sensor_data.pressure);
                                 
-                                // Gửi dữ liệu đến hàng đợi chính
-                                xQueueSend(sensor_data_queue, &sensor_data, portMAX_DELAY);
+                                // Ghi đè: reset hàng đợi chính rồi gửi bản ghi mới nhất
+                                xQueueReset(sensor_data_queue);
+                                xQueueSend(sensor_data_queue, &sensor_data, 0);
                                 
                                 // Gửi dữ liệu đến queue tương ứng của thiết bị
                                 const ai_device_t *device = get_device_by_address(&addr[6 * i]);

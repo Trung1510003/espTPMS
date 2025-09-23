@@ -1,0 +1,69 @@
+Command: ninja flash
+[1/16] Linking C static library esp-idf/esp_driver_twai/libesp_driver_twai.a
+[2/16] Linking C static library esp-idf/esp_driver_ledc/libesp_driver_ledc.a
+[3/16] Linking C static library esp-idf/esp_driver_i2c/libesp_driver_i2c.a
+[4/16] Linking C static library esp-idf/esp_driver_rmt/libesp_driver_rmt.a
+[5/16] Linking C static library esp-idf/driver/libdriver.a
+[6/16] Performing build step for 'bootloader'
+[1/1] cd /home/trung/espTPMS/build/bootloader/esp-idf/esptool_py && /home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python /home/trung/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/trung/espTPMS/build/bootloader/bootloader.bin
+Bootloader binary size 0x5210 bytes. 0x2df0 bytes (36%) free.
+[7/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/app_bt.c.obj
+[8/14] Linking C static library esp-idf/main/libmain.a
+[9/14] Generating esp-idf/esp_system/ld/sections.ld
+[10/14] Building C object CMakeFiles/espTPMS.elf.dir/project_elf_src_esp32c3.c.obj
+[11/14] Linking CXX executable espTPMS.elf
+[12/14] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32c3 image...
+Merged 1 ELF section
+Successfully created esp32c3 image.
+Generated /home/trung/espTPMS/build/espTPMS.bin
+[13/14] cd /home/trung/espTPMS/build/esp-idf/esptool_py && /home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python /home/trung/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/trung/espTPMS/build/partition_table/partition-table.bin /home/trung/espTPMS/build/espTPMS.bin
+espTPMS.bin binary size 0x64a80 bytes. Smallest app partition is 0x100000 bytes. 0x9b580 bytes (61%) free.
+[13/14] cd /home/trung/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/trung/esp/esp-idf -D "SERIAL_TOOL=/home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python;;/home/trung/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32c3" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/trung/espTPMS/build -P /home/trung/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32c3 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 2MB 0x0 bootloader/bootloader.bin 0x10000 espTPMS.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.10.0
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-C3 (QFN32) (revision v0.3)
+Features: WiFi, BLE, Embedded Flash 4MB (XMC)
+Crystal is 40MHz
+MAC: a0:76:4e:50:5c:10
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00005fff...
+Flash will be erased from 0x00010000 to 0x00074fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 21008 bytes to 13184...
+Writing at 0x00000000... (100 %)
+Wrote 21008 bytes (13184 compressed) at 0x00000000 in 0.7 seconds (effective 234.8 kbit/s)...
+Hash of data verified.
+Compressed 412288 bytes to 223287...
+Writing at 0x00010000... (7 %)
+Writing at 0x0001b2a5... (14 %)
+Writing at 0x000233d2... (21 %)
+Writing at 0x0002a8d2... (28 %)
+Writing at 0x00031a85... (35 %)
+Writing at 0x000388b3... (42 %)
+Writing at 0x000403d3... (50 %)
+Writing at 0x00047076... (57 %)
+Writing at 0x0004d720... (64 %)
+Writing at 0x0005357a... (71 %)
+Writing at 0x0005babc... (78 %)
+Writing at 0x00062d63... (85 %)
+Writing at 0x00068ebc... (92 %)
+Writing at 0x0006fde3... (100 %)
+Wrote 412288 bytes (223287 compressed) at 0x00010000 in 7.0 seconds (effective 469.0 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 382.5 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
