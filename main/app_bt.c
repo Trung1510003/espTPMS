@@ -149,6 +149,9 @@
  // Hàng đợi riêng cho từng thiết bị
  static QueueHandle_t device_queues[4]; // 4 queues tương ứng với 4 thiết bị
  static const int QUEUE_SIZE_PER_DEVICE = 5; // Kích thước queue cho mỗi thiết bị
+
+// Hàng đợi speaker để phát âm thanh theo thứ tự, kích thước 5
+static QueueHandle_t speaker_queue;
  
  static uint8_t hci_cmd_buf[128];
  
@@ -496,6 +499,45 @@ static void sensor_data_forwarding_task(void *pvParameters)
     }
 }
 
+// Thu gom dữ liệu từ 4 queue thiết bị vào speaker_queue theo vòng, chỉ thêm khi speaker_queue chưa đầy
+static void speaker_collector_task(void *pvParameters)
+{
+    (void)pvParameters;
+    int idx = 0;
+    for (;;) {
+        // Nếu speaker_queue đầy, chờ cho đến khi còn trống hoàn toàn trước khi nhận thêm
+        if (uxQueueSpacesAvailable(speaker_queue) == 0) {
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
+        }
+
+        // Lấy tuần tự từ 4 queue bánh xe
+        sensor_data_t item;
+        if (xQueueReceive(device_queues[idx], &item, 0) == pdTRUE) {
+            // Chỉ thêm nếu còn chỗ
+            if (uxQueueSpacesAvailable(speaker_queue) > 0) {
+                (void)xQueueSend(speaker_queue, &item, 0);
+            }
+        }
+
+        idx = (idx + 1) & 0x03; // xoay vòng 0..3
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
+
+// Phát các gói trong speaker_queue tuần tự, mỗi gói 5s
+static void speaker_player_task(void *pvParameters)
+{
+    (void)pvParameters;
+    sensor_data_t item;
+    for (;;) {
+        if (xQueueReceive(speaker_queue, &item, portMAX_DELAY) == pdTRUE) {
+            play_sound_based_on_pressure(&item);
+            vTaskDelay(pdMS_TO_TICKS(5000)); // thời gian thực thi mỗi gói 5s
+        }
+    }
+}
+
  
  /*
   * @brief: Nhiệm vụ xử lý dữ liệu cho từng thiết bị riêng biệt
@@ -736,6 +778,13 @@ void app_main(void)
         ESP_LOGI(TAG, "Created queue for %s (size: %d)", ai_devices[i].name, QUEUE_SIZE_PER_DEVICE);
     }
 
+    // Tạo speaker_queue size 5
+    speaker_queue = xQueueCreate(5, sizeof(sensor_data_t));
+    if (speaker_queue == NULL) {
+        ESP_LOGE(TAG, "Failed to create speaker_queue");
+        return;
+    }
+
     /* Initialize NVS — it is used to store PHY calibration data */
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -776,6 +825,9 @@ void app_main(void)
     
     // Tạo task để xử lý chuyển tiếp dữ liệu chính
     xTaskCreatePinnedToCore(&sensor_data_forwarding_task, "sensor_data_forwarding", 2048, NULL, 5, NULL, 0);
+    // Tạo task speaker collector và player
+    xTaskCreatePinnedToCore(&speaker_collector_task, "speaker_collector", 2048, NULL, 5, NULL, 0);
+    xTaskCreatePinnedToCore(&speaker_player_task, "speaker_player", 2048, NULL, 5, NULL, 0);
     
     // Tạo task riêng cho từng thiết bị
     for (int i = 0; i < 4; i++) {

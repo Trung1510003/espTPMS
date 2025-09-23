@@ -1,0 +1,908 @@
+Command: /home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python /home/trung/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace /home/trung/espTPMS/build/espTPMS.elf /home/trung/espTPMS/build/bootloader/bootloader.elf -m '/home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python' '/home/trung/esp/esp-idf/tools/idf.py'
+xx���xxj"����5
+I �ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xf (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x15ac
+load:0x403cbf10,len:0xc34
+load:0x403ce710,len:0x2fd0
+entry 0x403cbf1a
+[0;32mI (30) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Sep 23 2025 14:37:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (31) boot: efuse block revision: v1.1[0m
+[0;32mI (34) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (50) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (59) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (72) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (79) boot: End of partition table[0m
+[0;32mI (82) esp_image: segment 0: paddr=00010020 vaddr=3c040020 size=0e94ch ( 59724) map[0m
+[0;32mI (99) esp_image: segment 1: paddr=0001e974 vaddr=3fc94a00 size=016a4h (  5796) load[0m
+[0;32mI (100) esp_image: segment 2: paddr=00020020 vaddr=42000020 size=3f8fch (260348) map[0m
+[0;32mI (146) esp_image: segment 3: paddr=0005f924 vaddr=3fc960a4 size=00a28h (  2600) load[0m
+[0;32mI (146) esp_image: segment 4: paddr=00060354 vaddr=40380000 size=1485ch ( 84060) load[0m
+[0;32mI (165) esp_image: segment 5: paddr=00074bb8 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (171) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (172) boot: Disabling RNG early entropy source...[0m
+[0;32mI (182) cpu_start: Unicore app[0m
+[0;32mI (191) cpu_start: Pro cpu start user code[0m
+[0;32mI (191) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (192) app_init: Application information:[0m
+[0;32mI (192) app_init: Project name:     espTPMS[0m
+[0;32mI (195) app_init: App version:      185d051-dirty[0m
+[0;32mI (200) app_init: Compile time:     Sep 23 2025 14:56:26[0m
+[0;32mI (205) app_init: ELF file SHA256:  adab81aae...[0m
+[0;32mI (209) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (217) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (221) efuse_init: Chip rev:         v0.3[0m
+[0;32mI (225) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC97E30 len 000281D0 (160 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (255) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (273) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (279) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (286) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (304) coexist: coexist rom version 9387209[0m
+[0;32mI (305) main_task: Started on CPU0[0m
+[0;32mI (305) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_ADV_SCAN: Created queue for Trái-Sau (size: 5)[0m
+[0;32mI (305) BLE_ADV_SCAN: Created queue for Phải-Sau (size: 5)[0m
+[0;32mI (305) BLE_ADV_SCAN: Created queue for Trái-Trước (size: 5)[0m
+[0;32mI (315) BLE_ADV_SCAN: Created queue for Phải-Trước (size: 5)[0m
+[0;32mI (325) BLE_INIT: BT controller compile version [2edb0b0][0m
+[0;32mI (325) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (335) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (335) BLE_INIT: Bluetooth MAC: a0:76:4e:50:5c:12[0m
+[0;32mI (345) phy_init: phy_version 1201,bae5dd99,Mar  3 2025,15:36:21[0m
+[0;32mI (385) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (395) BLE_ADV_SCAN: Khởi động DFPlayer...[0m
+[0;32mI (1895) BLE_ADV_SCAN: Starting data processing task for Trái-Sau (Queue 0)[0m
+[0;32mI (1895) BLE_ADV_SCAN: Starting data processing task for Phải-Sau (Queue 1)[0m
+[0;32mI (1895) BLE_ADV_SCAN: Starting data processing task for Trái-Trước (Queue 2)[0m
+[0;32mI (1905) BLE_ADV_SCAN: Starting data processing task for Phải-Trước (Queue 3)[0m
+[0;32mI (1905) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x03 success.I (1915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 1
+[0;32mI (2915) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x01 success.I (2915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 2
+[0;32mI (3915) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x06 success.I (3915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 3
+[0;32mI (4915) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x08 success.I (4915) BLE_ADV_SCAN: Starting BLE advertising with name "ESP-BLE-1"
+[0;32mI (4915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 4[0m
+[0;32mI (5305) BLE_ADV_SCAN: Number of received advertising reports: 0[0m
+[0;32mI (5305) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5305) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5305) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5315) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5915) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x0a success.I (5915) BLE_ADV_SCAN: BLE Advertising started..
+[0;32mI (5915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 5[0m
+[0;32mI (6915) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x0b success.I (6915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 6
+[0;32mI (7915) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x0c success.I (7915) BLE_ADV_SCAN: BLE Scanning started..
+[0;32mI (7915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 7[0m
+Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.I (8915) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 7
+Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.I (9915) main_task: Returned from app_main()
+[0;32mI (10305) BLE_ADV_SCAN: Number of received advertising reports: 18[0m
+[0;32mI (10305) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (10305) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (10305) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (10315) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -61dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 194 Pa
+[0;32mI (13205) BLE_ADV_SCAN: Data sent to Phải-Sau queue successfully[0m
+[0;32mI (13215) BLE_ADV_SCAN: Started cooldown for Phải-Sau for 7 seconds[0m
+Parsed bytes: 04 1d 22 01 1f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c2 
+=====================================
+[0;32mI (13225) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 194 Pa[0m
+[0;32mI (13235) BLE_ADV_SCAN: Pressure 194 > 180 for Phải-Sau[0m
+[0;32mI (13235) BLE_ADV_SCAN: [Phải-Sau] Processing - Temp: 29°C, Pressure: 194 Pa[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -61dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 194 Pa
+[0;32mI (13265) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 1f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -60dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 195 Pa
+[0;32mI (13305) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 1f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c3 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -61dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 194 Pa
+[0;32mI (13365) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 1f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -62dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 193 Pa
+[0;32mI (17635) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 0e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c1 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -61dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 194 Pa
+[0;32mI (17685) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 0e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -61dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 194 Pa
+[0;32mI (17735) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 0e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -62dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 193 Pa
+[0;32mI (17795) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 0e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c1 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -61dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 194 Pa
+[0;32mI (17845) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 01 0e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c2 
+=====================================
+[0;32mI (19745) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 194 Pa[0m
+[0;32mI (19745) BLE_ADV_SCAN: Pressure 194 > 180 for Phải-Sau[0m
+[0;32mI (20305) BLE_ADV_SCAN: Number of received advertising reports: 324[0m
+[0;32mI (20305) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (20305) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (20305) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (20315) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (1890) BLE_ADV_SCAN: Starting data processing task for Trái-Sau (Queue 0)[0m
+[0;32mI (1890) BLE_ADV_SCAN: Starting data processing task for Phải-Sau (Queue 1)[0m
+[0;32mI (1890) BLE_ADV_SCAN: Starting data processing task for Trái-Trước (Queue 2)[0m
+[0;32mI (1900) BLE_ADV_SCAN: Starting data processing task for Phải-Trước (Queue 3)[0m
+[0;32mI (1900) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x03 success.I (1910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 1
+[0;32mI (2910) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x01 success.I (2910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 2
+[0;32mI (3910) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x06 success.I (3910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 3
+[0;32mI (4910) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x08 success.I (4910) BLE_ADV_SCAN: Starting BLE advertising with name "ESP-BLE-1"
+[0;32mI (4910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 4[0m
+[0;32mI (5310) BLE_ADV_SCAN: Number of received advertising reports: 0[0m
+[0;32mI (5310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (5910) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x0a success.I (5910) BLE_ADV_SCAN: BLE Advertising started..
+[0;32mI (5910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 5[0m
+[0;32mI (6910) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x0b success.I (6910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 6
+[0;32mI (7910) BLE_ADV_SCAN: controller rcv pkt ready[0m
+Event opcode 0x0c success.I (7910) BLE_ADV_SCAN: BLE Scanning started..
+[0;32mI (7910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 7[0m
+Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.I (8910) BLE_ADV_SCAN: BLE Advertise, cmd_sent: 7
+Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.Failed to enqueue advertising report. Queue full.======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -63dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 192 Pa
+[0;32mI (9910) BLE_ADV_SCAN: Data sent to Phải-Sau queue successfully[0m
+[0;32mI (9910) BLE_ADV_SCAN: Started cooldown for Phải-Sau for 7 seconds[0m
+Parsed bytes: 04 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 
+=====================================
+[0;32mI (9930) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 192 Pa[0m
+[0;32mI (9940) BLE_ADV_SCAN: Pressure 192 > 180 for Phải-Sau[0m
+[0;32mI (9940) BLE_ADV_SCAN: [Phải-Sau] Processing - Temp: 29°C, Pressure: 192 Pa[0m
+[0;32mI (9950) main_task: Returned from app_main()[0m
+[0;32mI (10310) BLE_ADV_SCAN: Number of received advertising reports: 24[0m
+[0;32mI (10310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (10310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 6 seconds remaining[0m
+[0;32mI (10310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (10320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+���R���������+���сrejected
+Parsed bytes: 04 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 bc 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -63dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 192 Pa
+[0;32mI (12790) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -63dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 192 Pa
+[0;32mI (12840) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -67dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 188 Pa
+[0;32mI (12890) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 04 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 bc 
+=====================================
+[0;32mI (15310) BLE_ADV_SCAN: Number of received advertising reports: 190[0m
+[0;32mI (15310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (15310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 1 seconds remaining[0m
+[0;32mI (15310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (15320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (16440) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 188 Pa[0m
+[0;32mI (16440) BLE_ADV_SCAN: Pressure 188 > 180 for Phải-Sau[0m
+[0;32mI (20310) BLE_ADV_SCAN: Number of received advertising reports: 351[0m
+[0;32mI (20310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (20310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (20310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (20320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (25310) BLE_ADV_SCAN: Number of received advertising reports: 501[0m
+[0;32mI (25310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (25310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (25310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (25320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (30310) BLE_ADV_SCAN: Number of received advertising reports: 664[0m
+[0;32mI (30310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (30310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (30310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (30320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (35310) BLE_ADV_SCAN: Number of received advertising reports: 836[0m
+[0;32mI (35310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (35310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (35310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (35320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (40310) BLE_ADV_SCAN: Number of received advertising reports: 1015[0m
+[0;32mI (40310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (40310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (40310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (40320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -65dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 190 Pa
+[0;32mI (43690) BLE_ADV_SCAN: Data sent to Phải-Trước queue successfully[0m
+[0;32mI (43690) BLE_ADV_SCAN: Started cooldown for Phải-Trước for 7 seconds[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 be 
+=====================================
+[0;32mI (43710) BLE_ADV_SCAN: Forwarding data - Device: Phải-Trước, Temp: 30°C, Pressure: 190 Pa[0m
+[0;32mI (43720) BLE_ADV_SCAN: Pressure 190 > 180 for Phải-Trước[0m
+[0;32mI (43720) BLE_ADV_SCAN: [Phải-Trước] Processing - Temp: 30°C, Pressure: 190 Pa[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -70dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 185 Pa
+[0;32mI (43740) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b9 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -80dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 175 Pa
+[0;32mI (48200) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 af 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -79dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 176 Pa
+[0;32mI (48250) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -78dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 177 Pa
+[0;32mI (48300) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b1 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -78dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 177 Pa
+[0;32mI (48350) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b1 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -79dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 176 Pa
+[0;32mI (48400) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 b0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (48840) BLE_ADV_SCAN: Data sent to Phải-Sau queue successfully[0m
+[0;32mI (48850) BLE_ADV_SCAN: Started cooldown for Phải-Sau for 7 seconds[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+[0;32mI (48860) BLE_ADV_SCAN: [Phải-Sau] Processing - Temp: 29°C, Pressure: 219 Pa[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (48890) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (48950) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (49000) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -44dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 211 Pa
+[0;32mI (49050) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d3 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (49100) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+[0;32mI (50220) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 219 Pa[0m
+[0;32mI (50220) BLE_ADV_SCAN: Pressure 219 > 180 for Phải-Sau[0m
+[0;32mI (50310) BLE_ADV_SCAN: Number of received advertising reports: 1361[0m
+[0;32mI (50310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (50310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 5 seconds remaining[0m
+[0;32mI (50310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (50320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -44dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 211 Pa
+[0;32mI (50860) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d3 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (50910) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (50970) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (53110) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (53160) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -43dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 212 Pa
+[0;32mI (53210) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d4 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (53260) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (53310) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (53360) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (53460) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (53510) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (53570) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -64dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 191 Pa
+[0;32mI (54970) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 bf 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -63dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 192 Pa
+[0;32mI (55020) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -63dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 192 Pa
+[0;32mI (55070) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -63dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 192 Pa
+[0;32mI (55120) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -62dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 193 Pa
+[0;32mI (55170) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 04 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c1 
+=====================================
+[0;32mI (55310) BLE_ADV_SCAN: Number of received advertising reports: 1539[0m
+[0;32mI (55310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (55310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (55310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (55320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 4 seconds remaining[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (55760) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (55820) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+[0;32mI (56720) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 210 Pa[0m
+[0;32mI (56720) BLE_ADV_SCAN: Pressure 210 > 180 for Phải-Sau[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (59960) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (60010) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (60060) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+[0;32mI (60310) BLE_ADV_SCAN: Number of received advertising reports: 1711[0m
+[0;32mI (60310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (60310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 4 seconds remaining[0m
+[0;32mI (60310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (60320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (62100) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (62150) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (62210) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (62260) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (62310) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (62360) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (62410) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (62460) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (62510) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (62560) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+[0;32mI (63220) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 210 Pa[0m
+[0;32mI (63220) BLE_ADV_SCAN: Pressure 210 > 180 for Phải-Sau[0m
+[0;32mI (65310) BLE_ADV_SCAN: Number of received advertising reports: 1869[0m
+[0;32mI (65310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (65310)======== AI-8000 Device Found ========[0m
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (66600) BLE_ADV_SCAN: Data sent to Phải-Sau queue successfully[0m
+[0;32mI (66600) BLE_ADV_SCAN: Started cooldown for Phải-Sau for 7 seconds[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+[0;32mI (66620) BLE_ADV_SCAN: [Phải-Sau] Processing - Temp: 29°C, Pressure: 216 Pa[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -44dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 211 Pa
+[0;32mI (66650) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d3 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -44dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 211 Pa
+[0;32mI (66750) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d3 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (66800) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -44dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 211 Pa
+[0;32mI (68840) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d3 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (68890) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -39dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 216 Pa
+[0;32mI (68940) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d8 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -45dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 210 Pa
+[0;32mI (68990) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d2 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:00:f0
+RSSI: -36dB
+Device: Phải-Sau
+Temperature: 29°C
+Pressure: 219 Pa
+[0;32mI (69040) BLE_ADV_SCAN: Device Phải-Sau is in cooldown, packet rejected[0m
+Parsed bytes: 02 1d 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 db 
+=====================================
+[0;32mI (69720) BLE_ADV_SCAN: Forwarding data - Device: Phải-Sau, Temp: 29°C, Pressure: 219 Pa[0m
+[0;32mI (69720) BLE_ADV_SCAN: Pressure 219 > 180 for Phải-Sau[0m
+[0;32mI (70310) BLE_ADV_SCAN: Number of received advertising reports: 2018[0m
+[0;32mI (70310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (70310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 3 seconds remaining[0m
+[0;32mI (70310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (70320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (75310) BLE_ADV_SCAN: Number of received advertising reports: 2188[0m
+[0;32mI (75310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (75310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (75310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (75320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (80310) BLE_ADV_SCAN: Number of received advertising reports: 2352[0m
+[0;32mI (80310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (80310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (80310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (80320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (85310) BLE_ADV_SCAN: Number of received advertising reports: 2523[0m
+[0;32mI (85310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (85310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (85310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (85320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -43dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 212 Pa
+[0;32mI (89700) BLE_ADV_SCAN: Data sent to Phải-Trước queue successfully[0m
+[0;32mI (89710) BLE_ADV_SCAN: Started cooldown for Phải-Trước for 7 seconds[0m
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d4 
+=====================================
+[0;32mI (89720) BLE_ADV_SCAN: Forwarding data - Device: Phải-Trước, Temp: 30°C, Pressure: 212 Pa[0m
+[0;32mI (89730) BLE_ADV_SCAN: Pressure 212 > 180 for Phải-Trước[0m
+[0;32mI (89730) BLE_ADV_SCAN: [Phải-Trước] Processing - Temp: 30°C, Pressure: 212 Pa[0m
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -53dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 202 Pa
+[0;32mI (89760) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ca 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -46dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 209 Pa
+[0;32mI (89860) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d1 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -52dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 203 Pa
+[0;32mI (89910) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 cb 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -43dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 212 Pa
+[0;32mI (89960) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d4 
+=====================================
+[0;32mI (90310) BLE_ADV_SCAN: Number of received advertising reports: 2691[0m
+[0;32mI (90310) BLE_ADV_SCAN: Queue Trái-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (90310) BLE_ADV_SCAN: Queue Phải-Sau: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (90310) BLE_ADV_SCAN: Queue Trái-Trước: 0 items, Cooldown: 0 seconds remaining[0m
+[0;32mI (90320) BLE_ADV_SCAN: Queue Phải-Trước: 0 items, Cooldown: 6 seconds remaining[0m
+VY�����ѕ�5
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d1 
+=====================================
+======== AI-8000 Device Found ========
+Address: 12:30:af:00:01:46
+RSSI: -46dB
+Device: Phải-Trước
+Temperature: 30°C
+Pressure: 209 Pa
+[0;32mI (92410) BLE_ADV_SCAN: Device Phải-Trước is in cooldown, packet rejected[0m
+Parsed bytes: 02 1e 22 00 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 d1 
+=====================================
