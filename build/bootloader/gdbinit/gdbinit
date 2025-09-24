@@ -1,0 +1,2 @@
+source /home/trung/Downloads/SensorBLE_OLED/build/bootloader/gdbinit/symbols
+source /home/trung/Downloads/SensorBLE_OLED/build/bootloader/gdbinit/connect

@@ -1,0 +1,1711 @@
+//thư viện sẵn C
+#include <stdio.h>  //in (out)
+#include <string.h>  //string
+#include <math.h>
+
+//thư viện esp
+#include <esp_timer.h>
+#include "esp_bt.h"
+#include "esp_log.h"
+#include "nvs_flash.h"
+#include "bt_hci_common.h"
+#include <driver/gpio.h>
+
+//thư viện freeetos
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <freertos/queue.h>
+#include <u8g2.h>
+#include "u8g2_esp32_hal.h"
+#include "driver/uart.h"
+
+// Cấu hình UART cho DFPlayer Mini
+#define TXD_PIN 2   // ESP32-C3 TX → MP3 RX
+#define RXD_PIN 3   // ESP32-C3 RX → MP3 TX
+#define UART_PORT_NUM UART_NUM_1
+#define BUF_SIZE (1024)
+
+// Thời gian thực thi mỗi file MP3 (6 giây)
+#define AUDIO_EXECUTION_TIME_MS 6000
+
+// Kích thước hàng đợi âm thanh (bây giờ là 1)
+#define AUDIO_QUEUE_LENGTH 1
+
+// Thời gian cooldown (10 giây)
+#define AUDIO_COOLDOWN_MS 10000
+
+// Ngưỡng áp suất (14.6 * 10 = 146)
+#define PRESSURE_THRESHOLD 146
+
+
+/* ===================== OLED I2C PINS ===================== */
+#define PIN_SDA 5
+#define PIN_SCL 4
+#define OLED_ADDR_7BIT 0x3C    // 0x3C hoặc 0x3D tuỳ module
+
+/* ========== BUTTON PINS (ESP32-C3 MINI-1) ========== */
+#define PIN_BTN_UP       GPIO_NUM_6
+#define PIN_BTN_MODE     GPIO_NUM_7
+#define PIN_BTN_DOWN     GPIO_NUM_9
+#define BTN_ACTIVE_LEVEL 0
+
+/* ========== Debounce & repeat ========== */
+#define BTN_POLL_INTERVAL_MS   5
+#define DEBOUNCE_MS            30
+#define HOLD_THRESHOLD_MS      450
+#define REPEAT_START_MS        120
+#define REPEAT_ACCEL_MS        20
+#define REPEAT_MIN_MS          60
+#define MODE_LONG_MS           2000
+
+/* ========== Blink interval for out-of-range pressures and temperatures ========== */
+#define BLINK_INTERVAL_MS      500
+
+static const char *TAG = "BLE_ADV_SCAN";
+
+// Biến trạng thái để kiểm tra xem âm thanh đang phát hay không
+static volatile bool is_audio_playing = false;
+
+// Hàng đợi âm thanh
+static QueueHandle_t audio_queue;
+
+// Thời điểm chấp nhận phần tử cuối cùng vào queue
+static volatile TickType_t last_accept_time = 0;
+
+typedef enum { VOICE_MALE = 0, VOICE_FEMALE = 1 } voice_gender_t;
+typedef enum { PSI_UNIT = 0, BAR_UNIT = 1 } unit_pressure_t;
+typedef enum { TIRE_SWAP_INITIAL = 0, TIRE_SWAP_VERTICAL, TIRE_SWAP_CROSS, TIRE_SWAP_HORIZONTAL } TireSwapMode;
+
+typedef struct {
+    uint8_t  warm_up_greetings;
+    voice_gender_t warning_settings;
+    float    front_tire_press_Upper_limit;
+    float    front_tire_press_Lower_limit;
+    float    rear_tire_press_Upper_limit;
+    float    rear_tire_press_Lower_limit;
+    float    leak;
+    uint8_t  high_temp_warning;
+    TireSwapMode tire_swap;
+    char     short_name[16];
+    char     addressB_TT[18];   // Front Left
+    char     addressB_TP[18];   // Front Right
+    char     addressB_ST[18];   // Rear Left
+    char     addressB_SP[18];   // Rear Right
+    unit_pressure_t tire_pressure_unit;
+    uint8_t  version;
+} TPMS_Config;
+
+static TPMS_Config g_tpms_config = {
+    .warm_up_greetings = 1,
+    .warning_settings = VOICE_FEMALE,
+    .front_tire_press_Upper_limit = 30.0,
+    .front_tire_press_Lower_limit = 25.0,
+    .rear_tire_press_Upper_limit = 30.0,
+    .rear_tire_press_Lower_limit = 25.0,
+    .leak = 16.0,
+    .high_temp_warning = 30,
+    .tire_swap = TIRE_SWAP_INITIAL,
+    .short_name = "AI-8000",
+    .addressB_TT = "12:30:af:00:01:59",
+    .addressB_TP = "12:30:af:00:01:46",
+    .addressB_ST = "12:30:af:00:01:5e",
+    .addressB_SP = "12:30:af:00:00:f0",
+    .tire_pressure_unit = PSI_UNIT,
+    .version = 1
+};
+
+// Structure for AI-8000 devices
+typedef struct {
+    char address[18];
+    char name[4]; // "TT", "TP", "ST", "SP" - chỉ cần 3 bytes + null
+} ai_device_t;
+
+// Global device array (will be updated based on swap mode)
+static ai_device_t g_ai_devices[4];
+
+// Initialize device names (fixed order: TT, TP, ST, SP)
+static const char* const device_names[] = {"TT", "TP", "ST", "SP"};
+
+// Function to update devices based on tire swap mode
+static void update_ai_devices_by_swap_mode(TireSwapMode mode) {
+    const char* addresses[4];
+
+    switch(mode) {
+        case TIRE_SWAP_INITIAL:
+            addresses[0] = g_tpms_config.addressB_TT;
+            addresses[1] = g_tpms_config.addressB_TP;
+            addresses[2] = g_tpms_config.addressB_ST;
+            addresses[3] = g_tpms_config.addressB_SP;
+            break;
+        case TIRE_SWAP_VERTICAL:
+            addresses[0] = g_tpms_config.addressB_ST;
+            addresses[1] = g_tpms_config.addressB_SP;
+            addresses[2] = g_tpms_config.addressB_TT;
+            addresses[3] = g_tpms_config.addressB_TP;
+            break;
+        case TIRE_SWAP_CROSS:
+            addresses[0] = g_tpms_config.addressB_SP;
+            addresses[1] = g_tpms_config.addressB_ST;
+            addresses[2] = g_tpms_config.addressB_TP;
+            addresses[3] = g_tpms_config.addressB_TT;
+            break;
+        case TIRE_SWAP_HORIZONTAL:
+            addresses[0] = g_tpms_config.addressB_TP;
+            addresses[1] = g_tpms_config.addressB_TT;
+            addresses[2] = g_tpms_config.addressB_SP;
+            addresses[3] = g_tpms_config.addressB_ST;
+            break;
+    }
+
+    for(int i = 0; i < 4; i++) {
+        strncpy(g_ai_devices[i].address, addresses[i], sizeof(g_ai_devices[i].address));
+        strncpy(g_ai_devices[i].name, device_names[i], sizeof(g_ai_devices[i].name));
+        g_ai_devices[i].address[sizeof(g_ai_devices[i].address)-1] = '\0';
+        g_ai_devices[i].name[sizeof(g_ai_devices[i].name)-1] = '\0';
+    }
+}
+
+typedef struct {
+    char scan_local_name[32];
+    uint8_t name_len;
+} ble_scan_local_name_t;
+
+typedef struct {
+    uint8_t temperature;
+    float battery_level;
+    uint16_t pressure;
+    char device_name[4]; // Reduced size to match actual need
+    char address[18];
+} sensor_data_t;
+
+static void send_command(uint8_t cmd, uint16_t param)
+{
+    uint8_t buf[10];
+    uint16_t checksum = (uint16_t)(0xFFFF - (0xFF + 0x06 + cmd + (param >> 8) + (param & 0xFF)) + 1);
+
+    buf[0] = 0x7E;          // Start byte
+    buf[1] = 0xFF;          // Version
+    buf[2] = 0x06;          // Length
+    buf[3] = cmd;           // Command
+    buf[4] = 0x00;          // No feedback
+    buf[5] = (param >> 8);  // Parameter high
+    buf[6] = (param & 0xFF);// Parameter low
+    buf[7] = (checksum >> 8);
+    buf[8] = (checksum & 0xFF);
+    buf[9] = 0xEF;          // End byte
+
+    uart_write_bytes(UART_PORT_NUM, (const char*)buf, 10);
+}
+
+// Khởi tạo hàng đợi âm thanh
+static void init_audio_queue(void)
+{
+    audio_queue = xQueueCreate(AUDIO_QUEUE_LENGTH, sizeof(uint16_t));
+    if (audio_queue == NULL) {
+        ESP_LOGE(TAG, "Failed to create audio queue");
+    } else {
+        ESP_LOGI(TAG, "Audio queue initialized with length %d", AUDIO_QUEUE_LENGTH);
+    }
+}
+
+// Task xử lý hàng đợi âm thanh
+static void audio_task(void *pvParameters)
+{
+    uint16_t mp3_file;
+    while (1) {
+        if (xQueueReceive(audio_queue, &mp3_file, portMAX_DELAY) == pdTRUE) {
+            is_audio_playing = true;
+            ESP_LOGI(TAG, "Playing MP3 file: %d", mp3_file);
+            send_command(0x03, mp3_file);
+            vTaskDelay(pdMS_TO_TICKS(AUDIO_EXECUTION_TIME_MS));
+            is_audio_playing = false;
+        }
+    }
+}
+
+// Task phát âm thanh chào mừng
+static void welcome_audio_task(void *pvParameters) {
+    ESP_LOGI(TAG, "Playing welcome MP3 file: 14");
+    send_command(0x03, 14); // Phát file 14.mp3
+    vTaskDelay(pdMS_TO_TICKS(AUDIO_EXECUTION_TIME_MS)); // Đợi 6 giây
+    ESP_LOGI(TAG, "Welcome MP3 finished, deleting task");
+    vTaskDelete(NULL); // Tự xóa task
+}
+
+// Task khởi tạo DFPlayer Mini
+static void dfplayer_init_task(void *pvParameters)
+{
+    const uart_config_t uart_config = {
+        .baud_rate = 9600,
+        .data_bits = UART_DATA_8_BITS,
+        .parity    = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        .source_clk = UART_SCLK_APB,
+    };
+
+    uart_driver_install(UART_PORT_NUM, BUF_SIZE, 0, 0, NULL, 0);
+    uart_param_config(UART_PORT_NUM, &uart_config);
+    uart_set_pin(UART_PORT_NUM, TXD_PIN, RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+
+    send_command(0x06, 25);
+    ESP_LOGI(TAG, "Đặt âm lượng = 25");
+
+    // Chọn thư mục mp3 để phát
+    send_command(0x0F, 1);  // Chọn thư mục 01 (mp3)
+    ESP_LOGI(TAG, "Chọn thư mục mp3 (01)");
+
+    vTaskDelay(pdMS_TO_TICKS(1000));
+    
+    // Tạo task phát âm thanh chào mừng
+    xTaskCreate(welcome_audio_task, "welcome_audio", 2048, NULL, 6, NULL);
+
+    ESP_LOGI(TAG, "DFPlayer initialization completed");
+    vTaskDelete(NULL);
+}
+
+// Task quản lý cooldown timer
+static void cooldown_manager_task(void *pvParameters)
+{
+    while (1) {
+        // Có thể thêm logic quản lý cooldown phức tạp hơn ở đây
+        // Ví dụ: điều chỉnh thời gian cooldown động dựa trên tần suất cảnh báo
+        
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Kiểm tra mỗi giây
+    }
+}
+
+static void play_sound_based_on_pressure(const sensor_data_t *sensor_data)
+{
+    if (sensor_data == NULL) {
+        ESP_LOGW(TAG, "Sensor data is NULL");
+        return;
+    }
+
+    uint16_t mp3_file = 0;
+
+    // Kiểm tra áp suất và vị trí lốp
+    if (sensor_data->pressure > g_tpms_config.front_tire_press_Upper_limit * 10) {
+        ESP_LOGI(TAG, "Pressure %u > %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Upper_limit, sensor_data->device_name);
+        if (strcmp(sensor_data->device_name, "TP") == 0) {
+            mp3_file = 17; // Phải-Trước áp suất cao: 15.mp3
+        } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+            mp3_file = 18; // Trái-Trước áp suất cao: 16.mp3
+        } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+            mp3_file = 15; // Phải-Sau áp suất cao: 17.mp3
+        } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+            mp3_file = 16; // Trái-Sau áp suất cao: 18.mp3
+        }
+    } else if (sensor_data->pressure < g_tpms_config.front_tire_press_Lower_limit * 10) {
+        ESP_LOGI(TAG, "Pressure %u < %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data->device_name);
+        if (strcmp(sensor_data->device_name, "TP") == 0) {
+            mp3_file = 21; // Phải-Trước áp suất thấp: 19.mp3
+        } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+            mp3_file = 22; // Trái-Trước áp suất thấp: 20.mp3
+        } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+            mp3_file = 19; // Phải-Sau áp suất thấp: 21.mp3
+        } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+            mp3_file = 20; // Trái-Sau áp suất thấp: 22.mp3
+        }
+    }
+    if (sensor_data->pressure <= g_tpms_config.leak * 13 && sensor_data->pressure >= g_tpms_config.leak * 10) {
+        // ESP_LOGI(TAG, "Pressure %u < %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data->device_name);
+        if (strcmp(sensor_data->device_name, "TP") == 0) {
+            mp3_file = 25; // Phải-Trước áp suất thấp: 19.mp3
+        } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+            mp3_file = 26; // Trái-Trước áp suất thấp: 20.mp3
+        } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+            mp3_file = 23; // Phải-Sau áp suất thấp: 21.mp3
+        } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+            mp3_file = 24; // Trái-Sau áp suất thấp: 22.mp3
+        }
+    }
+
+    // Nếu có file MP3 cần phát, kiểm tra cooldown trước khi thêm vào hàng đợi
+    if (mp3_file != 0) {
+        TickType_t now = xTaskGetTickCount();
+        if (now - last_accept_time >= pdMS_TO_TICKS(AUDIO_COOLDOWN_MS)) {
+            if (sensor_data->pressure != PRESSURE_THRESHOLD) {
+                if (xQueueSend(audio_queue, &mp3_file, 0) == pdTRUE) {
+                    last_accept_time = now;
+                    ESP_LOGI(TAG, "Accepted and added MP3 file %d to audio queue for %s", mp3_file, sensor_data->device_name);
+                } else {
+                    ESP_LOGW(TAG, "Audio queue full, could not add request for %s", sensor_data->device_name);
+                }
+            } else {
+                ESP_LOGW(TAG, "Pressure %u equals threshold %d, discarding request for %s", sensor_data->pressure, PRESSURE_THRESHOLD, sensor_data->device_name);
+            }
+        } else {
+            ESP_LOGW(TAG, "Discarding audio request for %s during cooldown", sensor_data->device_name);
+        }
+    }
+}
+
+static uint8_t hci_cmd_buf[128];
+
+// Optimized address conversion
+static void address_to_string(const uint8_t *addr, char *str, size_t str_len) {
+    snprintf(str, str_len, "%02x:%02x:%02x:%02x:%02x:%02x",
+             addr[5], addr[4], addr[3], addr[2], addr[1], addr[0]);
+}
+
+// Optimized device lookup with pointer arithmetic
+static const ai_device_t* get_device_by_address(const uint8_t *addr) {
+    char addr_str[18];
+    address_to_string(addr, addr_str, sizeof(addr_str));
+
+    for (int i = 0; i < 4; i++) {
+        if (strcmp(addr_str, g_ai_devices[i].address) == 0) {
+            return &g_ai_devices[i];
+        }
+    }
+    return NULL;
+}
+
+// Optimized sensor data parsing
+static sensor_data_t parse_sensor_data(const uint8_t *raw_data, uint8_t data_len, const uint8_t *addr) {
+    sensor_data_t sensor_data = {0};
+
+    if (data_len < 21) {
+        ESP_LOGW(TAG, "Insufficient data length: %d", data_len);
+        return sensor_data;
+    }
+
+    const uint8_t *sensor_bytes = &raw_data[data_len - 21];
+    sensor_data.temperature = sensor_bytes[1];
+    sensor_data.battery_level = sensor_bytes[2] / 10.0f;
+    sensor_data.pressure = (sensor_bytes[3] << 8) | sensor_bytes[4];
+
+    const ai_device_t *device = get_device_by_address(addr);
+    if (device != NULL) {
+        strncpy(sensor_data.device_name, device->name, sizeof(sensor_data.device_name));
+    } else {
+        strcpy(sensor_data.device_name, "UNK"); // Unknown
+    }
+
+    address_to_string(addr, sensor_data.address, sizeof(sensor_data.address));
+    return sensor_data;
+}
+
+// Optimized local name extraction
+static esp_err_t get_local_name(const uint8_t *data_msg, uint8_t data_len, ble_scan_local_name_t *scanned_packet) {
+    uint8_t curr_ptr = 0;
+
+    while (curr_ptr < data_len) {
+        uint8_t curr_len = data_msg[curr_ptr++];
+        if (curr_len == 0) return ESP_FAIL;
+
+        uint8_t curr_type = data_msg[curr_ptr++];
+        if (curr_type == 0x08 || curr_type == 0x09) {
+            uint8_t name_len = (curr_len - 1 < sizeof(scanned_packet->scan_local_name)) ?
+                              curr_len - 1 : sizeof(scanned_packet->scan_local_name) - 1;
+
+            memcpy(scanned_packet->scan_local_name, &data_msg[curr_ptr], name_len);
+            scanned_packet->scan_local_name[name_len] = '\0';
+            scanned_packet->name_len = name_len;
+            return ESP_OK;
+        }
+        curr_ptr += curr_len - 1;
+    }
+    return ESP_FAIL;
+}
+
+// Packet structure to avoid multiple allocations
+typedef struct {
+    uint8_t event_type;
+    uint8_t addr_type;
+    uint8_t addr[6];
+    uint8_t data_len;
+    int8_t rssi;
+} adv_report_t;
+
+static void controller_rcv_pkt_ready(void) {
+    // Keep it minimal
+}
+
+// ==== Test variables ==== (initialized to 0 as per request)
+int   front_left_updated = 0;
+float front_left_voltage = 0.0f;
+int   front_left_temperature = 0;
+uint16_t front_left_pressure_psi_x10 = 0;
+float front_left_pressure_psi = 0.0f;
+
+int   front_right_updated = 0;
+float front_right_voltage = 0.0f;
+int   front_right_temperature = 0;
+uint16_t front_right_pressure_psi_x10 = 0;
+float front_right_pressure_psi = 0.0f;
+
+int   rear_left_updated = 0;
+float rear_left_voltage = 0.0f;
+int   rear_left_temperature = 0;
+uint16_t rear_left_pressure_psi_x10 = 0;
+float rear_left_pressure_psi = 0.0f;
+
+int   rear_right_updated = 0;
+float rear_right_voltage = 0.0f;
+int   rear_right_temperature = 0;
+uint16_t rear_right_pressure_psi_x10 = 0;
+float rear_right_pressure_psi = 0.0f;
+
+// Optimized packet processing with single allocation
+static int host_rcv_pkt(uint8_t *data, uint16_t len) {
+    if (data[1] == 0x0e) {
+        if (data[6] != 0) {
+            ESP_LOGE(TAG, "Event opcode 0x%02x fail: 0x%02x", data[4], data[6]);
+            return ESP_FAIL;
+        }
+    }
+
+    if (data[3] == HCI_LE_ADV_REPORT) {
+        uint8_t num_responses = data[4];
+        if (num_responses == 0) return ESP_OK;
+
+        // Single allocation for all reports
+        adv_report_t *reports = malloc(num_responses * sizeof(adv_report_t));
+        if (!reports) return ESP_FAIL;
+
+        uint16_t data_ptr = 5;
+        uint16_t total_data_len = 0;
+
+        // Parse all reports first
+        for (uint8_t i = 0; i < num_responses; i++) {
+            reports[i].event_type = data[data_ptr++];
+            reports[i].addr_type = data[data_ptr++];
+            memcpy(reports[i].addr, &data[data_ptr], 6);
+            data_ptr += 6;
+            reports[i].data_len = data[data_ptr++];
+            total_data_len += reports[i].data_len;
+        }
+
+        // Single allocation for all data
+        uint8_t *all_data = malloc(total_data_len);
+        if (!all_data) {
+            free(reports);
+            return ESP_FAIL;
+        }
+
+        // Copy all data
+        uint16_t data_msg_ptr = 0;
+        for (uint8_t i = 0; i < num_responses; i++) {
+            memcpy(&all_data[data_msg_ptr], &data[data_ptr], reports[i].data_len);
+            data_ptr += reports[i].data_len;
+            data_msg_ptr += reports[i].data_len;
+        }
+
+        // Process RSSI
+        for (uint8_t i = 0; i < num_responses; i++) {
+            reports[i].rssi = -(0xFF - data[data_ptr++]);
+        }
+
+        // Process each report
+        data_msg_ptr = 0;
+        for (uint8_t i = 0; i < num_responses; i++) {
+            ble_scan_local_name_t scanned_name = {0};
+
+            if (get_local_name(&all_data[data_msg_ptr], reports[i].data_len, &scanned_name) == ESP_OK) {
+                if (strcmp(scanned_name.scan_local_name, "AI-8000") == 0) {
+                    sensor_data_t sensor_data = parse_sensor_data(data, len, reports[i].addr);
+
+                    ESP_LOGI(TAG, "Device: %s, Temp: %u°C, Battery: %.1f, Pressure: %u Pa",
+                             sensor_data.device_name, sensor_data.temperature,
+                             sensor_data.battery_level, sensor_data.pressure);
+                    
+                    play_sound_based_on_pressure(&sensor_data);
+                    // Pressure checking with configurable thresholds                    
+                    if (sensor_data.pressure > g_tpms_config.front_tire_press_Upper_limit * 10) {
+                        ESP_LOGW(TAG, "HIGH Pressure: %u > %.1f for %s",
+                                sensor_data.pressure, g_tpms_config.front_tire_press_Upper_limit, sensor_data.device_name);
+                    } else if (sensor_data.pressure < g_tpms_config.front_tire_press_Lower_limit * 10) {
+                        ESP_LOGW(TAG, "LOW Pressure: %u < %.1f for %s",
+                                sensor_data.pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data.device_name);
+                    }
+
+                    // Update global variables based on device_name (assuming pressure in 0.1 PSI units)
+                    float psi = sensor_data.pressure / 10.0f;
+                    if (strcmp(sensor_data.device_name, "TT") == 0) {  // Front Left
+                        front_left_temperature = sensor_data.temperature;
+                        front_left_pressure_psi = psi;
+                        front_left_voltage = sensor_data.battery_level;
+                        front_left_updated = 1;
+                        front_left_pressure_psi_x10 = sensor_data.pressure;
+                    } else if (strcmp(sensor_data.device_name, "TP") == 0) {  // Front Right
+                        front_right_temperature = sensor_data.temperature;
+                        front_right_pressure_psi = psi;
+                        front_right_voltage = sensor_data.battery_level;
+                        front_right_updated = 1;
+                        front_right_pressure_psi_x10 = sensor_data.pressure;
+                    } else if (strcmp(sensor_data.device_name, "ST") == 0) {  // Rear Left
+                        rear_left_temperature = sensor_data.temperature;
+                        rear_left_pressure_psi = psi;
+                        rear_left_voltage = sensor_data.battery_level;
+                        rear_left_updated = 1;
+                        rear_left_pressure_psi_x10 = sensor_data.pressure;
+                    } else if (strcmp(sensor_data.device_name, "SP") == 0) {  // Rear Right
+                        rear_right_temperature = sensor_data.temperature;
+                        rear_right_pressure_psi = psi;
+                        rear_right_voltage = sensor_data.battery_level;
+                        rear_right_updated = 1;
+                        rear_right_pressure_psi_x10 = sensor_data.pressure;
+                    }
+
+                    // Compact printf output
+                    printf("=== AI-8000 [%s] ===\n", sensor_data.device_name);
+                    printf("Addr: %s\nRSSI: %ddB\nTemp: %u°C\nBatt: %.1f\nPress: %u Pa\n",
+                           sensor_data.address, reports[i].rssi, sensor_data.temperature,
+                           sensor_data.battery_level, sensor_data.pressure);
+
+                    // Debug parsing
+                    const uint8_t *sensor_bytes = &data[len - 21];
+                    printf("Data: ");
+                    for (int k = 0; k < 5; k++) printf("%02x ", sensor_bytes[k]);
+                    printf("\n====================\n");
+                }
+            }
+            data_msg_ptr += reports[i].data_len;
+        }
+
+        free(all_data);
+        free(reports);
+    }
+    return ESP_OK;
+}
+
+static esp_vhci_host_callback_t vhci_host_cb = {
+    .notify_host_send_available = controller_rcv_pkt_ready,
+    .notify_host_recv = host_rcv_pkt
+};
+
+// Command sending functions remain the same
+static void hci_cmd_send_reset(void) {
+    uint16_t sz = make_cmd_reset(hci_cmd_buf);
+    esp_vhci_host_send_packet(hci_cmd_buf, sz);
+}
+
+static void hci_cmd_send_set_evt_mask(void) {
+    uint8_t evt_mask[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20};
+    uint16_t sz = make_cmd_set_evt_mask(hci_cmd_buf, evt_mask);
+    esp_vhci_host_send_packet(hci_cmd_buf, sz);
+}
+
+static void hci_cmd_send_ble_scan_params(void) {
+    uint16_t sz = make_cmd_ble_set_scan_params(hci_cmd_buf, 0x01, 0x50, 0x30, 0x00, 0x00);
+    esp_vhci_host_send_packet(hci_cmd_buf, sz);
+}
+
+static void hci_cmd_send_ble_scan_start(void) {
+    uint16_t sz = make_cmd_ble_set_scan_enable(hci_cmd_buf, 0x01, 0x00);
+    esp_vhci_host_send_packet(hci_cmd_buf, sz);
+    ESP_LOGI(TAG, "BLE Scanning started");
+}
+
+// Task xử lý sequence command BLE
+static void ble_cmd_sequence_task(void *pvParameters)
+{
+    const int total_commands = 4;
+    
+    for (int cmd_cnt = 0; cmd_cnt < total_commands; cmd_cnt++) {
+        while (!esp_vhci_host_check_send_available()) {
+            vTaskDelay(10 / portTICK_PERIOD_MS);
+        }
+
+        switch (cmd_cnt) {
+            case 0: hci_cmd_send_reset(); break;
+            case 1: hci_cmd_send_set_evt_mask(); break;
+            case 2: hci_cmd_send_ble_scan_params(); break;
+            case 3: hci_cmd_send_ble_scan_start(); break;
+        }
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+    }
+    
+    ESP_LOGI(TAG, "BLE command sequence completed");
+    vTaskDelete(NULL);
+}
+
+static void hci_evt_process(void *pvParameters) {
+    while (1) {
+        vTaskDelay(portMAX_DELAY);
+    }
+}
+
+/* ==== Bitmaps ==== */
+static const unsigned char image_arrow_FL_bits[] = {
+  0xff,0xff,0xff,0xff,0xff,0x07,0x00,0xff,0xff,0xff,0xff,0xff,0x0f,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x18,0x00,0x00,0x00,0x00,0x00,0x00,0x30,0x00,0x00,0x00,0x00,0x00,
+  0x00,0xe0,0x03,0x00,0x00,0x00,0x00,0x00,0xc0,0x03
+};
+static const unsigned char image_arrow_FR_bits[] = {
+  0x80,0xff,0xff,0xff,0xff,0xff,0x03,0xc0,0xff,0xff,0xff,0xff,0xff,0x03,0x60,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x1f,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x0f,0x00,0x00,0x00,0x00,0x00,0x00
+};
+static const unsigned char image_arrow_RL_bits[] = {
+  0x00,0x00,0x00,0x00,0x00,0xc0,0x03,0x00,0x00,0x00,0x00,0x00,0xe0,0x03,0x00,0x00,
+  0x00,0x00,0x00,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x18,0x00,0xff,0xff,0xff,0xff,
+  0xff,0x0f,0x00,0xff,0xff,0xff,0xff,0xff,0x07,0x00
+};
+static const unsigned char image_arrow_RR_bits[] = {
+  0x0f,0x00,0x00,0x00,0x00,0x00,0x00,0x1f,0x00,0x00,0x00,0x00,0x00,0x00,0x30,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x60,0x00,0x00,0x00,0x00,0x00,0x00,0xc0,0xff,0xff,0xff,
+  0xff,0xff,0x03,0x80,0xff,0xff,0xff,0xff,0xff,0x03
+};
+static const unsigned char image_car_bits[] = {
+  0x80,0xff,0x7f,0x00,0xe0,0x03,0xf0,0x01,0x70,0x01,0xa0,0x03,0x10,0xff,0x3f,0x02,
+  0x18,0xff,0x3f,0x06,0x98,0xff,0x7f,0x06,0xf8,0xff,0xff,0x07,0xf8,0xff,0xff,0x07,
+  0xf8,0xff,0xff,0x07,0xf8,0xff,0xff,0x07,0xf8,0xff,0xff,0x07,0xf8,0x00,0xc0,0x07,
+  0x38,0x00,0x00,0x07,0x18,0x00,0x00,0x06,0x1e,0x00,0x00,0x1e,0x3f,0x00,0x00,0x3f,
+  0x3f,0x00,0x00,0x3f,0x78,0x00,0x80,0x07,0x78,0x00,0x80,0x07,0xf8,0x00,0xc0,0x07,
+  0xd8,0xff,0xff,0x06,0xd8,0xff,0xff,0x06,0x98,0xff,0x7f,0x06,0x98,0xff,0x7f,0x06,
+  0x98,0xff,0x7f,0x06,0x98,0xff,0x7f,0x06,0x98,0x8a,0x44,0x06,0x98,0xaa,0x57,0x06,
+  0x98,0xca,0x64,0x06,0x98,0xec,0x54,0x06,0x98,0xff,0x7f,0x06,0x98,0xff,0x7f,0x06,
+  0x98,0xff,0x7f,0x06,0x98,0xff,0x7f,0x06,0x98,0xff,0x7f,0x06,0xd8,0xf9,0xe7,0x06,
+  0xf8,0x00,0xc0,0x07,0xf8,0x00,0xc0,0x07,0x78,0x00,0x80,0x07,0x78,0x00,0x80,0x07,
+  0x78,0x00,0x80,0x07,0x78,0x00,0x80,0x07,0xf8,0x01,0xe0,0x07,0xf8,0xff,0xff,0x07,
+  0xf8,0xff,0xff,0x07,0xf8,0xff,0xff,0x07,0xf0,0xff,0xff,0x03,0xf0,0xff,0xff,0x03,
+  0xc0,0xff,0xff,0x00
+};
+
+/* ==== Blinking state for out-of-range pressures and temperatures ==== */
+static bool blink_visible = true;
+static int64_t last_blink_toggle_us = 0;
+
+/* ===================== Menu data ===================== */
+static const char* menu_items[] = {
+    "Warm-up greetings",
+    "Warning settings",
+    "Front tire pressure",
+    "Rear tire pressure",
+    "High temp warning",
+    "Tire swap",
+    "Connect the sensor",
+    "Unit pressure",
+    "Restore settings"
+};
+
+static const char* tire_swap_options[] = {
+    "Initial",
+    "Vertical",
+    "Cross",
+    "Horizontal"
+};
+
+static const char* sensor_options[] = {
+    "Front Left",
+    "Front Right",
+    "Rear Left",
+    "Rear Right"
+};
+
+static const char* restore_options[] = {
+    "Quit",
+    "Restore setting"
+};
+
+static const int MENU_COUNT = sizeof(menu_items)/sizeof(menu_items[0]);
+static const int TIRE_SWAP_COUNT = sizeof(tire_swap_options)/sizeof(tire_swap_options[0]);
+static const int SENSOR_COUNT = sizeof(sensor_options)/sizeof(sensor_options[0]);
+
+/* ===================== UI mode & queues ===================== */
+typedef enum { MODE_MENU = 0, MODE_HELLO = 1, MODE_ITEM = 2, MODE_ADJUST = 3, MODE_SENSOR = 4 } ui_mode_t;
+typedef struct {
+    ui_mode_t mode;
+    int sel;
+    int sub;
+    int adjust;
+} ui_update_t;
+
+static QueueHandle_t s_ui_queue = NULL;
+
+/* ===================== NVS functions ===================== */
+static void save_config_to_nvs(void) {
+    nvs_handle_t handle;
+    esp_err_t err;
+
+    err = nvs_open("tpms_storage", NVS_READWRITE, &handle);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to open NVS: %s", esp_err_to_name(err));
+        return;
+    }
+
+    err = nvs_set_blob(handle, "tpms_config", &g_tpms_config, sizeof(TPMS_Config));
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to save config to NVS: %s", esp_err_to_name(err));
+    } else {
+        err = nvs_commit(handle);
+        if (err != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to commit NVS: %s", esp_err_to_name(err));
+        } else {
+            ESP_LOGI(TAG, "Configuration saved to NVS");
+        }
+    }
+
+    nvs_close(handle);
+}
+
+static void load_config_from_nvs(void) {
+    nvs_handle_t handle;
+    esp_err_t err;
+
+    err = nvs_open("tpms_storage", NVS_READONLY, &handle);
+    if (err != ESP_OK) {
+        ESP_LOGW(TAG, "NVS open failed: %s, using defaults", esp_err_to_name(err));
+        return;
+    }
+
+    size_t size = sizeof(TPMS_Config);
+    err = nvs_get_blob(handle, "tpms_config", &g_tpms_config, &size);
+    if (err != ESP_OK || size != sizeof(TPMS_Config)) {
+        ESP_LOGW(TAG, "NVS read failed or invalid size: %s, using defaults", esp_err_to_name(err));
+        nvs_close(handle);
+        return;
+    }
+
+    if (g_tpms_config.version != 1) {
+        ESP_LOGW(TAG, "Invalid config version (%d), using defaults", g_tpms_config.version);
+        nvs_close(handle);
+        return;
+    }
+
+    ESP_LOGI(TAG, "Configuration loaded from NVS");
+    nvs_close(handle);
+}
+
+/* ===================== Draw helpers ===================== */
+static void draw_menu_3line(u8g2_t* u8g2, int sel) {
+    int top = (sel - 1 + MENU_COUNT) % MENU_COUNT;
+    int mid = sel;
+    int bot = (sel + 1) % MENU_COUNT;
+
+    u8g2_ClearBuffer(u8g2);
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+
+    int y_top = 16, y_mid = 32, y_bot = 48;
+    int box_h = 16;
+    int box_y = y_mid - (box_h - 4);
+    if (box_y < 0) box_y = 0;
+
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_DrawBox(u8g2, 0, box_y, 128, box_h);
+
+    int w;
+    u8g2_SetDrawColor(u8g2, 1);
+    w = u8g2_GetStrWidth(u8g2, menu_items[top]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_top, menu_items[top]);
+    u8g2_SetDrawColor(u8g2, 0);
+    w = u8g2_GetStrWidth(u8g2, menu_items[mid]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_mid, menu_items[mid]);
+    u8g2_SetDrawColor(u8g2, 1);
+    w = u8g2_GetStrWidth(u8g2, menu_items[bot]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_bot, menu_items[bot]);
+
+    u8g2_SetFont(u8g2, u8g2_font_unifont_t_75);
+    u8g2_DrawGlyph(u8g2, 3,   64, 0x25B2);
+    u8g2_DrawGlyph(u8g2, 118, 64, 0x25BC);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    u8g2_DrawGlyph(u8g2, 55, 62, 0x2713);
+    u8g2_DrawGlyph(u8g2, 60, 62, '/');
+    u8g2_DrawGlyph(u8g2, 65, 62, 0x21B5);
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_hello_tpms(u8g2_t* u8g2) {
+    char helper_c_string[16];
+    int  helper_str_width;
+    u8g2_ClearBuffer(u8g2);
+    u8g2_SetFontMode(u8g2, 1);
+    u8g2_SetBitmapMode(u8g2, 1);
+
+    // Check if pressures are within limits
+    bool fl_press_out_of_range = (front_left_pressure_psi < g_tpms_config.front_tire_press_Lower_limit ||
+                                 front_left_pressure_psi > g_tpms_config.front_tire_press_Upper_limit) &&
+                                     (front_left_pressure_psi > 0);
+    bool fr_press_out_of_range = (front_right_pressure_psi < g_tpms_config.front_tire_press_Lower_limit ||
+                                 front_right_pressure_psi > g_tpms_config.front_tire_press_Upper_limit) &&
+                                     (front_right_pressure_psi > 0);
+    bool rl_press_out_of_range = (rear_left_pressure_psi < g_tpms_config.rear_tire_press_Lower_limit ||
+                                 rear_left_pressure_psi > g_tpms_config.rear_tire_press_Upper_limit)&&
+                                     (rear_left_pressure_psi > 0);
+    bool rr_press_out_of_range = (rear_right_pressure_psi < g_tpms_config.rear_tire_press_Lower_limit ||
+                                 rear_right_pressure_psi > g_tpms_config.rear_tire_press_Upper_limit)&&
+                                     (rear_right_pressure_psi > 0);
+
+    // Check if temperatures exceed high_temp_warning
+    bool fl_temp_out_of_range = (front_left_temperature > g_tpms_config.high_temp_warning);
+    bool fr_temp_out_of_range = (front_right_temperature > g_tpms_config.high_temp_warning);
+    bool rl_temp_out_of_range = (rear_left_temperature > g_tpms_config.high_temp_warning);
+    bool rr_temp_out_of_range = (rear_right_temperature > g_tpms_config.high_temp_warning);
+
+    // Front Left
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    if (!fl_temp_out_of_range || (fl_temp_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%d%cC", front_left_temperature, 176);
+        u8g2_DrawStr(u8g2, 0, 24, helper_c_string);
+    }
+
+    u8g2_SetFont(u8g2, u8g2_font_profont17_tr);
+    if (!fl_press_out_of_range || (fl_press_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%.1f", front_left_pressure_psi);
+        u8g2_DrawStr(u8g2, 0, 12, helper_c_string);
+    }
+
+    // Front Right
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    if (!fr_temp_out_of_range || (fr_temp_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%d%cC", front_right_temperature, 176);
+        helper_str_width = u8g2_GetStrWidth(u8g2, helper_c_string);
+        u8g2_DrawStr(u8g2, 128 - helper_str_width, 24, helper_c_string);
+    }
+
+    u8g2_SetFont(u8g2, u8g2_font_profont17_tr);
+    if (!fr_press_out_of_range || (fr_press_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%.1f", front_right_pressure_psi);
+        helper_str_width = u8g2_GetStrWidth(u8g2, helper_c_string);
+        u8g2_DrawStr(u8g2, 128 - helper_str_width, 12, helper_c_string);
+    }
+
+    // Rear Left
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    if (!rl_temp_out_of_range || (rl_temp_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%d%cC", rear_left_temperature, 176);
+        u8g2_DrawStr(u8g2, 0, 62, helper_c_string);
+    }
+
+    u8g2_SetFont(u8g2, u8g2_font_profont17_tr);
+    if (!rl_press_out_of_range || (rl_press_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%.1f", rear_left_pressure_psi);
+        u8g2_DrawStr(u8g2, 0, 50, helper_c_string);
+    }
+
+    // Rear Right
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    if (!rr_temp_out_of_range || (rr_temp_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%d%cC", rear_right_temperature, 176);
+        helper_str_width = u8g2_GetStrWidth(u8g2, helper_c_string);
+        u8g2_DrawStr(u8g2, 128 - helper_str_width, 62, helper_c_string);
+    }
+
+    u8g2_SetFont(u8g2, u8g2_font_profont17_tr);
+    if (!rr_press_out_of_range || (rr_press_out_of_range && blink_visible)) {
+        snprintf(helper_c_string, sizeof(helper_c_string), "%.1f", rear_right_pressure_psi);
+        helper_str_width = u8g2_GetStrWidth(u8g2, helper_c_string);
+        u8g2_DrawStr(u8g2, 128 - helper_str_width, 50, helper_c_string);
+    }
+
+    // Draw static elements
+    u8g2_DrawXBMP(u8g2,  0, 47, 50, 6,  image_arrow_RL_bits);
+    u8g2_DrawXBMP(u8g2,  0, 13, 50, 6,  image_arrow_FL_bits);
+    u8g2_DrawXBMP(u8g2, 78, 47, 50, 6,  image_arrow_RR_bits);
+    u8g2_DrawXBMP(u8g2, 78, 13, 50, 6,  image_arrow_FR_bits);
+    u8g2_DrawXBMP(u8g2, 49,  9, 30, 49, image_car_bits);
+
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    u8g2_DrawStr(u8g2, 44, 8, g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR");
+    u8g2_SetFont(u8g2, u8g2_font_open_iconic_embedded_1x_t);
+    u8g2_DrawGlyph(u8g2, 68, 8, 0x0042);
+    u8g2_SetFont(u8g2, u8g2_font_open_iconic_play_1x_t);
+    (g_tpms_config.warm_up_greetings == 1)?
+    u8g2_DrawGlyph(u8g2, 80, 8, 0x0040): u8g2_DrawGlyph(u8g2, 80, 8, 0x0051);
+
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_two_option_screen(u8g2_t* u8g2,
+                                   const char* title,
+                                   const char* opt0,
+                                   const char* opt1,
+                                   int cursor,
+                                   int checked_idx)
+{
+    u8g2_ClearBuffer(u8g2);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    int w = u8g2_GetStrWidth(u8g2, title);
+    u8g2_DrawStr(u8g2, (128 - w)/2, 15, title);
+    u8g2_DrawHLine(u8g2, 0, 19, 128);
+
+    const int y0 = 34;
+    const int y1 = 52;
+
+    int box_y = (cursor == 0) ? (y0 - 12) : (y1 - 12);
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_DrawBox(u8g2, 2, box_y, 124, 14);
+
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    u8g2_SetDrawColor(u8g2, (cursor == 0) ? 0 : 1);
+    u8g2_DrawStr(u8g2, 12, y0, opt0);
+    u8g2_SetDrawColor(u8g2, (cursor == 1) ? 0 : 1);
+    u8g2_DrawStr(u8g2, 12, y1, opt1);
+
+    if (checked_idx >= 0) {
+        int y_check = (checked_idx == 0) ? y0 : y1;
+        bool check_on_highlight = (cursor == checked_idx);
+        u8g2_SetDrawColor(u8g2, check_on_highlight ? 0 : 1);
+        u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+        u8g2_DrawGlyph(u8g2, 100, y_check, 0x2713);
+    }
+
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_SetFont(u8g2, u8g2_font_unifont_t_75);
+    u8g2_DrawGlyph(u8g2, 3,   64, 0x25B2);
+    u8g2_DrawGlyph(u8g2, 118, 64, 0x25BC);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    u8g2_DrawGlyph(u8g2, 55, 62, 0x2713);
+    u8g2_DrawGlyph(u8g2, 60, 62, '/');
+    u8g2_DrawGlyph(u8g2, 65, 62, 0x21B5);
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_tire_swap_menu(u8g2_t* u8g2, int cursor, int selected) {
+    int top = (cursor - 1 + TIRE_SWAP_COUNT) % TIRE_SWAP_COUNT;
+    int mid = cursor % TIRE_SWAP_COUNT;
+    int bot = (cursor + 1) % TIRE_SWAP_COUNT;
+
+    u8g2_ClearBuffer(u8g2);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    int w = u8g2_GetStrWidth(u8g2, "Tire swap");
+    u8g2_DrawStr(u8g2, (128 - w)/2, 12, "Tire swap");
+    u8g2_DrawHLine(u8g2, 0, 15, 128);
+
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+
+    int y_top = 25, y_mid = 37, y_bot = 49;
+    int box_h = 12;
+    int box_y = y_mid - 9;
+
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_DrawBox(u8g2, 2, box_y, 124, box_h);
+
+    u8g2_SetDrawColor(u8g2, 1);
+    w = u8g2_GetStrWidth(u8g2, tire_swap_options[top]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_top, tire_swap_options[top]);
+    u8g2_SetDrawColor(u8g2, 0);
+    w = u8g2_GetStrWidth(u8g2, tire_swap_options[mid]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_mid, tire_swap_options[mid]);
+    u8g2_SetDrawColor(u8g2, 1);
+    w = u8g2_GetStrWidth(u8g2, tire_swap_options[bot]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_bot, tire_swap_options[bot]);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    if (selected == top) {
+        u8g2_SetDrawColor(u8g2, 1);
+        u8g2_DrawGlyph(u8g2, 110, y_top, 0x2713);
+    }
+    if (selected == mid) {
+        u8g2_SetDrawColor(u8g2, 0);
+        u8g2_DrawGlyph(u8g2, 110, y_mid, 0x2713);
+    }
+    if (selected == bot) {
+        u8g2_SetDrawColor(u8g2, 1);
+        u8g2_DrawGlyph(u8g2, 110, y_bot, 0x2713);
+    }
+
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_SetFont(u8g2, u8g2_font_unifont_t_75);
+    u8g2_DrawGlyph(u8g2, 3,   64, 0x25B2);
+    u8g2_DrawGlyph(u8g2, 118, 64, 0x25BC);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    u8g2_DrawGlyph(u8g2, 55, 62, 0x2713);
+    u8g2_DrawGlyph(u8g2, 60, 62, '/');
+    u8g2_DrawGlyph(u8g2, 65, 62, 0x21B5);
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_sensor_menu(u8g2_t* u8g2, int cursor) {
+    int top = (cursor - 1 + SENSOR_COUNT) % SENSOR_COUNT;
+    int mid = cursor % SENSOR_COUNT;
+    int bot = (cursor + 1) % SENSOR_COUNT;
+
+    u8g2_ClearBuffer(u8g2);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    int w = u8g2_GetStrWidth(u8g2, "Connect the sensor");
+    u8g2_DrawStr(u8g2, (128 - w)/2, 12, "Connect the sensor");
+    u8g2_DrawHLine(u8g2, 0, 15, 128);
+
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+
+    int y_top = 25, y_mid = 37, y_bot = 49;
+    int box_h = 12;
+    int box_y = y_mid - 9;
+
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_DrawBox(u8g2, 2, box_y, 124, box_h);
+
+    u8g2_SetDrawColor(u8g2, 1);
+    w = u8g2_GetStrWidth(u8g2, sensor_options[top]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_top, sensor_options[top]);
+    u8g2_SetDrawColor(u8g2, 0);
+    w = u8g2_GetStrWidth(u8g2, sensor_options[mid]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_mid, sensor_options[mid]);
+    u8g2_SetDrawColor(u8g2, 1);
+    w = u8g2_GetStrWidth(u8g2, sensor_options[bot]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, y_bot, sensor_options[bot]);
+
+    u8g2_SetDrawColor(u8g2, 1);
+    u8g2_SetFont(u8g2, u8g2_font_unifont_t_75);
+    u8g2_DrawGlyph(u8g2, 3,   64, 0x25B2);
+    u8g2_DrawGlyph(u8g2, 118, 64, 0x25BC);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    u8g2_DrawGlyph(u8g2, 55, 62, 0x2713);
+    u8g2_DrawGlyph(u8g2, 60, 62, '/');
+    u8g2_DrawGlyph(u8g2, 65, 62, 0x21B5);
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_sensor_detail(u8g2_t* u8g2, int sensor_idx) {
+    u8g2_ClearBuffer(u8g2);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    int w = u8g2_GetStrWidth(u8g2, sensor_options[sensor_idx]);
+    u8g2_DrawStr(u8g2, (128 - w)/2, 15, sensor_options[sensor_idx]);
+    u8g2_DrawHLine(u8g2, 0, 19, 128);
+
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    char buf[32];
+    snprintf(buf, sizeof(buf), "Name: %s", g_tpms_config.short_name);
+    u8g2_DrawStr(u8g2, 10, 34, buf);
+
+    const char* address;
+    switch (sensor_idx) {
+        case 0: address = g_tpms_config.addressB_TT; break;
+        case 1: address = g_tpms_config.addressB_TP; break;
+        case 2: address = g_tpms_config.addressB_ST; break;
+        case 3: address = g_tpms_config.addressB_SP; break;
+        default: address = "Unknown"; break;
+    }
+    snprintf(buf, sizeof(buf), "Addr: %s", address);
+    u8g2_DrawStr(u8g2, 10, 49, buf);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    u8g2_DrawGlyph(u8g2, 55, 62, 0x2713);
+    u8g2_DrawGlyph(u8g2, 60, 62, '/');
+    u8g2_DrawGlyph(u8g2, 65, 62, 0x21B5);
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_adjust_number(u8g2_t* u8g2, const char* title, float value, bool is_float, const char* unit) {
+    u8g2_ClearBuffer(u8g2);
+
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    int w = u8g2_GetStrWidth(u8g2, title);
+    u8g2_DrawStr(u8g2, (128 - w)/2, 15, title);
+    u8g2_DrawHLine(u8g2, 0, 19, 128);
+
+    char buf[16];
+    if (is_float) {
+        snprintf(buf, sizeof(buf), "%.1f", value);
+    } else {
+        snprintf(buf, sizeof(buf), "%d", (int)value);
+    }
+    u8g2_SetFont(u8g2, u8g2_font_profont29_tr);
+    w = u8g2_GetStrWidth(u8g2, buf);
+    int x_number = (128 - w) / 2;
+    u8g2_DrawStr(u8g2, x_number, 45, buf);
+
+    u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+    if (strcmp(unit, "°C") == 0) {
+        u8g2_SetFont(u8g2, u8g2_font_helvR12_tf);
+        u8g2_DrawGlyph(u8g2, x_number + w + 2, 45, 0x00B0);
+        u8g2_SetFont(u8g2, u8g2_font_helvB08_tf);
+        u8g2_DrawStr(u8g2, x_number + w + 10, 45, "C");
+    } else {
+        u8g2_DrawStr(u8g2, x_number + w + 2, 45, unit);
+    }
+
+    u8g2_SetFont(u8g2, u8g2_font_unifont_t_75);
+    u8g2_DrawGlyph(u8g2, 3,   64, 0x25B2);
+    u8g2_DrawGlyph(u8g2, 118, 64, 0x25BC);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_t_symbols);
+    u8g2_DrawGlyph(u8g2, 55, 62, 0x2713);
+    u8g2_DrawGlyph(u8g2, 60, 62, '/');
+    u8g2_DrawGlyph(u8g2, 65, 62, 0x21B5);
+
+    u8g2_SendBuffer(u8g2);
+}
+
+static void draw_adjust_screen(u8g2_t* u8g2, int adjust) {
+    const char* title = NULL;
+    float value = 0.0f;
+    bool is_float = false;
+    const char* unit = NULL;
+
+    switch (adjust) {
+        case 1: // ADJ_FRONT_UPPER
+            title = "Front Upper Limit";
+            value = g_tpms_config.front_tire_press_Upper_limit;
+            is_float = true;
+            unit = g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR";
+            break;
+        case 2: // ADJ_FRONT_LOWER
+            title = "Front Lower Limit";
+            value = g_tpms_config.front_tire_press_Lower_limit;
+            is_float = true;
+            unit = g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR";
+            break;
+        case 3: // ADJ_REAR_UPPER
+            title = "Rear Upper Limit";
+            value = g_tpms_config.rear_tire_press_Upper_limit;
+            is_float = true;
+            unit = g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR";
+            break;
+        case 4: // ADJ_REAR_LOWER
+            title = "Rear Lower Limit";
+            value = g_tpms_config.rear_tire_press_Lower_limit;
+            is_float = true;
+            unit = g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR";
+            break;
+        case 5: // ADJ_HIGH_TEMP
+            title = "High temp warning";
+            value = (float)g_tpms_config.high_temp_warning;
+            is_float = false;
+            unit = "°C";
+            break;
+        default:
+            return;
+    }
+
+    draw_adjust_number(u8g2, title, value, is_float, unit);
+}
+
+static void restore_default_settings(QueueHandle_t queue) {
+    g_tpms_config.warm_up_greetings = 1;
+    g_tpms_config.warning_settings = VOICE_FEMALE;
+    g_tpms_config.front_tire_press_Upper_limit = 30.0;
+    g_tpms_config.front_tire_press_Lower_limit = 25.0;
+    g_tpms_config.rear_tire_press_Upper_limit = 30.0;
+    g_tpms_config.rear_tire_press_Lower_limit = 25.0;
+    g_tpms_config.high_temp_warning = 30;
+    g_tpms_config.tire_swap = TIRE_SWAP_INITIAL;
+    strcpy(g_tpms_config.short_name, "AI-8000");
+    strcpy(g_tpms_config.addressB_TT, "12:30:af:00:01:59");
+    strcpy(g_tpms_config.addressB_TP, "12:30:af:00:01:46");
+    strcpy(g_tpms_config.addressB_ST, "12:30:af:00:01:5e");
+    strcpy(g_tpms_config.addressB_SP, "12:30:af:00:00:f0");
+    g_tpms_config.tire_pressure_unit = PSI_UNIT;
+    g_tpms_config.version = 1;
+
+    save_config_to_nvs();
+    update_ai_devices_by_swap_mode(g_tpms_config.tire_swap);  // Update devices after restore
+    ESP_LOGI(TAG, "Settings restored to default and saved to NVS");
+
+    // Switch to MODE_HELLO
+    ui_update_t u = {.mode = MODE_HELLO, .sel = 0, .sub = 0, .adjust = 0};
+    xQueueSend(queue, &u, 0);
+}
+
+static void draw_item_detail(u8g2_t* u8g2, int sel, int sub) {
+    const int idx = (sel % MENU_COUNT + MENU_COUNT) % MENU_COUNT;
+
+    if (idx == 0) {
+        draw_two_option_screen(u8g2,
+                               "Warm-up greetings",
+                               "Turn ON voice",
+                               "Turn OFF voice",
+                               (sub ? 1 : 0),
+                               (g_tpms_config.warm_up_greetings ? 0 : 1));
+        return;
+    }
+    if (idx == 1) {
+        draw_two_option_screen(u8g2,
+                               "Warning settings",
+                               "Voice: Male",
+                               "Voice: Female",
+                               (sub ? 1 : 0),
+                               (g_tpms_config.warning_settings == VOICE_MALE ? 0 : 1));
+        return;
+    }
+    if (idx == 2) {
+        char opt0[32];
+        snprintf(opt0, sizeof(opt0), "Upper limit: %.1f %s",
+                 g_tpms_config.front_tire_press_Upper_limit,
+                 g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR");
+        char opt1[32];
+        snprintf(opt1, sizeof(opt1), "Lower limit: %.1f %s",
+                 g_tpms_config.front_tire_press_Lower_limit,
+                 g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR");
+        draw_two_option_screen(u8g2, "Front tire pressure", opt0, opt1, sub, -1);
+        return;
+    }
+    if (idx == 3) {
+        char opt0[32];
+        snprintf(opt0, sizeof(opt0), "Upper limit: %.1f %s",
+                 g_tpms_config.rear_tire_press_Upper_limit,
+                 g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR");
+        char opt1[32];
+        snprintf(opt1, sizeof(opt1), "Lower limit: %.1f %s",
+                 g_tpms_config.rear_tire_press_Lower_limit,
+                 g_tpms_config.tire_pressure_unit == PSI_UNIT ? "PSI" : "BAR");
+        draw_two_option_screen(u8g2, "Rear tire pressure", opt0, opt1, sub, -1);
+        return;
+    }
+    if (idx == 5) {
+        draw_tire_swap_menu(u8g2, sub, (int)g_tpms_config.tire_swap);
+        return;
+    }
+    if (idx == 6) {
+        draw_sensor_menu(u8g2, sub);
+        return;
+    }
+    if (idx == 7) {
+        draw_two_option_screen(u8g2,
+                               "Tire pressure unit",
+                               "Unit: PSI",
+                               "Unit: BAR",
+                               (sub ? 1 : 0),
+                               (g_tpms_config.tire_pressure_unit == PSI_UNIT ? 0 : 1));
+        return;
+    }
+    if (idx == 8) {
+        draw_two_option_screen(u8g2,
+                               "Restore settings",
+                               "Quit",
+                               "Restore setting",
+                               (sub ? 1 : 0),
+                               -1);
+        return;
+    }
+
+    u8g2_ClearBuffer(u8g2);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    u8g2_DrawStr(u8g2, 2, 11, "Menu >");
+    u8g2_SetFont(u8g2, u8g2_font_helvB10_tf);
+    const char* title = menu_items[idx];
+    int w = u8g2_GetStrWidth(u8g2, title);
+    u8g2_DrawStr(u8g2, (128 - w)/2, 24, title);
+    u8g2_DrawHLine(u8g2, 0, 28, 128);
+    u8g2_SetFont(u8g2, u8g2_font_6x12_tf);
+    u8g2_DrawStr(u8g2, 2, 42, "Settings screen...");
+    u8g2_DrawStr(u8g2, 2, 56, "Press 7 to return.");
+    u8g2_SendBuffer(u8g2);
+}
+
+static void handle_high_temp_adjust(bool inc) {
+    if (inc) {
+        if (g_tpms_config.high_temp_warning < 100) g_tpms_config.high_temp_warning += 1;
+    } else {
+        if (g_tpms_config.high_temp_warning > 0) g_tpms_config.high_temp_warning -= 1;
+    }
+    save_config_to_nvs();
+}
+
+static void ui_task(void* pv) {
+    u8g2_esp32_hal_t hal = U8G2_ESP32_HAL_DEFAULT;
+    hal.bus.i2c.sda = PIN_SDA;
+    hal.bus.i2c.scl = PIN_SCL;
+    u8g2_esp32_hal_init(hal);
+
+    u8g2_t u8g2;
+    u8g2_Setup_sh1106_i2c_128x64_noname_f(
+        &u8g2, U8G2_R0, u8g2_esp32_i2c_byte_cb, u8g2_esp32_gpio_and_delay_cb);
+
+    u8x8_SetI2CAddress(&u8g2.u8x8, OLED_ADDR_7BIT << 1);
+    u8g2_InitDisplay(&u8g2);
+    u8g2_SetPowerSave(&u8g2, 0);
+    u8g2_SetFontMode(&u8g2, 1);
+    u8g2_SetBitmapMode(&u8g2, 1);
+
+    ESP_LOGI(TAG, "UI ready");
+
+    ui_mode_t mode = MODE_HELLO;
+    int sel = 0;
+    int sub = 0;
+    int adjust = 0;
+    draw_hello_tpms(&u8g2);
+
+    for (;;) {
+        ui_update_t upd;
+        // Check for UI updates or timeout for blinking
+        if (xQueueReceive(s_ui_queue, &upd, pdMS_TO_TICKS(BLINK_INTERVAL_MS))) {
+            mode = upd.mode;
+            sel = (upd.sel % MENU_COUNT + MENU_COUNT) % MENU_COUNT;
+            sub = upd.sub;
+            adjust = upd.adjust;
+            blink_visible = true; // Reset blink state on mode change
+            last_blink_toggle_us = esp_timer_get_time();
+        } else if (mode == MODE_HELLO) {
+            // Toggle blink state
+            int64_t now_us = esp_timer_get_time();
+            if (now_us - last_blink_toggle_us >= BLINK_INTERVAL_MS * 1000) {
+                blink_visible = !blink_visible;
+                last_blink_toggle_us = now_us;
+            }
+        } else {
+            continue; // No redraw needed for other modes
+        }
+
+        // Draw the appropriate screen
+        if (mode == MODE_MENU) {
+            draw_menu_3line(&u8g2, sel);
+        } else if (mode == MODE_ITEM) {
+            draw_item_detail(&u8g2, sel, sub);
+        } else if (mode == MODE_ADJUST) {
+            draw_adjust_screen(&u8g2, adjust);
+        } else if (mode == MODE_SENSOR) {
+            draw_sensor_detail(&u8g2, sub);
+        } else {
+            draw_hello_tpms(&u8g2);
+        }
+    }
+}
+
+typedef enum {
+    BTN_ID_UP = 0,
+    BTN_ID_MODE,
+    BTN_ID_DOWN,
+    BTN_ID_COUNT
+} btn_id_t;
+
+typedef struct {
+    gpio_num_t   pin;
+    int          active_level;
+    int          raw_level;
+    int          debounced_level;
+    int          last_stable_level;
+    int64_t      last_change_us;
+    int          is_pressed;
+    int64_t      press_start_us;
+    int64_t      next_repeat_us;
+    int          repeat_interval_ms;
+    bool         long_fired;
+    bool         suppress_click;
+} button_t;
+
+static button_t s_btns[BTN_ID_COUNT];
+
+static void buttons_init_polling(void)
+{
+    gpio_config_t io = {
+        .pin_bit_mask = (1ULL<<PIN_BTN_UP) | (1ULL<<PIN_BTN_DOWN) | (1ULL<<PIN_BTN_MODE),
+        .mode = GPIO_MODE_INPUT,
+        .pull_up_en = (BTN_ACTIVE_LEVEL==0) ? GPIO_PULLUP_ENABLE : GPIO_PULLUP_DISABLE,
+        .pull_down_en = (BTN_ACTIVE_LEVEL==1) ? GPIO_PULLDOWN_ENABLE : GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE
+    };
+    ESP_ERROR_CHECK(gpio_config(&io));
+
+    s_btns[BTN_ID_UP] = (button_t){.pin = PIN_BTN_UP, .active_level = BTN_ACTIVE_LEVEL};
+    s_btns[BTN_ID_MODE] = (button_t){.pin = PIN_BTN_MODE, .active_level = BTN_ACTIVE_LEVEL};
+    s_btns[BTN_ID_DOWN] = (button_t){.pin = PIN_BTN_DOWN, .active_level = BTN_ACTIVE_LEVEL};
+
+    int64_t now = esp_timer_get_time();
+    for (int i=0; i<BTN_ID_COUNT; ++i) {
+        int lvl = gpio_get_level(s_btns[i].pin);
+        s_btns[i].raw_level = s_btns[i].debounced_level = s_btns[i].last_stable_level = lvl;
+        s_btns[i].last_change_us = now;
+        s_btns[i].is_pressed = (lvl == s_btns[i].active_level);
+        s_btns[i].press_start_us = 0;
+        s_btns[i].next_repeat_us = 0;
+        s_btns[i].repeat_interval_ms = REPEAT_START_MS;
+        s_btns[i].long_fired = false;
+        s_btns[i].suppress_click = false;
+    }
+}
+
+static bool button_update(button_t* b, int64_t now_us, bool* out_rising, bool* out_falling, bool enable_repeat)
+{
+    *out_rising = *out_falling = false;
+
+    int lvl = gpio_get_level(b->pin);
+    if (lvl != b->raw_level) {
+        b->raw_level = lvl;
+        b->last_change_us = now_us;
+    }
+    if ((now_us - b->last_change_us) >= (int64_t)DEBOUNCE_MS*1000) {
+        if (b->debounced_level != b->raw_level) {
+            b->debounced_level = b->raw_level;
+            if (b->debounced_level == b->active_level) {
+                *out_rising = true;
+            } else {
+                *out_falling = true;
+            }
+            b->last_stable_level = b->debounced_level;
+        }
+    }
+
+    bool pressed_now = (b->debounced_level == b->active_level);
+
+    if (*out_rising) {
+        b->is_pressed = true;
+        b->press_start_us = now_us;
+        b->repeat_interval_ms = REPEAT_START_MS;
+        b->next_repeat_us = now_us + (int64_t)HOLD_THRESHOLD_MS*1000;
+        b->long_fired = false;
+    }
+
+    if (*out_falling) {
+        b->is_pressed = false;
+        b->press_start_us = 0;
+        b->next_repeat_us = 0;
+        b->repeat_interval_ms = REPEAT_START_MS;
+    }
+
+    if (enable_repeat && pressed_now && b->next_repeat_us != 0) {
+        if (now_us >= b->next_repeat_us) {
+            *out_rising = true;
+            b->repeat_interval_ms -= REPEAT_ACCEL_MS;
+            if (b->repeat_interval_ms < REPEAT_MIN_MS) b->repeat_interval_ms = REPEAT_MIN_MS;
+            b->next_repeat_us = now_us + (int64_t)b->repeat_interval_ms*1000;
+        }
+    }
+
+    return true;
+}
+
+static void input_task(void* pv)
+{
+    ui_mode_t mode = MODE_HELLO;
+    int sel = 0;
+    int sub = 0;
+    int current_adjust = 0;
+
+    buttons_init_polling();
+
+    ui_update_t init = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+    xQueueSend(s_ui_queue, &init, 0);
+
+    for (;;) {
+        int64_t now = esp_timer_get_time();
+
+        bool up_rise=false, up_fall=false;
+        bool dn_rise=false, dn_fall=false;
+        bool md_rise=false, md_fall=false;
+
+        bool repeat_allowed = (mode == MODE_MENU || mode == MODE_ADJUST || mode == MODE_ITEM || mode == MODE_SENSOR);
+
+        button_update(&s_btns[BTN_ID_UP],   now, &up_rise, &up_fall, repeat_allowed);
+        button_update(&s_btns[BTN_ID_DOWN], now, &dn_rise, &dn_fall, repeat_allowed);
+        button_update(&s_btns[BTN_ID_MODE], now, &md_rise, &md_fall, false);
+
+        if (mode == MODE_MENU) {
+            if (up_rise) {
+                sel = (sel - 1 + MENU_COUNT) % MENU_COUNT;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+            }
+            if (dn_rise) {
+                sel = (sel + 1) % MENU_COUNT;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+            }
+        }
+
+        if (s_btns[BTN_ID_MODE].is_pressed && !s_btns[BTN_ID_MODE].long_fired) {
+            int64_t held_ms = (now - s_btns[BTN_ID_MODE].press_start_us)/1000;
+            if ((mode == MODE_MENU || mode == MODE_ITEM || mode == MODE_ADJUST || mode == MODE_SENSOR) && held_ms >= MODE_LONG_MS) {
+                mode = MODE_HELLO;
+                s_btns[BTN_ID_MODE].long_fired = true;
+                s_btns[BTN_ID_MODE].suppress_click = true;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+                ESP_LOGI(TAG, "Switch -> HELLO (long press)");
+            }
+        }
+
+        if (md_fall) {
+            if (s_btns[BTN_ID_MODE].suppress_click) {
+                s_btns[BTN_ID_MODE].suppress_click = false;
+            } else if (!s_btns[BTN_ID_MODE].long_fired) {
+                if (mode == MODE_HELLO) {
+                    mode = MODE_MENU;
+                } else if (mode == MODE_MENU) {
+                    int idx = sel % MENU_COUNT;
+                    if (idx == 4) {
+                        mode = MODE_ADJUST;
+                        current_adjust = 5; // ADJ_HIGH_TEMP
+                    } else if (idx == 6 || idx == 8) {
+                        mode = MODE_ITEM;
+                        sub = 0;
+                    } else {
+                        mode = MODE_ITEM;
+                        sub = 0;
+                        if (idx == 5) sub = (int)g_tpms_config.tire_swap;
+                    }
+                } else if (mode == MODE_ITEM) {
+                    int idx = sel % MENU_COUNT;
+                    if (idx == 0) {
+                        g_tpms_config.warm_up_greetings = (sub == 0);
+                        save_config_to_nvs();
+                        mode = MODE_MENU;
+                    } else if (idx == 1) {
+                        g_tpms_config.warning_settings = (sub == 0) ? VOICE_MALE : VOICE_FEMALE;
+                        save_config_to_nvs();
+                        mode = MODE_MENU;
+                    } else if (idx == 2) {
+                        current_adjust = (sub == 0) ? 1 : 2; // ADJ_FRONT_UPPER : ADJ_FRONT_LOWER
+                        mode = MODE_ADJUST;
+                    } else if (idx == 3) {
+                        current_adjust = (sub == 0) ? 3 : 4; // ADJ_REAR_UPPER : ADJ_REAR_LOWER
+                        mode = MODE_ADJUST;
+                    } else if (idx == 5) {
+                        g_tpms_config.tire_swap = (TireSwapMode)(sub % TIRE_SWAP_COUNT);
+                        save_config_to_nvs();
+                        update_ai_devices_by_swap_mode(g_tpms_config.tire_swap);  // Update devices after change
+                        mode = MODE_MENU;
+                    } else if (idx == 6) {
+                        mode = MODE_SENSOR;
+                    } else if (idx == 7) {
+                        g_tpms_config.tire_pressure_unit = (sub == 0) ? PSI_UNIT : BAR_UNIT;
+                        save_config_to_nvs();
+                        mode = MODE_MENU;
+                    } else if (idx == 8) {
+                        if (sub == 1) {
+                            restore_default_settings(s_ui_queue);
+                        }
+                        mode = MODE_MENU;
+                    } else {
+                        mode = MODE_MENU;
+                    }
+                } else if (mode == MODE_ADJUST || mode == MODE_SENSOR) {
+                    mode = MODE_MENU;
+                    current_adjust = 0;
+                }
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+                ESP_LOGI(TAG, "MODE short -> %s",
+                         (mode==MODE_MENU)?"MENU":(mode==MODE_ITEM)?"ITEM":(mode==MODE_ADJUST)?"ADJUST":(mode==MODE_SENSOR)?"SENSOR":"HELLO");
+            }
+        }
+
+        if (mode == MODE_ITEM && (sel == 6 || sel == 8)) {
+            if (up_rise || dn_rise) {
+                sub ^= 1;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+            }
+        } else if (mode == MODE_ITEM && sel == 5) {
+            if (up_rise) {
+                sub = (sub - 1 + TIRE_SWAP_COUNT) % TIRE_SWAP_COUNT;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+            }
+            if (dn_rise) {
+                sub = (sub + 1) % TIRE_SWAP_COUNT;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+            }
+        } else if (mode == MODE_ITEM) {
+            if (up_rise || dn_rise) {
+                sub ^= 1;
+                ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+                xQueueSend(s_ui_queue, &u, 0);
+            }
+        }
+
+        if (mode == MODE_ADJUST) {
+            bool inc = false;
+            if (up_rise) {
+                inc = true;
+            } else if (dn_rise) {
+                inc = false;
+            } else {
+                vTaskDelay(pdMS_TO_TICKS(BTN_POLL_INTERVAL_MS));
+                continue;
+            }
+
+            float step = 0.1f;
+            if (inc) {
+                switch (current_adjust) {
+                    case 1: // ADJ_FRONT_UPPER
+                        g_tpms_config.front_tire_press_Upper_limit += step;
+                        g_tpms_config.front_tire_press_Upper_limit = roundf(g_tpms_config.front_tire_press_Upper_limit * 10.0f) / 10.0f;
+                        break;
+                    case 2: // ADJ_FRONT_LOWER
+                        g_tpms_config.front_tire_press_Lower_limit += step;
+                        g_tpms_config.front_tire_press_Lower_limit = roundf(g_tpms_config.front_tire_press_Lower_limit * 10.0f) / 10.0f;
+                        break;
+                    case 3: // ADJ_REAR_UPPER
+                        g_tpms_config.rear_tire_press_Upper_limit += step;
+                        g_tpms_config.rear_tire_press_Upper_limit = roundf(g_tpms_config.rear_tire_press_Upper_limit * 10.0f) / 10.0f;
+                        break;
+                    case 4: // ADJ_REAR_LOWER
+                        g_tpms_config.rear_tire_press_Lower_limit += step;
+                        g_tpms_config.rear_tire_press_Lower_limit = roundf(g_tpms_config.rear_tire_press_Lower_limit * 10.0f) / 10.0f;
+                        break;
+                    case 5: // ADJ_HIGH_TEMP
+                        handle_high_temp_adjust(true);
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                switch (current_adjust) {
+                    case 1: // ADJ_FRONT_UPPER
+                        g_tpms_config.front_tire_press_Upper_limit -= step;
+                        g_tpms_config.front_tire_press_Upper_limit = roundf(g_tpms_config.front_tire_press_Upper_limit * 10.0f) / 10.0f;
+                        break;
+                    case 2: // ADJ_FRONT_LOWER
+                        g_tpms_config.front_tire_press_Lower_limit -= step;
+                        g_tpms_config.front_tire_press_Lower_limit = roundf(g_tpms_config.front_tire_press_Lower_limit * 10.0f) / 10.0f;
+                        break;
+                    case 3: // ADJ_REAR_UPPER
+                        g_tpms_config.rear_tire_press_Upper_limit -= step;
+                        g_tpms_config.rear_tire_press_Upper_limit = roundf(g_tpms_config.rear_tire_press_Upper_limit * 10.0f) / 10.0f;
+                        break;
+                    case 4: // ADJ_REAR_LOWER
+                        g_tpms_config.rear_tire_press_Lower_limit -= step;
+                        g_tpms_config.rear_tire_press_Lower_limit = roundf(g_tpms_config.rear_tire_press_Lower_limit * 10.0f) / 10.0f;
+                        break;
+                    case 5: // ADJ_HIGH_TEMP
+                        handle_high_temp_adjust(false);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (current_adjust >= 1 && current_adjust <= 4) {
+                save_config_to_nvs();
+            }
+            ui_update_t u = {.mode = mode, .sel = sel, .sub = sub, .adjust = current_adjust};
+            xQueueSend(s_ui_queue, &u, 0);
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(BTN_POLL_INTERVAL_MS));
+    }
+}
+
+void app_main(void) {
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
+
+    // Load configuration from NVS
+    load_config_from_nvs();
+
+    // Initialize AI devices based on current swap mode
+    update_ai_devices_by_swap_mode(g_tpms_config.tire_swap);
+
+    // Khởi tạo hàng đợi âm thanh trước
+    init_audio_queue();
+
+    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
+    ESP_ERROR_CHECK(esp_bt_controller_init(&bt_cfg));
+    ESP_ERROR_CHECK(esp_bt_controller_enable(ESP_BT_MODE_BLE));
+    ESP_ERROR_CHECK(esp_vhci_host_register_callback(&vhci_host_cb));
+
+    // Tạo các task
+    xTaskCreate(dfplayer_init_task, "dfplayer_init", 2048, NULL, 4, NULL);
+    xTaskCreate(audio_task, "audio_task", 2048, NULL, 5, NULL);
+    xTaskCreate(cooldown_manager_task, "cooldown_mgr", 2048, NULL, 2, NULL);
+    
+    // Chạy sequence command trong task riêng (thay thế vòng lặp for cũ)
+    xTaskCreate(ble_cmd_sequence_task, "ble_cmd_seq", 2048, NULL, 3, NULL);
+
+    // Tạo UI và input tasks với kích thước stack tăng cường
+    s_ui_queue = xQueueCreate(8, sizeof(ui_update_t));
+    xTaskCreate(ui_task, "ui_task", 8192, NULL, 4, NULL);        // Tăng từ 4096 → 8192
+    xTaskCreate(input_task, "input_task", 4096, NULL, 3, NULL);  // Tăng từ 3072 → 4096
+    xTaskCreatePinnedToCore(hci_evt_process, "hci_evt_process", 3072, NULL, 6, NULL, 0); // 2048 → 3072
+    
+    ESP_LOGI(TAG, "All tasks started successfully");
+}
