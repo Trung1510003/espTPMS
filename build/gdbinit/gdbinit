@@ -1,0 +1,2 @@
+source /home/trung/Downloads/testBLE_Sensor/build/gdbinit/symbols
+source /home/trung/Downloads/testBLE_Sensor/build/gdbinit/connect

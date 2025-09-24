@@ -1,0 +1,3966 @@
+Command: /home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python /home/trung/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace /home/trung/Downloads/testBLE_Sensor/build/testBLE_Sensor.elf /home/trung/Downloads/testBLE_Sensor/build/bootloader/bootloader.elf -m '/home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python' '/home/trung/esp/esp-idf/tools/idf.py'
+���x�xY\'����ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xf (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x15ac
+load:0x403cbf10,len:0xc34
+load:0x403ce710,len:0x2fd0
+entry 0x403cbf1a
+[0;32mI (30) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Sep 24 2025 09:27:32[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (31) boot: efuse block revision: v1.1[0m
+[0;32mI (34) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (50) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (59) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (72) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (79) boot: End of partition table[0m
+[0;32mI (82) esp_image: segment 0: paddr=00010020 vaddr=3c040020 size=0fb84h ( 64388) map[0m
+[0;32mI (100) esp_image: segment 1: paddr=0001fbac vaddr=3fc94c00 size=0046ch (  1132) load[0m
+[0;32mI (100) esp_image: segment 2: paddr=00020020 vaddr=42000020 size=3ff68h (261992) map[0m
+[0;32mI (146) esp_image: segment 3: paddr=0005ff90 vaddr=3fc9506c size=01e30h (  7728) load[0m
+[0;32mI (148) esp_image: segment 4: paddr=00061dc8 vaddr=40380000 size=14ae8h ( 84712) load[0m
+[0;32mI (165) esp_image: segment 5: paddr=000768b8 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (172) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (172) boot: Disabling RNG early entropy source...[0m
+V (183) mmap: after coalescing, 1 regions are left
+[0;32mI (183) cpu_start: Unicore app[0m
+D (183) cpu_start: Pro cpu up
+D (191) clk: RTC_SLOW_CLK calibration value: 3953011
+V CACHE_ERR: access error intr clr & ena mask is: 0x3f
+V CACHE_ERR: illegal error intr clr & ena mask is: 0x23
+D (198) cpu_start: calling init function: 0x42000236 on core: 0
+D (202) cpu_start: calling init function: 0x42000908 on core: 0
+[0;32mI (207) cpu_start: Pro cpu start user code[0m
+[0;32mI (211) cpu_start: cpu freq: 160000000 Hz[0m
+D (215) cpu_start: calling init function: 0x420000e0 on core: 0
+[0;32mI (221) app_init: Application information:[0m
+[0;32mI (224) app_init: Project name:     testBLE_Sensor[0m
+[0;32mI (229) app_init: App version:      1[0m
+[0;32mI (232) app_init: Compile time:     Sep 24 2025 09:27:19[0m
+[0;32mI (237) app_init: ELF file SHA256:  f37ec554b...[0m
+[0;32mI (242) app_init: ESP-IDF:          v5.5.1-dirty[0m
+D (246) cpu_start: calling init function: 0x42000248 on core: 0
+[0;32mI (252) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (256) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (260) efuse_init: Chip rev:         v0.3[0m
+D (263) cpu_start: calling init function: 0x420025a4 on core: 0
+V (269) memory_layout: reserved range is 0x3c04fac4 - 0x3c04fae4
+D (275) memory_layout: Checking 5 reserved memory ranges:
+D (280) memory_layout: Reserved memory range 0x3fc80000 - 0x3fc94c00
+D (286) memory_layout: Reserved memory range 0x3fc94c00 - 0x3fc98220
+D (292) memory_layout: Reserved memory range 0x3fcdf060 - 0x3fce0000
+D (298) memory_layout: Reserved memory range 0x50000000 - 0x50000020
+D (304) memory_layout: Reserved memory range 0x50001fe8 - 0x50002000
+D (310) memory_layout: Building list of available memory regions:
+V (316) memory_layout: Examining memory region 0x3fc80000 - 0x3fca0000
+V (322) memory_layout: Start of region 0x3fc80000 - 0x3fca0000 overlaps reserved 0x3fc80000 - 0x3fc94c00
+V (332) memory_layout: Start of region 0x3fc94c00 - 0x3fca0000 overlaps reserved 0x3fc94c00 - 0x3fc98220
+D (341) memory_layout: Available memory region 0x3fc98220 - 0x3fca0000
+V (347) memory_layout: Examining memory region 0x3fca0000 - 0x3fcc0000
+D (353) memory_layout: Available memory region 0x3fca0000 - 0x3fcc0000
+V (359) memory_layout: Examining memory region 0x3fcc0000 - 0x3fcdc710
+D (366) memory_layout: Available memory region 0x3fcc0000 - 0x3fcdc710
+V (372) memory_layout: Examining memory region 0x3fcdc710 - 0x3fce0000
+V (378) memory_layout: End of region 0x3fcdc710 - 0x3fce0000 overlaps reserved 0x3fcdf060 - 0x3fce0000
+D (387) memory_layout: Available memory region 0x3fcdc710 - 0x3fcdf060
+V (393) memory_layout: Examining memory region 0x50000000 - 0x50002000
+V (400) memory_layout: Start of region 0x50000000 - 0x50002000 overlaps reserved 0x50000000 - 0x50000020
+V (409) memory_layout: End of region 0x50000020 - 0x50002000 overlaps reserved 0x50001fe8 - 0x50002000
+D (418) memory_layout: Available memory region 0x50000020 - 0x50001fe8
+[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
+D (431) heap_init: New heap initialised at 0x3fc98220
+[0;32mI (435) heap_init: At 3FC98220 len 00027DE0 (159 KiB): RAM[0m
+D (440) heap_init: New heap initialised at 0x3fcc0000
+[0;32mI (445) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (451) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+D (457) heap_init: New heap initialised at 0x50000020
+[0;32mI (462) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+D (467) cpu_start: calling init function: 0x4200616e on core: 0
+D (473) cpu_start: calling init function: 0x4200576c on core: 0
+D (479) cpu_start: calling init function: 0x42000980 on core: 0
+V (484) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (490) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x40E
+D (498) intr_alloc: Connected src 27 to int 2 (cpu 0)
+D (503) cpu_start: calling init function: 0x420009a2 on core: 0
+D (508) cpu_start: calling init function: 0x42007474 on core: 0
+D (514) cpu_start: calling init function: 0x4200accc on core: 0
+D (520) cpu_start: calling init function: 0x4200c1fc on core: 0
+D (525) cpu_start: calling init function: 0x4200afd2 on core: 0
+D (531) cpu_start: calling init function: 0x4200577a on core: 0
+D (537) cpu_start: calling init function: 0x420009b2 on core: 0
+V (542) memspi: raw_chip_id: 164020
+
+V (546) memspi: chip_id: 204016
+
+V (549) memspi: raw_chip_id: 164020
+
+V (552) memspi: chip_id: 204016
+
+D (555) spi_flash: trying chip: issi
+D (558) spi_flash: trying chip: gd
+D (562) spi_flash: trying chip: mxic
+D (565) spi_flash: trying chip: winbond
+D (568) spi_flash: trying chip: boya
+D (572) spi_flash: trying chip: th
+D (575) spi_flash: trying chip: generic
+[0;32mI (578) spi_flash: detected chip: generic[0m
+[0;32mI (582) spi_flash: flash io: dio[0m
+[0;33mW (585) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+D (597) cpu_start: calling init function: 0x4200032e on core: 0
+D (603) cpu_start: calling init function: 0x4202a502
+D (608) cpu_start: calling init function: 0x4202a486
+D (612) cpu_start: calling init function: 0x42029fc2
+D (617) cpu_start: calling init function: 0x403898ec
+D (622) cpu_start: calling init function: 0x420232b0 on core: 0
+V (627) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (633) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0xC02
+D (641) intr_alloc: Connected src 39 to int 3 (cpu 0)
+D (646) cpu_start: calling init function: 0x42001b24 on core: 0
+D (652) cpu_start: calling init function: 0x42002dde on core: 0
+D (657) cpu_start: calling init function: 0x42003c10 on core: 0
+[0;32mI (663) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (669) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+D (676) cpu_start: calling init function: 0x42000a04 on core: 0
+D (681) cpu_start: calling init function: 0x42000a14 on core: 0
+[0;32mI (687) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (691) coexist: coexist rom version 9387209[0m
+D (695) cpu_start: calling init function: 0x4200a43a on core: 0
+D (701) cpu_start: calling init function: 0x42000a2c on core: 0
+V (706) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (712) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x40E
+D (720) intr_alloc: Connected src 50 to int 4 (cpu 0)
+D (725) app_start: Starting scheduler on CPU0
+V (729) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (729) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x402
+D (729) intr_alloc: Connected src 37 to int 5 (cpu 0)
+[0;32mI (729) main_task: Started on CPU0[0m
+D (729) heap_init: New heap initialised at 0x3fcdc710
+V (729) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (739) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0xE
+D (749) intr_alloc: Connected src 33 to int 7 (cpu 0)
+[0;32mI (749) main_task: Calling app_main()[0m
+V (749) partition: Loading the partition table
+V (759) mmap: actual_mapped_len is 0x10000
+V (759) calculated md5: 0x3fc9ae68   f4 ad 4f 45 38 56 4b 5d  74 35 b6 2c 75 b6 95 24  |..OE8VK]t5.,u..$|
+V (769) stored md5: 0x3c058070   f4 ad 4f 45 38 56 4b 5d  74 35 b6 2c 75 b6 95 24  |..OE8VK]t5.,u..$|
+V (779) partition: Partition table MD5 verified
+V (799) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (799) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0xE
+D (799) intr_alloc: Connected src 22 to int 8 (cpu 0)
+[0;32mI (799) BLE_ADV_SCAN: Đặt âm lượng = 25[0m
+[0;32mI (809) BLE_ADV_SCAN: Chọn thư mục mp3 (01)[0m
+[0;32mI (1809) BLE_ADV_SCAN: Audio queue initialized with length 1[0m
+[0;32mI (1809) BLE_INIT: BT controller compile version [2edb0b0][0m
+[0;32mI (1809) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (1809) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+D (1819) efuse: BLK1 REG1 [8-15], len=8 bits
+D (1819) efuse: BLK1 REG1 [0-7], len=8 bits
+D (1819) efuse: BLK1 REG0 [24-31], len=8 bits
+D (1829) efuse: BLK1 REG0 [16-23], len=8 bits
+D (1829) efuse: BLK1 REG0 [8-15], len=8 bits
+D (1839) efuse: BLK1 REG0 [0-7], len=8 bits
+[0;32mI (1839) BLE_INIT: Bluetooth MAC: 84:f7:03:09:ab:42[0m
+V (1849) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (1849) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x408
+D (1859) intr_alloc: Connected src 8 to int 9 (cpu 0)
+[0;32mI (1859) phy_init: phy_version 1201,bae5dd99,Mar  3 2025,15:36:21[0m
+D (1869) phy_init: loading PHY init data from application binary
+D (1879) nvs: nvs_open_from_partition phy 0
+D (1879) nvs: nvs_get cal_version 4
+V (1879) phy_init: phy_get_rf_cal_version: 1201
+D (1889) nvs: nvs_get_str_or_blob cal_mac
+D (1889) efuse: BLK1 REG1 [8-15], len=8 bits
+D (1889) efuse: BLK1 REG1 [0-7], len=8 bits
+D (1899) efuse: BLK1 REG0 [24-31], len=8 bits
+D (1899) efuse: BLK1 REG0 [16-23], len=8 bits
+D (1909) efuse: BLK1 REG0 [8-15], len=8 bits
+D (1909) efuse: BLK1 REG0 [0-7], len=8 bits
+D (1909) nvs: nvs_get_str_or_blob cal_data
+D (1919) nvs: nvs_close 1
+D (1919) efuse: BLK1 REG1 [8-15], len=8 bits
+D (1929) efuse: BLK1 REG1 [0-7], len=8 bits
+D (1929) efuse: BLK1 REG0 [24-31], len=8 bits
+D (1929) efuse: BLK1 REG0 [16-23], len=8 bits
+D (1939) efuse: BLK1 REG0 [8-15], len=8 bits
+D (1939) efuse: BLK1 REG0 [0-7], len=8 bits
+D (1959) temperature_sensor: range changed, change to index 2
+[0;32mI (2279) BLE_ADV_SCAN: BLE Scanning started[0m
+[0;32mI (2379) main_task: Returned from app_main()[0m
+[0;32mI (63629) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 231 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -68dB
+Temp: 30°C
+Batt: 3.3
+Press: 231 Pa
+Data: 04 1e 21 00 e7 
+====================
+[0;32mI (63679) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 231 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 231 Pa
+Data: 04 1e 21 00 e7 
+====================
+[0;32mI (65889) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (65889) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (65889) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (65899) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (65939) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (65939) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (65939) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (65949) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (65989) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (65989) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (65989) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (65999) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (66039) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (66039) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (66039) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (66049) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -69dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (66089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (66089) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (66089) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (66099) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (68199) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (68199) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;32mI (68199) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (68209) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (68229) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (68249) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (68249) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;33mW (68249) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (68259) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -89dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (68299) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (68309) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;33mW (68309) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (68309) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -92dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (68359) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (68359) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;33mW (68359) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (68359) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (72669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 202 Pa[0m
+[0;32mI (72669) BLE_ADV_SCAN: Pressure 202 < 21.0 for SP[0m
+[0;33mW (72669) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (72669) BLE_ADV_SCAN: LOW Pressure: 202 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 202 Pa
+Data: 04 1e 21 00 ca 
+====================
+[0;32mI (74929) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (74929) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (74929) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (74929) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (74979) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (74979) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (74979) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (74989) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (75079) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (75079) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (75079) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (75089) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (75129) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (75129) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (75129) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (75139) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (77189) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (77189) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (77189) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (77199) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (77239) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (77239) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (77239) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (77249) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (77289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (77289) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (77289) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (77299) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (77339) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (77349) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (77349) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (77349) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (77399) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (77399) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (77399) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (77399) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (79649) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (79649) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (79649) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (79659) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87999) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (87999) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;32mI (87999) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (87999) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -82dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (88019) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (88049) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (88049) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (88049) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (88059) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (88099) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (88099) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (88099) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (88109) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (88149) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (88149) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (88149) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (88159) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (88199) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (88199) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (88199) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (88209) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (88259) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (88259) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (88259) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (88259) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (88309) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (88309) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (88309) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (88319) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (90139) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (90139) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (90139) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (90149) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (90189) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (90189) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (90189) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (90199) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (90239) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (90239) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (90249) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (90249) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -85dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (90289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 205 Pa[0m
+[0;32mI (90299) BLE_ADV_SCAN: Pressure 205 < 21.0 for SP[0m
+[0;33mW (90299) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (90299) BLE_ADV_SCAN: LOW Pressure: 205 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 205 Pa
+Data: 04 1e 21 00 cd 
+====================
+[0;32mI (92349) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (92349) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (92349) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (92349) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (92399) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (92399) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (92399) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (92399) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (92499) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (92499) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (92499) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (92509) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (92549) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (92549) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (92549) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (92559) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (94709) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (94709) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (94709) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (94719) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -62dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (94759) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (94759) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (94759) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (94769) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (94819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (94819) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (94819) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (94819) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -68dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (101399) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (101399) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (101399) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (101409) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (101449) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (101449) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (101449) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (101459) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (103669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (103669) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (103669) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (103679) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (103719) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (103719) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (103719) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (103729) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -69dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (103769) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (103769) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (103769) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (103779) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (103819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (103819) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (103819) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (103829) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (105939) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (105939) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;32mI (105939) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (105939) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (105959) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (105989) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (105989) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (105989) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (105989) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (106039) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (106039) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (106039) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (106049) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (106089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (106089) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (106089) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (106099) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (106139) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (106139) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (106139) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (106149) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (106189) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (106189) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (106189) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (106199) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (108209) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108209) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108209) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108209) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (108259) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108259) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108259) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108269) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -62dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (108309) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108309) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108309) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108319) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (108359) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108359) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108359) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108369) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (108409) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108409) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108409) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108419) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (108469) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108469) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108469) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108469) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (108519) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 193 Pa[0m
+[0;32mI (108519) BLE_ADV_SCAN: Pressure 193 < 21.0 for SP[0m
+[0;33mW (108519) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (108519) BLE_ADV_SCAN: LOW Pressure: 193 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 193 Pa
+Data: 04 1e 21 00 c1 
+====================
+[0;32mI (110479) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 192 Pa[0m
+[0;32mI (110479) BLE_ADV_SCAN: Pressure 192 < 21.0 for SP[0m
+[0;33mW (110479) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (110489) BLE_ADV_SCAN: LOW Pressure: 192 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -47dB
+Temp: 30°C
+Batt: 3.3
+Press: 192 Pa
+Data: 04 1e 21 00 c0 
+====================
+[0;32mI (110529) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 192 Pa[0m
+[0;32mI (110529) BLE_ADV_SCAN: Pressure 192 < 21.0 for SP[0m
+[0;33mW (110529) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (110539) BLE_ADV_SCAN: LOW Pressure: 192 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 192 Pa
+Data: 04 1e 21 00 c0 
+====================
+[0;32mI (110579) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 192 Pa[0m
+[0;32mI (110579) BLE_ADV_SCAN: Pressure 192 < 21.0 for SP[0m
+[0;33mW (110579) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (110589) BLE_ADV_SCAN: LOW Pressure: 192 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 192 Pa
+Data: 04 1e 21 00 c0 
+====================
+[0;32mI (110629) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 192 Pa[0m
+[0;32mI (110629) BLE_ADV_SCAN: Pressure 192 < 21.0 for SP[0m
+[0;33mW (110629) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (110639) BLE_ADV_SCAN: LOW Pressure: 192 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 192 Pa
+Data: 04 1e 21 00 c0 
+====================
+[0;32mI (110689) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 192 Pa[0m
+[0;32mI (110689) BLE_ADV_SCAN: Pressure 192 < 21.0 for SP[0m
+[0;33mW (110689) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (110689) BLE_ADV_SCAN: LOW Pressure: 192 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 192 Pa
+Data: 04 1e 21 00 c0 
+====================
+[0;32mI (110739) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 192 Pa[0m
+[0;32mI (110739) BLE_ADV_SCAN: Pressure 192 < 21.0 for SP[0m
+[0;33mW (110739) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (110739) BLE_ADV_SCAN: LOW Pressure: 192 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 192 Pa
+Data: 04 1e 21 00 c0 
+====================
+[0;32mI (112749) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 191 Pa[0m
+[0;32mI (112749) BLE_ADV_SCAN: Pressure 191 < 21.0 for SP[0m
+[0;33mW (112749) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (112759) BLE_ADV_SCAN: LOW Pressure: 191 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 191 Pa
+Data: 02 1e 21 00 bf 
+====================
+[0;32mI (112799) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 191 Pa[0m
+[0;32mI (112799) BLE_ADV_SCAN: Pressure 191 < 21.0 for SP[0m
+[0;33mW (112799) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (112809) BLE_ADV_SCAN: LOW Pressure: 191 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -45dB
+Temp: 30°C
+Batt: 3.3
+Press: 191 Pa
+Data: 02 1e 21 00 bf 
+====================
+[0;32mI (112849) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 191 Pa[0m
+[0;32mI (112859) BLE_ADV_SCAN: Pressure 191 < 21.0 for SP[0m
+[0;33mW (112859) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (112859) BLE_ADV_SCAN: LOW Pressure: 191 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 191 Pa
+Data: 02 1e 21 00 bf 
+====================
+[0;32mI (112909) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 191 Pa[0m
+[0;32mI (112909) BLE_ADV_SCAN: Pressure 191 < 21.0 for SP[0m
+[0;33mW (112909) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (112909) BLE_ADV_SCAN: LOW Pressure: 191 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 191 Pa
+Data: 02 1e 21 00 bf 
+====================
+[0;32mI (112959) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 191 Pa[0m
+[0;32mI (112959) BLE_ADV_SCAN: Pressure 191 < 21.0 for SP[0m
+[0;33mW (112959) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (112969) BLE_ADV_SCAN: LOW Pressure: 191 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 191 Pa
+Data: 02 1e 21 00 bf 
+====================
+[0;32mI (125029) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125029) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;32mI (125029) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (125039) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125049) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (125079) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125079) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125079) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125089) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125129) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125129) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125129) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125139) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125179) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125179) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125179) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125189) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125229) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125229) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125229) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125239) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125279) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125279) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125279) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125289) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125339) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125339) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125339) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125339) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (125389) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (125389) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (125389) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (125389) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127299) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127299) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127299) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127309) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127349) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127349) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127349) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127359) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127399) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127399) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127399) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127409) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127449) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127449) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127449) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127459) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127499) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127499) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127499) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127509) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127559) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127559) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127559) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127559) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127609) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127609) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127609) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127609) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (127659) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (127659) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (127659) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (127669) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 04 1e 21 00 bd 
+====================
+[0;32mI (129569) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (129569) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (129569) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (129579) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 02 1e 21 00 bd 
+====================
+[0;32mI (129619) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (129619) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (129619) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (129629) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 02 1e 21 00 bd 
+====================
+[0;32mI (129669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 189 Pa[0m
+[0;32mI (129669) BLE_ADV_SCAN: Pressure 189 < 21.0 for SP[0m
+[0;33mW (129669) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (129679) BLE_ADV_SCAN: LOW Pressure: 189 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 189 Pa
+Data: 02 1e 21 00 bd 
+====================
+[0;32mI (131939) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 188 Pa[0m
+[0;32mI (131939) BLE_ADV_SCAN: Pressure 188 < 21.0 for SP[0m
+[0;33mW (131939) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (131949) BLE_ADV_SCAN: LOW Pressure: 188 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 188 Pa
+Data: 02 1e 21 00 bc 
+====================
+[0;32mI (138529) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 188 Pa[0m
+[0;32mI (138529) BLE_ADV_SCAN: Pressure 188 < 21.0 for SP[0m
+[0;32mI (138539) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (138539) BLE_ADV_SCAN: LOW Pressure: 188 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 188 Pa
+Data: 02 1e 21 00 bc 
+====================
+[0;32mI (138559) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (138579) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 188 Pa[0m
+[0;32mI (138579) BLE_ADV_SCAN: Pressure 188 < 21.0 for SP[0m
+[0;33mW (138579) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (138589) BLE_ADV_SCAN: LOW Pressure: 188 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 188 Pa
+Data: 02 1e 21 00 bc 
+====================
+[0;32mI (140799) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (140799) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (140799) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (140809) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -45dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (140849) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (140849) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (140849) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (140859) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -46dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (140899) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (140899) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (140899) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (140909) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (140949) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (140949) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (140949) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (140959) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -44dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (143069) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143069) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143069) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143069) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (143119) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143119) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143119) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143119) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (143169) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143169) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143169) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143179) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -52dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (143219) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143219) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143219) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143229) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -52dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (143269) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143269) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143269) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143279) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (143319) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143319) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143319) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143329) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (143369) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (143379) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (143379) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (143379) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (145339) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (145339) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (145339) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (145349) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (145389) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (145389) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (145389) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (145399) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (145439) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (145439) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (145439) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (145449) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (145489) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (145489) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (145489) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (145499) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (145539) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (145539) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (145539) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (145549) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (145589) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (145599) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (145599) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (145599) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147609) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147609) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147609) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147619) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147659) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147659) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147659) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147669) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147709) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147709) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147709) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147719) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147759) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147759) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147759) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147769) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147809) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147819) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147819) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147819) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147869) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147869) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147869) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147869) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (147919) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (147919) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (147919) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (147919) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (149879) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 196 Pa[0m
+[0;32mI (149879) BLE_ADV_SCAN: Pressure 196 < 21.0 for SP[0m
+[0;32mI (149879) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (149889) BLE_ADV_SCAN: LOW Pressure: 196 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 196 Pa
+Data: 04 1e 21 00 c4 
+====================
+[0;32mI (149909) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (149929) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 196 Pa[0m
+[0;32mI (149929) BLE_ADV_SCAN: Pressure 196 < 21.0 for SP[0m
+[0;33mW (149929) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (149939) BLE_ADV_SCAN: LOW Pressure: 196 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 196 Pa
+Data: 04 1e 21 00 c4 
+====================
+[0;32mI (149979) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 196 Pa[0m
+[0;32mI (149979) BLE_ADV_SCAN: Pressure 196 < 21.0 for SP[0m
+[0;33mW (149979) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (149989) BLE_ADV_SCAN: LOW Pressure: 196 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 196 Pa
+Data: 04 1e 21 00 c4 
+====================
+[0;32mI (150039) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 196 Pa[0m
+[0;32mI (150039) BLE_ADV_SCAN: Pressure 196 < 21.0 for SP[0m
+[0;33mW (150039) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (150039) BLE_ADV_SCAN: LOW Pressure: 196 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 196 Pa
+Data: 04 1e 21 00 c4 
+====================
+[0;32mI (150089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 196 Pa[0m
+[0;32mI (150089) BLE_ADV_SCAN: Pressure 196 < 21.0 for SP[0m
+[0;33mW (150089) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (150099) BLE_ADV_SCAN: LOW Pressure: 196 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 196 Pa
+Data: 04 1e 21 00 c4 
+====================
+[0;32mI (156009) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (156009) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (156009) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (156019) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (156059) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (156059) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (156059) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (156069) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (158279) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (158279) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (158279) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (158289) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (158329) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (158329) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (158329) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (158339) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (160549) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (160549) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;32mI (160559) BLE_ADV_SCAN: Accepted and added MP3 file 21 to audio queue for SP[0m
+[0;33mW (160559) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (160579) BLE_ADV_SCAN: Playing MP3 file: 21[0m
+[0;32mI (160609) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (160609) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;33mW (160609) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (160609) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (160659) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 195 Pa[0m
+[0;32mI (160659) BLE_ADV_SCAN: Pressure 195 < 21.0 for SP[0m
+[0;33mW (160659) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (160659) BLE_ADV_SCAN: LOW Pressure: 195 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 195 Pa
+Data: 04 1e 21 00 c3 
+====================
+[0;32mI (162819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (162819) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (162819) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (162829) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (162869) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (162869) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (162869) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (162879) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (162919) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (162919) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (162919) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (162929) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -62dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (162969) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (162979) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (162979) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (162979) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (163029) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 194 Pa[0m
+[0;32mI (163029) BLE_ADV_SCAN: Pressure 194 < 21.0 for SP[0m
+[0;33mW (163029) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (163029) BLE_ADV_SCAN: LOW Pressure: 194 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 194 Pa
+Data: 04 1e 21 00 c2 
+====================
+[0;32mI (165089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (165089) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (165089) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (165089) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (165139) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (165139) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (165139) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (165139) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (165189) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (165189) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (165189) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (165199) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (165239) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (165239) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (165239) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (165249) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (165289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (165289) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (165289) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (165299) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (167349) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (167349) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (167349) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (167359) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -68dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (167399) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (167399) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (167409) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (167409) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (167459) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (167459) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (167459) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (167459) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -69dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (167509) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (167509) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (167509) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (167509) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (167559) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (167559) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (167559) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (167569) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (169619) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (169619) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (169619) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (169629) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (169669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (169669) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (169669) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (169679) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (169719) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (169719) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (169719) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (169729) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (169769) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (169769) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (169779) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (169779) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (169819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (169829) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (169829) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (169829) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (171889) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (171889) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (171889) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (171889) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (171939) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (171939) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (171939) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (171939) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (171989) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (171989) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (171989) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (171999) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (172039) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (172039) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (172039) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (172049) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (172089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (172089) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (172089) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (172099) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (174309) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (174309) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (174309) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (174309) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (174359) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (174359) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (174359) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (174369) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (206699) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (206699) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (206699) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (206709) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (206749) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (206749) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (206749) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (206759) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (206809) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (206809) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (206809) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (206819) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (206859) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (206859) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (206859) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (206869) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (206909) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (206909) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (206909) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (206919) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (206959) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (206959) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (206959) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (206969) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (207009) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (207009) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (207019) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (207019) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (207069) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (207069) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (207069) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (207069) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (207119) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (207119) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (207119) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (207129) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (211219) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (211219) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (211219) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (211229) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (213479) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (213489) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (213489) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (213489) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (213529) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (213529) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (213539) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (213539) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (213589) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (213589) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (213589) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (213599) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (215749) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (215749) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (215749) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (215759) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (215799) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (215799) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (215799) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (215809) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (215849) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (215849) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (215859) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (215859) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (215899) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (215909) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (215909) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (215909) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (215959) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (215959) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (215959) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (215969) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (218019) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (218019) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (218019) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (218029) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (218069) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (218069) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (218069) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (218079) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (218119) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (218119) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (218119) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (218129) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (218169) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (218169) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (218169) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (218179) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (218219) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (218219) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (218219) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (218229) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (220289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (220289) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (220289) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (220289) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (220329) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (220339) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (220339) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (220339) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (220389) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (220389) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (220389) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (220399) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (220439) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (220439) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (220439) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (220449) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (220489) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (220489) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (220489) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (220499) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (222549) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (222549) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (222549) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (222559) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (222599) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (222599) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (222599) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (222609) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (222649) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (222659) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (222659) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (222659) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (222709) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (222709) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (222709) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (222709) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (222759) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (222759) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (222759) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (222769) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (224819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (224819) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (224819) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (224829) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (224869) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (224869) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (224869) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (224879) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (224919) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (224919) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (224919) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (224929) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (224969) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (224969) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (224969) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (224979) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (225019) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (225019) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (225029) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (225029) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (227189) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (227189) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (227189) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (227199) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (227239) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (227239) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (227239) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (227249) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (227289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (227289) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (227289) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (227299) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (245699) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 257 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -68dB
+Temp: 30°C
+Batt: 3.3
+Press: 257 Pa
+Data: 04 1e 21 01 01 
+====================
+[0;32mI (245759) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 257 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -62dB
+Temp: 30°C
+Batt: 3.3
+Press: 257 Pa
+Data: 04 1e 21 01 01 
+====================
+[0;32mI (247559) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (247559) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (247559) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (247569) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (247609) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (247609) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (247609) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (247619) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -82dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (249829) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (249829) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (249829) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (249839) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -67dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (249879) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (249879) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (249879) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (249889) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (252099) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 416 Pa[0m
+[0;32mI (252099) BLE_ADV_SCAN: Pressure 416 > 26.0 for SP[0m
+[0;32mI (252099) BLE_ADV_SCAN: Accepted and added MP3 file 17 to audio queue for SP[0m
+[0;33mW (252109) BLE_ADV_SCAN: HIGH Pressure: 416 > 26.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -62dB
+Temp: 30°C
+Batt: 3.3
+Press: 416 Pa
+Data: 04 1e 21 01 a0 
+====================
+[0;32mI (252129) BLE_ADV_SCAN: Playing MP3 file: 17[0m
+[0;32mI (252149) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 416 Pa[0m
+[0;32mI (252149) BLE_ADV_SCAN: Pressure 416 > 26.0 for SP[0m
+[0;33mW (252149) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (252159) BLE_ADV_SCAN: HIGH Pressure: 416 > 26.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -69dB
+Temp: 30°C
+Batt: 3.3
+Press: 416 Pa
+Data: 04 1e 21 01 a0 
+====================
+[0;32mI (254369) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 361 Pa[0m
+[0;32mI (254369) BLE_ADV_SCAN: Pressure 361 > 26.0 for SP[0m
+[0;33mW (254369) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (254379) BLE_ADV_SCAN: HIGH Pressure: 361 > 26.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 361 Pa
+Data: 04 1e 21 01 69 
+====================
+[0;32mI (254419) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 361 Pa[0m
+[0;32mI (254419) BLE_ADV_SCAN: Pressure 361 > 26.0 for SP[0m
+[0;33mW (254419) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (254429) BLE_ADV_SCAN: HIGH Pressure: 361 > 26.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 361 Pa
+Data: 04 1e 21 01 69 
+====================
+[0;32mI (256639) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (256639) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (256639) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (256649) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (256689) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (256689) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (256689) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (256699) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (258909) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (258919) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (258919) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (258919) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (258969) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (258969) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (258969) BLE_ADV_SCAN: Discarding audio request for SP during cooldown[0m
+[0;33mW (258969) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (261179) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 255 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 255 Pa
+Data: 02 1e 21 00 ff 
+====================
+[0;32mI (261229) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 255 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 255 Pa
+Data: 02 1e 21 00 ff 
+====================
+[0;32mI (261279) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 255 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 255 Pa
+Data: 02 1e 21 00 ff 
+====================
+[0;32mI (261339) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 255 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 255 Pa
+Data: 02 1e 21 00 ff 
+====================
+[0;32mI (263449) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 02 1e 21 00 fb 
+====================
+[0;32mI (263499) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 02 1e 21 00 fb 
+====================
+[0;32mI (263549) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 02 1e 21 00 fb 
+====================
+[0;32mI (263599) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 02 1e 21 00 fb 
+====================
+[0;32mI (263649) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 02 1e 21 00 fb 
+====================
+[0;32mI (265709) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (265759) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (265819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (265869) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (265919) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (265969) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (266019) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (266069) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (266119) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 251 Pa[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 251 Pa
+Data: 04 1e 21 00 fb 
+====================
+[0;32mI (267989) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (267989) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (267989) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (267989) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268029) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268039) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268039) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268039) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -52dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268089) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268089) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268099) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268139) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268139) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268139) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268149) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268189) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268189) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268189) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268199) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -50dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268239) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268239) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268239) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268249) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268289) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268289) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268299) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268339) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268339) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268339) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268349) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -50dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (268399) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (268399) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (268399) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (268399) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270259) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270259) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270259) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270259) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -52dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270309) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270309) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270309) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270319) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -52dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270359) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270359) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270359) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270369) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270409) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270409) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270409) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270419) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270459) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270459) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270459) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270469) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270509) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270509) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270509) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270519) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270559) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270559) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270559) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270569) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -52dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270619) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270619) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270619) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270619) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (270669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (270669) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (270669) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (270679) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (272529) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (272529) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (272529) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (272539) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (272579) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (272579) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (272579) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (272589) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (272629) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (272629) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (272629) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (272639) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (272679) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (272679) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (272679) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (272689) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (290789) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (290789) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (290789) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (290799) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (290839) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (290839) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (290839) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (290849) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (290889) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (290889) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (290889) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (290899) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (290939) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (290939) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (290939) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (290949) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (290989) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (290989) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (290989) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (290999) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (291039) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (291039) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (291049) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (291049) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (291099) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (291099) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (291099) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (291099) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (291149) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (291149) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (291149) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (291149) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -61dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (291199) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (291199) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (291199) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (291209) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -60dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (293209) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (293209) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (293209) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (293209) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (293259) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (293259) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (293259) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (293269) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (293359) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (293359) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (293359) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (293369) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (293409) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (293409) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (293409) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (293419) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (293459) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (293459) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (293459) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (293469) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (295479) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (295479) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (295479) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (295489) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (295529) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (295529) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (295529) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (295539) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (295579) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (295579) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (295579) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (295589) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (295629) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (295629) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (295629) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (295639) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (295679) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (295679) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (295689) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (295689) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (295729) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (295729) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (295739) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (295739) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (297749) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (297749) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (297749) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (297759) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (297799) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (297799) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (297799) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (297809) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (297849) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (297849) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (297849) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (297859) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (297899) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (297899) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (297909) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (297909) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (297949) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (297949) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (297959) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (297959) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (298009) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (298009) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (298009) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (298009) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (300069) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (300069) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (300069) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (300079) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (300119) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (300119) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (300119) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (300129) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (300169) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (300169) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (300179) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (300179) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (300229) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (300229) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (300229) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (300229) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (300279) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (300279) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (300279) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (300289) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (302289) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (302289) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (302289) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (302299) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (302339) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (302339) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (302339) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (302349) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (302389) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (302389) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (302399) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (302399) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (302449) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (302449) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (302449) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (302449) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -58dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (302499) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (302499) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (302499) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (302509) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (302549) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (302549) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (302549) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (302559) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -57dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (304609) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (304609) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (304609) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (304619) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (304669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (304669) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (304669) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (304669) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -55dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (304719) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (304719) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (304719) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (304729) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (304769) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (304769) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (304769) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (304779) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (304819) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (304819) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (304819) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (304829) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (306889) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (306889) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (306889) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (306889) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (306939) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (306939) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (306939) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (306949) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (306989) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (306989) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (306989) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (306999) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (307039) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (307039) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (307039) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (307049) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (307089) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (307089) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (307089) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (307099) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -56dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317309) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317309) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317309) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317309) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317359) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317359) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317359) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317369) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317409) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317409) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317409) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317419) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317459) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317459) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317459) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317469) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317509) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317509) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317509) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317519) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317559) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317559) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317559) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317569) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317609) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317619) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317619) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317619) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317669) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317669) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317669) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317669) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317719) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317719) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317719) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317729) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (317769) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (317769) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (317769) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (317779) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (319579) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (319579) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (319579) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (319589) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (319629) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (319629) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (319629) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (319639) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (319679) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (319679) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (319679) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (319689) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (319729) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (319729) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (319729) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (319739) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (319779) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (319779) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (319779) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (319789) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (321949) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (321949) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (321949) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (321949) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -53dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (321999) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (321999) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (321999) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (322009) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (322049) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (322049) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (322049) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (322059) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -54dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (328639) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (328639) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (328639) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (328649) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -69dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (330909) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (330909) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (330909) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (330909) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (330959) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (330959) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (330959) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (330969) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -59dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (331009) BLE_ADV_SCAN: Device: SP, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (331009) BLE_ADV_SCAN: Pressure 146 < 21.0 for SP[0m
+[0;33mW (331009) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for SP[0m
+[0;33mW (331019) BLE_ADV_SCAN: LOW Pressure: 146 < 21.0 for SP[0m
+=== AI-8000 [SP] ===
+Addr: 12:30:af:00:01:46
+RSSI: -67dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
