@@ -99,10 +99,10 @@ static TPMS_Config g_tpms_config = {
     .warm_up_greetings = 1,
     .warning_settings = VOICE_FEMALE,
     .front_tire_press_Upper_limit = 30.0,
-    .front_tire_press_Lower_limit = 25.0,
+    .front_tire_press_Lower_limit = 20.0,
     .rear_tire_press_Upper_limit = 30.0,
-    .rear_tire_press_Lower_limit = 25.0,
-    .leak = 16.0,
+    .rear_tire_press_Lower_limit = 20.0,
+    .leak = 20.0,
     .high_temp_warning = 30,
     .tire_swap = TIRE_SWAP_INITIAL,
     .short_name = "AI-8000",
@@ -224,9 +224,11 @@ static void audio_task(void *pvParameters)
 }
 
 // Task phát âm thanh chào mừng
-static void welcome_audio_task(void *pvParameters) {
-    ESP_LOGI(TAG, "Playing welcome MP3 file: 14");
-    send_command(0x03, 14); // Phát file 14.mp3
+static void welcome_audio_task(void *pvParameters)
+{
+    uint16_t welcome_file = (g_tpms_config.warning_settings == VOICE_MALE) ? 1 : 14; // 01 cho nam, 14 cho nữ
+    ESP_LOGI(TAG, "Playing welcome MP3 file: %d", welcome_file);
+    send_command(0x03, welcome_file); // Phát file MP3 trong thư mục 01
     vTaskDelay(pdMS_TO_TICKS(AUDIO_EXECUTION_TIME_MS)); // Đợi 6 giây
     ESP_LOGI(TAG, "Welcome MP3 finished, deleting task");
     vTaskDelete(NULL); // Tự xóa task
@@ -284,40 +286,80 @@ static void play_sound_based_on_pressure(const sensor_data_t *sensor_data)
 
     uint16_t mp3_file = 0;
 
-    // Kiểm tra áp suất và vị trí lốp
-    if (sensor_data->pressure > g_tpms_config.front_tire_press_Upper_limit * 10) {
-        ESP_LOGI(TAG, "Pressure %u > %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Upper_limit, sensor_data->device_name);
-        if (strcmp(sensor_data->device_name, "TP") == 0) {
-            mp3_file = 17; // Phải-Trước áp suất cao: 15.mp3
-        } else if (strcmp(sensor_data->device_name, "TT") == 0) {
-            mp3_file = 18; // Trái-Trước áp suất cao: 16.mp3
-        } else if (strcmp(sensor_data->device_name, "SP") == 0) {
-            mp3_file = 15; // Phải-Sau áp suất cao: 17.mp3
-        } else if (strcmp(sensor_data->device_name, "ST") == 0) {
-            mp3_file = 16; // Trái-Sau áp suất cao: 18.mp3
+    // Kiểm tra giọng nói một lần duy nhất
+    if (g_tpms_config.warning_settings == VOICE_MALE) {
+        // Giọng nam: Ánh xạ file MP3 tuyệt đối
+        if (sensor_data->pressure > g_tpms_config.front_tire_press_Upper_limit * 10) {
+            ESP_LOGI(TAG, "Jewelry>Pressure %u > %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Upper_limit, sensor_data->device_name);
+            if (strcmp(sensor_data->device_name, "TP") == 0) {
+                mp3_file = 4; // Phải-Trước áp suất cao, giọng nam
+            } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+                mp3_file = 5; // Trái-Trước áp suất cao, giọng nam
+            } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+                mp3_file = 2; // Phải-Sau áp suất cao, giọng nam
+            } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+                mp3_file = 3; // Trái-Sau áp suất cao, giọng nam
+            }
         }
-    } else if (sensor_data->pressure < g_tpms_config.front_tire_press_Lower_limit * 10) {
-        ESP_LOGI(TAG, "Pressure %u < %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data->device_name);
-        if (strcmp(sensor_data->device_name, "TP") == 0) {
-            mp3_file = 21; // Phải-Trước áp suất thấp: 19.mp3
-        } else if (strcmp(sensor_data->device_name, "TT") == 0) {
-            mp3_file = 22; // Trái-Trước áp suất thấp: 20.mp3
-        } else if (strcmp(sensor_data->device_name, "SP") == 0) {
-            mp3_file = 19; // Phải-Sau áp suất thấp: 21.mp3
-        } else if (strcmp(sensor_data->device_name, "ST") == 0) {
-            mp3_file = 20; // Trái-Sau áp suất thấp: 22.mp3
+        if (sensor_data->pressure < g_tpms_config.front_tire_press_Lower_limit * 10) {
+            ESP_LOGI(TAG, "Pressure %u < %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data->device_name);
+            if (strcmp(sensor_data->device_name, "TP") == 0) {
+                mp3_file = 8; // Phải-Trước áp suất thấp, giọng nam
+            } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+                mp3_file = 9; // Trái-Trước áp suất thấp, giọng nam
+            } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+                mp3_file = 6; // Phải-Sau áp suất thấp, giọng nam
+            } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+                mp3_file = 7; // Trái-Sau áp suất thấp, giọng nam
+            }
         }
-    }
-    if (sensor_data->pressure <= g_tpms_config.leak * 13 && sensor_data->pressure >= g_tpms_config.leak * 10) {
-        // ESP_LOGI(TAG, "Pressure %u < %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data->device_name);
-        if (strcmp(sensor_data->device_name, "TP") == 0) {
-            mp3_file = 25; // Phải-Trước áp suất thấp: 19.mp3
-        } else if (strcmp(sensor_data->device_name, "TT") == 0) {
-            mp3_file = 26; // Trái-Trước áp suất thấp: 20.mp3
-        } else if (strcmp(sensor_data->device_name, "SP") == 0) {
-            mp3_file = 23; // Phải-Sau áp suất thấp: 21.mp3
-        } else if (strcmp(sensor_data->device_name, "ST") == 0) {
-            mp3_file = 24; // Trái-Sau áp suất thấp: 22.mp3
+        if (sensor_data->pressure <= g_tpms_config.leak * 17 && sensor_data->pressure >= g_tpms_config.leak * 16) {
+            if (strcmp(sensor_data->device_name, "TP") == 0) {
+                mp3_file = 12; // Phải-Trước rò rỉ, giọng nam
+            } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+                mp3_file = 13; // Trái-Trước rò rỉ, giọng nam
+            } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+                mp3_file = 10; // Phải-Sau rò rỉ, giọng nam
+            } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+                mp3_file = 11; // Trái-Sau rò rỉ, giọng nam
+            }
+        }
+    } else { // VOICE_FEMALE
+        // Giọng nữ: Ánh xạ file MP3 tuyệt đối
+        if (sensor_data->pressure > g_tpms_config.front_tire_press_Upper_limit * 10) {
+            ESP_LOGI(TAG, "Pressure %u > %.1f for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Upper_limit, sensor_data->device_name);
+            if (strcmp(sensor_data->device_name, "TP") == 0) {
+                mp3_file = 17; // Phải-Trước áp suất cao, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+                mp3_file = 18; // Trái-Trước áp suất cao, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+                mp3_file = 15; // Phải-Sau áp suất cao, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+                mp3_file = 16; // Trái-Sau áp suất cao, giọng nữ
+            }
+        }
+        if (sensor_data->pressure < g_tpms_config.front_tire_press_Lower_limit * 10) {
+            ESP_LOGI(TAG, "Pressure %u < for %s", sensor_data->pressure, g_tpms_config.front_tire_press_Lower_limit, sensor_data->device_name);
+            if (strcmp(sensor_data->device_name, "TP") == 0) {
+                mp3_file = 21; // Phải-Trước áp suất thấp, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+                mp3_file = 22; // Trái-Trước áp suất thấp, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+                mp3_file = 19; // Phải-Sau áp suất thấp, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+                mp3_file = 20; // Trái-Sau áp suất thấp, giọng nữ
+            }
+        }
+        if (sensor_data->pressure <= g_tpms_config.leak * 17 && sensor_data->pressure >= g_tpms_config.leak * 16) {
+            if (strcmp(sensor_data->device_name, "TP") == 0) {
+                mp3_file = 25; // Phải-Trước rò rỉ, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "TT") == 0) {
+                mp3_file = 26; // Trái-Trước rò rỉ, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "SP") == 0) {
+                mp3_file = 23; // Phải-Sau rò rỉ, giọng nữ
+            } else if (strcmp(sensor_data->device_name, "ST") == 0) {
+                mp3_file = 24; // Trái-Sau rò rỉ, giọng nữ
+            }
         }
     }
 
@@ -1178,9 +1220,9 @@ static void restore_default_settings(QueueHandle_t queue) {
     g_tpms_config.warm_up_greetings = 1;
     g_tpms_config.warning_settings = VOICE_FEMALE;
     g_tpms_config.front_tire_press_Upper_limit = 30.0;
-    g_tpms_config.front_tire_press_Lower_limit = 25.0;
+    g_tpms_config.front_tire_press_Lower_limit = 20.0;
     g_tpms_config.rear_tire_press_Upper_limit = 30.0;
-    g_tpms_config.rear_tire_press_Lower_limit = 25.0;
+    g_tpms_config.rear_tire_press_Lower_limit = 20.0;
     g_tpms_config.high_temp_warning = 30;
     g_tpms_config.tire_swap = TIRE_SWAP_INITIAL;
     strcpy(g_tpms_config.short_name, "AI-8000");

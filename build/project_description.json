@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "SensorBLE_OLED",
-    "project_version":    "1",
+    "project_version":    "6d6be00-dirty",
     "project_path":       "/home/trung/Downloads/SensorBLE_OLED",
     "idf_path":           "/home/trung/esp/esp-idf",
     "build_dir":          "/home/trung/Downloads/SensorBLE_OLED/build",

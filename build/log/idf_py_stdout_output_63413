@@ -1,0 +1,2308 @@
+Command: /home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python /home/trung/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace /home/trung/Downloads/SensorBLE_OLED/build/SensorBLE_OLED.elf /home/trung/Downloads/SensorBLE_OLED/build/bootloader/bootloader.elf -m '/home/trung/.espressif/python_env/idf5.5_py3.10_env/bin/python' '/home/trung/esp/esp-idf/tools/idf.py'
+x��x�xx Enable au�ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xf (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x15ac
+load:0x403cbf10,len:0xc34
+load:0x403ce710,len:0x2fd0
+entry 0x403cbf1a
+[0;32mI (30) boot: ESP-IDF v5.5.1-dirty 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Sep 26 2025 00:34:25[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (31) boot: efuse block revision: v1.1[0m
+[0;32mI (34) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (50) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (59) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (72) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (79) boot: End of partition table[0m
+[0;32mI (82) esp_image: segment 0: paddr=00010020 vaddr=3c050020 size=154f8h ( 87288) map[0m
+[0;32mI (103) esp_image: segment 1: paddr=00025520 vaddr=3fc95000 size=0216ch (  8556) load[0m
+[0;32mI (105) esp_image: segment 2: paddr=00027694 vaddr=40380000 size=08984h ( 35204) load[0m
+[0;32mI (114) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=459fch (285180) map[0m
+[0;32mI (160) esp_image: segment 4: paddr=00075a24 vaddr=40388984 size=0c584h ( 50564) load[0m
+[0;32mI (170) esp_image: segment 5: paddr=00081fb0 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (176) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (176) boot: Disabling RNG early entropy source...[0m
+[0;32mI (187) cpu_start: Unicore app[0m
+[0;32mI (196) cpu_start: Pro cpu start user code[0m
+[0;32mI (196) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (196) app_init: Application information:[0m
+[0;32mI (196) app_init: Project name:     SensorBLE_OLED[0m
+[0;32mI (200) app_init: App version:      6d6be00-dirty[0m
+[0;32mI (205) app_init: Compile time:     Sep 26 2025 00:34:10[0m
+[0;32mI (210) app_init: ELF file SHA256:  a968b8555...[0m
+[0;32mI (214) app_init: ESP-IDF:          v5.5.1-dirty[0m
+[0;32mI (219) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (222) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (226) efuse_init: Chip rev:         v0.3[0m
+[0;32mI (230) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (237) heap_init: At 3FC98A30 len 000275D0 (157 KiB): RAM[0m
+[0;32mI (242) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (248) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (254) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (260) spi_flash: detected chip: generic[0m
+[0;32mI (263) spi_flash: flash io: dio[0m
+[0;33mW (266) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (278) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (288) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (294) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (301) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (309) coexist: coexist rom version 9387209[0m
+[0;32mI (310) main_task: Started on CPU0[0m
+[0;32mI (310) main_task: Calling app_main()[0m
+[0;32mI (320) BLE_ADV_SCAN: Configuration loaded from NVS[0m
+[0;32mI (320) BLE_ADV_SCAN: Audio queue initialized with length 1[0m
+[0;32mI (320) BLE_INIT: BT controller compile version [2edb0b0][0m
+[0;32mI (330) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (330) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (340) BLE_INIT: Bluetooth MAC: 84:f7:03:09:ab:42[0m
+[0;32mI (340) phy_init: phy_version 1201,bae5dd99,Mar  3 2025,15:36:21[0m
+[0;32mI (380) BLE_ADV_SCAN: Đặt âm lượng = 25[0m
+[0;32mI (380) BLE_ADV_SCAN: Chọn thư mục mp3 (01)[0m
+[0;32mI (390) u8g2_hal: sda_io_num 5[0m
+[0;32mI (390) u8g2_hal: scl_io_num 4[0m
+[0;32mI (390) u8g2_hal: clk_speed 50000[0m
+[0;32mI (390) u8g2_hal: i2c_param_config 1[0m
+[0;32mI (390) u8g2_hal: i2c_driver_install 0[0m
+[0;32mI (690) BLE_ADV_SCAN: BLE Scanning started[0m
+[0;32mI (710) BLE_ADV_SCAN: UI ready[0m
+[0;32mI (790) BLE_ADV_SCAN: BLE command sequence completed[0m
+[0;32mI (1380) BLE_ADV_SCAN: Playing welcome MP3 file: 1[0m
+[0;32mI (1380) BLE_ADV_SCAN: DFPlayer initialization completed[0m
+[1;31mE (5310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (5310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (5310) task_wdt: Tasks currently running:[0m
+[1;31mE (5310) task_wdt: CPU 0: input_task[0m
+[1;31mE (5310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x004d1a77  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (7380) BLE_ADV_SCAN: Welcome MP3 finished, deleting task[0m
+[1;31mE (10310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (10310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (10310) task_wdt: Tasks currently running:[0m
+[1;31mE (10310) task_wdt: CPU 0: input_task[0m
+[1;31mE (10310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200e510  RA      : 0x4038150c  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x009965b6  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (12720) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 351 Pa[0m
+[0;32mI (12720) BLE_ADV_SCAN: Jewelry>Pressure 351 > 30.0 for ST[0m
+[0;32mI (12720) BLE_ADV_SCAN: Accepted and added MP3 file 3 to audio queue for ST[0m
+[0;33mW (12730) BLE_ADV_SCAN: HIGH Pressure: 351 > 30.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 351 Pa
+Data: 04 1e 21 01 5f 
+====================
+[0;32mI (12750) BLE_ADV_SCAN: Playing MP3 file: 3[0m
+[0;32mI (14980) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 345 Pa[0m
+[0;32mI (14980) BLE_ADV_SCAN: Jewelry>Pressure 345 > 30.0 for ST[0m
+[0;33mW (14980) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (14990) BLE_ADV_SCAN: HIGH Pressure: 345 > 30.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 345 Pa
+Data: 04 1e 21 01 59 
+====================
+[0;32mI (15030) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 345 Pa[0m
+[0;32mI (15040) BLE_ADV_SCAN: Jewelry>Pressure 345 > 30.0 for ST[0m
+[0;33mW (15040) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (15040) BLE_ADV_SCAN: HIGH Pressure: 345 > 30.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 345 Pa
+Data: 04 1e 21 01 59 
+====================
+[0;32mI (15140) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 345 Pa[0m
+[0;32mI (15140) BLE_ADV_SCAN: Jewelry>Pressure 345 > 30.0 for ST[0m
+[0;33mW (15140) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (15150) BLE_ADV_SCAN: HIGH Pressure: 345 > 30.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 345 Pa
+Data: 04 1e 21 01 59 
+====================
+[0;32mI (15190) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 345 Pa[0m
+[0;32mI (15190) BLE_ADV_SCAN: Jewelry>Pressure 345 > 30.0 for ST[0m
+[0;33mW (15190) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (15200) BLE_ADV_SCAN: HIGH Pressure: 345 > 30.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 345 Pa
+Data: 04 1e 21 01 59 
+====================
+[1;31mE (15310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (15310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (15310) task_wdt: Tasks currently running:[0m
+[1;31mE (15310) task_wdt: CPU 0: input_task[0m
+[1;31mE (15310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fcaad80  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc986b4  S1      : 0x00000001  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00e5b0fa  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (17390) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 217 Pa[0m
+[0;32mI (17390) BLE_ADV_SCAN: Pressure 217 < 25.0 for ST[0m
+[0;33mW (17390) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (17400) BLE_ADV_SCAN: LOW Pressure: 217 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 217 Pa
+Data: 04 1e 21 00 d9 
+====================
+[0;32mI (17440) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 217 Pa[0m
+[0;32mI (17450) BLE_ADV_SCAN: Pressure 217 < 25.0 for ST[0m
+[0;33mW (17450) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (17450) BLE_ADV_SCAN: LOW Pressure: 217 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -70dB
+Temp: 30°C
+Batt: 3.3
+Press: 217 Pa
+Data: 04 1e 21 00 d9 
+====================
+[1;31mE (20310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (20310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (20310) task_wdt: Tasks currently running:[0m
+[1;31mE (20310) task_wdt: CPU 0: input_task[0m
+[1;31mE (20310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x403902c6  RA      : 0x40381420  SP      : 0x3fcaadc0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x4038a02e  S1      : 0x00000000  A0      : 0x3fc97bc4  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x40000000  A4      : 0x60000000  A5      : 0x00000001  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0131fc36  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (21760) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 221 Pa[0m
+[0;32mI (21760) BLE_ADV_SCAN: Pressure 221 < 25.0 for ST[0m
+[0;33mW (21760) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (21760) BLE_ADV_SCAN: LOW Pressure: 221 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 221 Pa
+Data: 04 1e 21 00 dd 
+====================
+[0;32mI (21810) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 221 Pa[0m
+[0;32mI (21810) BLE_ADV_SCAN: Pressure 221 < 25.0 for ST[0m
+[0;33mW (21810) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (21820) BLE_ADV_SCAN: LOW Pressure: 221 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 221 Pa
+Data: 04 1e 21 00 dd 
+====================
+[0;32mI (21860) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 221 Pa[0m
+[0;32mI (21860) BLE_ADV_SCAN: Pressure 221 < 25.0 for ST[0m
+[0;33mW (21860) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (21870) BLE_ADV_SCAN: LOW Pressure: 221 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 221 Pa
+Data: 04 1e 21 00 dd 
+====================
+[0;32mI (21910) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 221 Pa[0m
+[0;32mI (21910) BLE_ADV_SCAN: Pressure 221 < 25.0 for ST[0m
+[0;33mW (21910) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (21920) BLE_ADV_SCAN: LOW Pressure: 221 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 221 Pa
+Data: 04 1e 21 00 dd 
+====================
+[0;32mI (24020) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (24020) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;32mI (24020) BLE_ADV_SCAN: Accepted and added MP3 file 7 to audio queue for ST[0m
+[0;33mW (24030) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[0;32mI (24040) BLE_ADV_SCAN: Playing MP3 file: 7[0m
+[0;32mI (24070) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (24070) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (24070) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (24080) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -86dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[0;32mI (24120) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (24120) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (24120) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (24130) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[0;32mI (24170) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (24170) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (24170) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (24180) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[0;32mI (24230) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (24230) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (24230) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (24230) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -87dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[1;31mE (25310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (25310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (25310) task_wdt: Tasks currently running:[0m
+[1;31mE (25310) task_wdt: CPU 0: input_task[0m
+[1;31mE (25310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x017e4778  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (26480) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (26480) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (26480) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (26490) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[1;31mE (30310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (30310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (30310) task_wdt: Tasks currently running:[0m
+[1;31mE (30310) task_wdt: CPU 0: input_task[0m
+[1;31mE (30310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fcaad80  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc986b4  S1      : 0x00000001  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x01ca92ba  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (30790) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (30790) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (30790) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (30800) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[0;32mI (30840) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (30840) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (30840) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (30850) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[0;32mI (30950) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 222 Pa[0m
+[0;32mI (30950) BLE_ADV_SCAN: Pressure 222 < 25.0 for ST[0m
+[0;33mW (30950) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (30950) BLE_ADV_SCAN: LOW Pressure: 222 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 222 Pa
+Data: 04 1e 21 00 de 
+====================
+[1;31mE (35310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (35310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (35310) task_wdt: Tasks currently running:[0m
+[1;31mE (35310) task_wdt: CPU 0: ui_task[0m
+[1;31mE (35310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fca98e0  GP      : 0x3fc95800  
+TP      : 0x3fca9bb0  T0      : 0x4005890e  T1      : 0x00000001  T2      : 0x00000000  
+S0/FP   : 0x3fc98a30  S1      : 0x3fcabaf0  A0      : 0x00000001  A1      : 0x00000020  
+A2      : 0x3fc98a68  A3      : 0x00000010  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x00000001  A7      : 0x00002000  S2      : 0x3fca9ab8  S3      : 0x00000002  
+S4      : 0x00000008  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x0000001e  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x3fcabb0c  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x1ffffffe  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (40310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (40310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (40310) task_wdt: Tasks currently running:[0m
+[1;31mE (40310) task_wdt: CPU 0: input_task[0m
+[1;31mE (40310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40381406  RA      : 0x4200e514  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x02632936  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (45310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (45310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (45310) task_wdt: Tasks currently running:[0m
+[1;31mE (45310) task_wdt: CPU 0: input_task[0m
+[1;31mE (45310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4202442c  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c70  S1      : 0x02af747c  A0      : 0x00000009  A1      : 0x02af747c  
+A2      : 0x00000000  A3      : 0x3fcaaddc  A4      : 0x04000000  A5      : 0x003373fc  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddd  
+S4      : 0x3fcaaddc  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (50310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (50310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (50310) task_wdt: Tasks currently running:[0m
+[1;31mE (50310) task_wdt: CPU 0: input_task[0m
+[1;31mE (50310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4202442e  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x02fbbfbb  A0      : 0x00000007  A1      : 0x02fbbfbb  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x03ffffff  A5      : 0x003373fc  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (55310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (55310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (55310) task_wdt: Tasks currently running:[0m
+[1;31mE (55310) task_wdt: CPU 0: input_task[0m
+[1;31mE (55310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x03480af9  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (60310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (60310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (60310) task_wdt: Tasks currently running:[0m
+[1;31mE (60310) task_wdt: CPU 0: input_task[0m
+[1;31mE (60310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200bd68  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x0394563b  A0      : 0x03922662  A1      : 0x00000000  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x03ffffff  A5      : 0x0000752f  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (65310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (65310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (65310) task_wdt: Tasks currently running:[0m
+[1;31mE (65310) task_wdt: CPU 0: input_task[0m
+[1;31mE (65310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40381406  RA      : 0x4200e514  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x03e0a176  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (69520) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (69520) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (69520) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (69530) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (69570) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (69570) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (69570) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (69580) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -82dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (69620) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (69620) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (69620) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (69630) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (69730) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (69730) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (69730) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (69730) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -83dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (69780) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (69780) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (69780) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (69790) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (69830) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (69830) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (69830) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (69840) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[1;31mE (70310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (70310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (70310) task_wdt: Tasks currently running:[0m
+[1;31mE (70310) task_wdt: CPU 0: input_task[0m
+[1;31mE (70310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e06  RA      : 0x4038cd28  SP      : 0x3fcaada0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000000  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x00000000  A4      : 0x00000001  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x042cecbb  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (71610) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (71610) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (71610) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (71620) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (71710) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (71710) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (71710) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (71720) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (71760) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (71760) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (71770) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (71770) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (73880) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (73880) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (73880) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (73880) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (73930) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (73930) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (73930) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (73930) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (74180) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (74180) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (74180) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (74190) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (74230) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (74240) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (74240) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (74240) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[1;31mE (75310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (75310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (75310) task_wdt: Tasks currently running:[0m
+[1;31mE (75310) task_wdt: CPU 0: input_task[0m
+[1;31mE (75310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fcaad80  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc986b4  S1      : 0x00000001  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x047937fa  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (76150) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (76150) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (76150) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (76150) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (76250) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (76250) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (76250) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (76260) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -69dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (76300) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (76300) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (76300) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (76310) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (76350) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (76350) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (76350) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (76360) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (76400) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (76400) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (76400) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (76410) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -68dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (76450) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (76450) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (76460) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (76460) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78420) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78420) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78420) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78430) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78470) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78470) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78470) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78480) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78520) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78520) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78520) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78530) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -67dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78570) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78570) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78570) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78580) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78620) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78620) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78620) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78630) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78670) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78670) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78670) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78680) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -68dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78730) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78730) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78730) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78730) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (78830) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (78830) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (78830) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (78840) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[1;31mE (80310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (80310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (80310) task_wdt: Tasks currently running:[0m
+[1;31mE (80310) task_wdt: CPU 0: input_task[0m
+[1;31mE (80310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x403902c4  RA      : 0x40381420  SP      : 0x3fcaadc0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x4038a02e  S1      : 0x00000000  A0      : 0x3fc97bc4  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x40000000  A4      : 0x60000000  A5      : 0x20000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x04c58336  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (80740) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (80740) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (80740) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (80750) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (80890) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (80890) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (80890) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (80900) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (81000) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (81000) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (81000) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (81000) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (81050) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (81050) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (81050) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (81060) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (81150) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (81150) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (81150) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (81160) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (82960) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (82960) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (82960) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (82970) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (83010) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (83010) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (83010) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (83020) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (83060) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (83060) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (83060) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (83070) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (83220) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (83220) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (83220) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (83220) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (83270) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (83270) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (83270) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (83280) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (83370) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (83370) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (83370) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (83380) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (83420) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (83420) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (83420) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (83430) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85230) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85230) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85230) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85240) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -85dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85280) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85280) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85280) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85290) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[1;31mE (85310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (85310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (85310) task_wdt: Tasks currently running:[0m
+[1;31mE (85310) task_wdt: CPU 0: input_task[0m
+[1;31mE (85310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0511ce77  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (85410) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85420) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85430) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85430) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85450) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85460) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85460) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85470) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -87dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85490) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85490) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85500) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85510) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85520) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85530) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85530) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85540) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85590) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85590) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85590) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85600) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (85640) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (85640) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (85640) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (85650) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87600) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87600) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87600) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87610) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -84dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87660) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87660) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87660) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87660) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87710) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87710) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87710) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87710) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87810) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87810) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87810) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87820) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87860) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87860) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87860) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87870) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -79dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87910) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87910) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87910) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87920) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -85dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (87960) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (87960) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (87960) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (87970) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (89870) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (89880) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (89880) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (89880) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (89930) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (89930) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (89930) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (89930) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -72dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (89980) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (89980) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (89980) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (89990) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (90030) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (90030) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (90030) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (90040) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (90080) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (90080) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (90080) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (90090) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (90180) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (90180) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (90180) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (90190) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[0;32mI (90230) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (90230) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (90230) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (90240) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 02 1e 21 00 92 
+====================
+[1;31mE (90310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (90310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (90310) task_wdt: Tasks currently running:[0m
+[1;31mE (90310) task_wdt: CPU 0: ui_task[0m
+[1;31mE (90310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fca9860  GP      : 0x3fc95800  
+TP      : 0x3fca9bb0  T0      : 0x4005890e  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc98a30  S1      : 0x3fcabaf0  A0      : 0x00000001  A1      : 0x3fcabaf0  
+A2      : 0x00000800  A3      : 0x3fcabaf0  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x00000001  A7      : 0x00002000  S2      : 0x00000001  S3      : 0x00001000  
+S4      : 0x00000008  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x0000001e  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x3fcabb0c  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x04000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (92200) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (92200) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (92200) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (92210) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[1;31mE (95310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (95310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (95310) task_wdt: Tasks currently running:[0m
+[1;31mE (95310) task_wdt: CPU 0: input_task[0m
+[1;31mE (95310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038dbce  RA      : 0x4200e50c  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000000  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x00000000  A4      : 0x00000001  A5      : 0x00000003  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x05aa64fb  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (100310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (100310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (100310) task_wdt: Tasks currently running:[0m
+[1;31mE (100310) task_wdt: CPU 0: input_task[0m
+[1;31mE (100310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200bd68  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c70  S1      : 0x05f6b03c  A0      : 0x05f48063  A1      : 0x00000000  
+A2      : 0x00000000  A3      : 0x3fcaaddc  A4      : 0x03ffffff  A5      : 0x0000752f  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddd  
+S4      : 0x3fcaaddc  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (105310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (105310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (105310) task_wdt: Tasks currently running:[0m
+[1;31mE (105310) task_wdt: CPU 0: input_task[0m
+[1;31mE (105310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0642fb79  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (110310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (110310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (110310) task_wdt: Tasks currently running:[0m
+[1;31mE (110310) task_wdt: CPU 0: input_task[0m
+[1;31mE (110310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200bd86  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x068f46bb  A0      : 0x068d16e2  A1      : 0x00000000  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x00000001  A5      : 0x00000001  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (115310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (115310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (115310) task_wdt: Tasks currently running:[0m
+[1;31mE (115310) task_wdt: CPU 0: input_task[0m
+[1;31mE (115310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fcaad80  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc986b4  S1      : 0x00000001  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x06db91fa  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (120310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (120310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (120310) task_wdt: Tasks currently running:[0m
+[1;31mE (120310) task_wdt: CPU 0: input_task[0m
+[1;31mE (120310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0727dd3a  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (125310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (125310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (125310) task_wdt: Tasks currently running:[0m
+[1;31mE (125310) task_wdt: CPU 0: input_task[0m
+[1;31mE (125310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200bd68  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c70  S1      : 0x0774287c  A0      : 0x0771f8a3  A1      : 0x00000000  
+A2      : 0x00000000  A3      : 0x3fcaaddc  A4      : 0x03ffffff  A5      : 0x0000752f  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddd  
+S4      : 0x3fcaaddc  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (130310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (130310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (130310) task_wdt: Tasks currently running:[0m
+[1;31mE (130310) task_wdt: CPU 0: input_task[0m
+[1;31mE (130310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fcaad80  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc986b4  S1      : 0x00000001  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x07c073ba  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (135310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (135310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (135310) task_wdt: Tasks currently running:[0m
+[1;31mE (135310) task_wdt: CPU 0: input_task[0m
+[1;31mE (135310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200e52c  RA      : 0x4200e514  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x080cbefd  A1      : 0x00000000  
+A2      : 0x80cbefd2  A3      : 0x00000000  A4      : 0x000fffff  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x080cbefd  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (140310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (140310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (140310) task_wdt: Tasks currently running:[0m
+[1;31mE (140310) task_wdt: CPU 0: input_task[0m
+[1;31mE (140310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x08590a38  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (145310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (145310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (145310) task_wdt: Tasks currently running:[0m
+[1;31mE (145310) task_wdt: CPU 0: input_task[0m
+[1;31mE (145310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038dbd2  RA      : 0x4200e50c  SP      : 0x3fcaadc0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000000  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x00000000  A4      : 0x00000001  A5      : 0x00000003  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x08a5557b  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (150310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (150310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (150310) task_wdt: Tasks currently running:[0m
+[1;31mE (150310) task_wdt: CPU 0: input_task[0m
+[1;31mE (150310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200dfcc  RA      : 0x4200df3e  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x00000000  A4      : 0x00000001  A5      : 0x00000002  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x08f1a0bb  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (155310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (155310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (155310) task_wdt: Tasks currently running:[0m
+[1;31mE (155310) task_wdt: CPU 0: input_task[0m
+[1;31mE (155310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x093debf7  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (160310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (160310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (160310) task_wdt: Tasks currently running:[0m
+[1;31mE (160310) task_wdt: CPU 0: input_task[0m
+[1;31mE (160310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x098a3739  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (165310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (165310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (165310) task_wdt: Tasks currently running:[0m
+[1;31mE (165310) task_wdt: CPU 0: input_task[0m
+[1;31mE (165310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200df3a  RA      : 0x4200df24  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x3fc97c30  A1      : 0x09d6827b  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x3fcaaddf  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x09d6827b  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (170310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (170310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (170310) task_wdt: Tasks currently running:[0m
+[1;31mE (170310) task_wdt: CPU 0: input_task[0m
+[1;31mE (170310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0a22cdb8  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (175310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (175310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (175310) task_wdt: Tasks currently running:[0m
+[1;31mE (175310) task_wdt: CPU 0: input_task[0m
+[1;31mE (175310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x403902e2  RA      : 0x40381420  SP      : 0x3fcaadc0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x4038a02e  S1      : 0x00000000  A0      : 0x3fc97bc4  A1      : 0x00000000  
+A2      : 0xa6f18fd6  A3      : 0x00000000  A4      : 0x00100000  A5      : 0x60023040  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0a6f18f6  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (180310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (180310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (180310) task_wdt: Tasks currently running:[0m
+[1;31mE (180310) task_wdt: CPU 0: input_task[0m
+[1;31mE (180310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x42024428  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x0abb643b  A0      : 0x00000007  A1      : 0x0abb643b  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x3fcaaddf  A5      : 0x003373fc  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (185310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (185310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (185310) task_wdt: Tasks currently running:[0m
+[1;31mE (185310) task_wdt: CPU 0: input_task[0m
+[1;31mE (185310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200e52c  RA      : 0x4200e514  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x0b07af7d  A1      : 0x00000000  
+A2      : 0xb07af7d2  A3      : 0x00000000  A4      : 0x000fffff  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0b07af7d  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (190310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (190310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (190310) task_wdt: Tasks currently running:[0m
+[1;31mE (190310) task_wdt: CPU 0: input_task[0m
+[1;31mE (190310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x42024434  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x0b53fabb  A0      : 0x000066e7  A1      : 0x0b53fabb  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x03ffffff  A5      : 0x003373dc  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (195310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (195310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (195310) task_wdt: Tasks currently running:[0m
+[1;31mE (195310) task_wdt: CPU 0: input_task[0m
+[1;31mE (195310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x403902c4  RA      : 0x40381420  SP      : 0x3fcaadc0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x4038a02e  S1      : 0x00000000  A0      : 0x3fc97bc4  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x40000000  A4      : 0x60000000  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0ba045f6  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (200310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (200310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (200310) task_wdt: Tasks currently running:[0m
+[1;31mE (200310) task_wdt: CPU 0: input_task[0m
+[1;31mE (200310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200bdb8  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97bf0  S1      : 0x0bec913c  A0      : 0x0bea6163  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x00000000  A4      : 0x00000001  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddb  
+S4      : 0x3fcaadda  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (205310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (205310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (205310) task_wdt: Tasks currently running:[0m
+[1;31mE (205310) task_wdt: CPU 0: input_task[0m
+[1;31mE (205310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0c38dc77  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (210310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (210310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (210310) task_wdt: Tasks currently running:[0m
+[1;31mE (210310) task_wdt: CPU 0: input_task[0m
+[1;31mE (210310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0c8527b7  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (215310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (215310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (215310) task_wdt: Tasks currently running:[0m
+[1;31mE (215310) task_wdt: CPU 0: input_task[0m
+[1;31mE (215310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0cd172f7  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (220310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (220310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (220310) task_wdt: Tasks currently running:[0m
+[1;31mE (220310) task_wdt: CPU 0: input_task[0m
+[1;31mE (220310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0d1dbe39  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (221170) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 233 Pa[0m
+[0;32mI (221170) BLE_ADV_SCAN: Pressure 233 < 25.0 for ST[0m
+[0;32mI (221170) BLE_ADV_SCAN: Accepted and added MP3 file 7 to audio queue for ST[0m
+[0;33mW (221170) BLE_ADV_SCAN: LOW Pressure: 233 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -73dB
+Temp: 30°C
+Batt: 3.3
+Press: 233 Pa
+Data: 04 1e 21 00 e9 
+====================
+[0;32mI (221190) BLE_ADV_SCAN: Playing MP3 file: 7[0m
+[0;32mI (221220) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 233 Pa[0m
+[0;32mI (221220) BLE_ADV_SCAN: Pressure 233 < 25.0 for ST[0m
+[0;33mW (221220) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (221230) BLE_ADV_SCAN: LOW Pressure: 233 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -80dB
+Temp: 30°C
+Batt: 3.3
+Press: 233 Pa
+Data: 04 1e 21 00 e9 
+====================
+[0;32mI (221270) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 233 Pa[0m
+[0;32mI (221270) BLE_ADV_SCAN: Pressure 233 < 25.0 for ST[0m
+[0;33mW (221270) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (221280) BLE_ADV_SCAN: LOW Pressure: 233 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -77dB
+Temp: 30°C
+Batt: 3.3
+Press: 233 Pa
+Data: 04 1e 21 00 e9 
+====================
+[0;32mI (223480) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 216 Pa[0m
+[0;32mI (223480) BLE_ADV_SCAN: Pressure 216 < 25.0 for ST[0m
+[0;33mW (223480) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (223480) BLE_ADV_SCAN: LOW Pressure: 216 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -76dB
+Temp: 30°C
+Batt: 3.3
+Press: 216 Pa
+Data: 04 1e 21 00 d8 
+====================
+[0;32mI (223580) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 216 Pa[0m
+[0;32mI (223580) BLE_ADV_SCAN: Pressure 216 < 25.0 for ST[0m
+[0;33mW (223580) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (223590) BLE_ADV_SCAN: LOW Pressure: 216 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -75dB
+Temp: 30°C
+Batt: 3.3
+Press: 216 Pa
+Data: 04 1e 21 00 d8 
+====================
+[0;32mI (223630) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 216 Pa[0m
+[0;32mI (223630) BLE_ADV_SCAN: Pressure 216 < 25.0 for ST[0m
+[0;33mW (223630) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (223640) BLE_ADV_SCAN: LOW Pressure: 216 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 216 Pa
+Data: 04 1e 21 00 d8 
+====================
+[1;31mE (225310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (225310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (225310) task_wdt: Tasks currently running:[0m
+[1;31mE (225310) task_wdt: CPU 0: input_task[0m
+[1;31mE (225310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200bd70  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x0d6a097b  A0      : 0x0d67d9a2  A1      : 0x00000000  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x00000001  A5      : 0x00000001  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (225740) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (225740) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (225740) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (225750) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (225790) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (225790) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (225790) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (225800) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (225890) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (225890) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (225900) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (225900) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (230200) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (230200) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (230200) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (230210) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (230260) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (230260) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (230260) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (230260) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -71dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[1;31mE (230310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (230310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (230310) task_wdt: Tasks currently running:[0m
+[1;31mE (230310) task_wdt: CPU 0: btController[0m
+[1;31mE (230310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4203bfb4  RA      : 0x4203dca0  SP      : 0x3fca25c0  GP      : 0x3fc95800  
+TP      : 0x3fca2ce0  T0      : 0x7f7f7fff  T1      : 0x30000000  T2      : 0xffffffff  
+S0/FP   : 0x00000000  S1      : 0x3c055ba0  A0      : 0x00000000  A1      : 0x3fca277e  
+A2      : 0x00000002  A3      : 0x00000030  A4      : 0x00000025  A5      : 0x00000020  
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x00000000  
+S4      : 0x00000002  S5      : 0x3c055ba4  S6      : 0x00000002  S7      : 0x00000075  
+S8      : 0x00000004  S9      : 0x0000000a  S10     : 0xffffffff  S11     : 0x3fca26dc  
+T3      : 0x00000000  T4      : 0x60000000  T5      : 0x00000000  T6      : 0xff000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (230310) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (230410) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (230420) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (230420) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -67dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (230440) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (230450) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (230450) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (230460) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -66dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (230480) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (230480) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (230490) BLE_ADV_SCAN: Discarding audio request for ST during cooldown[0m
+[0;33mW (230490) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (232460) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (232460) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (232460) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (232470) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (232510) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (232510) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (232510) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (232520) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (232560) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (232560) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (232570) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (232570) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (232620) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (232620) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (232620) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (232620) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (232670) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (232670) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (232670) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (232680) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (234930) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (234930) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (234930) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (234940) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[1;31mE (235310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (235310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (235310) task_wdt: Tasks currently running:[0m
+[1;31mE (235310) task_wdt: CPU 0: input_task[0m
+[1;31mE (235310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4202442e  RA      : 0x4200bd3c  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc97c30  S1      : 0x0e029ffb  A0      : 0x00000007  A1      : 0x0e029ffb  
+A2      : 0x00000000  A3      : 0x3fcaadde  A4      : 0x03ffffff  A5      : 0x003373fc  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x00000000  S3      : 0x3fcaaddf  
+S4      : 0x3fcaadde  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[0;32mI (236980) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (236980) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (236980) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (236990) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -65dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (237030) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (237030) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (237030) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (237040) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -78dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (239240) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (239240) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (239240) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (239250) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -74dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (239290) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (239290) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (239290) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (239300) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (239340) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (239340) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (239340) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (239350) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -63dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (239400) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (239400) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (239400) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (239400) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -81dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[0;32mI (239450) BLE_ADV_SCAN: Device: ST, Temp: 30°C, Battery: 3.3, Pressure: 146 Pa[0m
+[0;32mI (239450) BLE_ADV_SCAN: Pressure 146 < 25.0 for ST[0m
+[0;33mW (239450) BLE_ADV_SCAN: Pressure 146 equals threshold 146, discarding request for ST[0m
+[0;33mW (239460) BLE_ADV_SCAN: LOW Pressure: 146 < 25.0 for ST[0m
+=== AI-8000 [ST] ===
+Addr: 12:30:af:00:01:5e
+RSSI: -64dB
+Temp: 30°C
+Batt: 3.3
+Press: 146 Pa
+Data: 04 1e 21 00 92 
+====================
+[1;31mE (240310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (240310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (240310) task_wdt: Tasks currently running:[0m
+[1;31mE (240310) task_wdt: CPU 0: input_task[0m
+[1;31mE (240310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0e4eeb39  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (245310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (245310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (245310) task_wdt: Tasks currently running:[0m
+[1;31mE (245310) task_wdt: CPU 0: ui_task[0m
+[1;31mE (245310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x420231f0  RA      : 0x420231ea  SP      : 0x3fca99f0  GP      : 0x3fc95800  
+TP      : 0x3fca9bb0  T0      : 0x00000000  T1      : 0x00000040  T2      : 0x00000000  
+S0/FP   : 0x00000010  S1      : 0x00000012  A0      : 0x00000001  A1      : 0x00000080  
+A2      : 0x00000031  A3      : 0x00000008  A4      : 0x00000010  A5      : 0x00000008  
+A6      : 0x00000006  A7      : 0x00000000  S2      : 0x0000003d  S3      : 0x3c05c441  
+S4      : 0x3fca9ab8  S5      : 0x00000037  S6      : 0x00000001  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000001  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x04000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (250310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (250310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (250310) task_wdt: Tasks currently running:[0m
+[1;31mE (250310) task_wdt: CPU 0: input_task[0m
+[1;31mE (250310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0ee781b8  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (255310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (255310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (255310) task_wdt: Tasks currently running:[0m
+[1;31mE (255310) task_wdt: CPU 0: input_task[0m
+[1;31mE (255310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0f33ccf8  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (260310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (260310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (260310) task_wdt: Tasks currently running:[0m
+[1;31mE (260310) task_wdt: CPU 0: input_task[0m
+[1;31mE (260310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x40386e0e  RA      : 0x4038cd28  SP      : 0x3fcaadb0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000000  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000001  A5      : 0x600c0000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0f801838  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (265310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (265310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (265310) task_wdt: Tasks currently running:[0m
+[1;31mE (265310) task_wdt: CPU 0: input_task[0m
+[1;31mE (265310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4038cc64  RA      : 0x4038ccf4  SP      : 0x3fcaad80  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x3fc986b4  S1      : 0x00000001  A0      : 0x00000001  A1      : 0x00000001  
+A2      : 0x00000001  A3      : 0x00000004  A4      : 0x00000000  A5      : 0x600c2000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x0fcc637a  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00000089  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
+[1;31mE (270310) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
+[1;31mE (270310) task_wdt:  - IDLE (CPU 0)[0m
+[1;31mE (270310) task_wdt: Tasks currently running:[0m
+[1;31mE (270310) task_wdt: CPU 0: input_task[0m
+[1;31mE (270310) task_wdt: Print CPU 0 (current core) registers[0m
+Core  0 register dump:
+MEPC    : 0x4200df0e  RA      : 0x4200df0c  SP      : 0x3fcaadd0  GP      : 0x3fc95800  
+TP      : 0x3fcaae50  T0      : 0x00000000  T1      : 0x0000000f  T2      : 0x00000000  
+S0/FP   : 0x00000001  S1      : 0x00000000  A0      : 0x00000001  A1      : 0x00000000  
+A2      : 0x00000001  A3      : 0x00000000  A4      : 0x00000001  A5      : 0x00000000  
+A6      : 0x60023000  A7      : 0x00000000  S2      : 0x1018aebc  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001889  MTVEC   : 0x40380001  MCAUSE  : 0xdeadc0de  MTVAL   : 0xdeadc0de  
+MHARTID : 0x00000000  
+Please enable CONFIG_ESP_SYSTEM_USE_FRAME_POINTER option to have a full backtrace.
